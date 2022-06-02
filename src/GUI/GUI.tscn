@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/GUI/Joypad/Joypad.tscn" type="PackedScene" id=1]
+
+[node name="GUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -180.0
+margin_top = -150.0
+margin_right = 180.0
+rect_min_size = Vector2( 360, 0 )
+
+[node name="Joypad" parent="." instance=ExtResource( 1 )]
+position = Vector2( 180, 560 )
