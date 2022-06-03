@@ -5,7 +5,7 @@ func _ready() -> void:
 	$SettingsMenu.visible = false
 
 func _on_Start_pressed() -> void:
-	pass # Replace with function body.
+	print("start new game")
 
 func _on_Achievements_pressed() -> void:
 	$AchievementsMenu.visible = true
