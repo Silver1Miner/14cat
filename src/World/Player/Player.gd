@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 export var speed := 100
 var velocity := Vector2.ZERO
@@ -22,7 +22,7 @@ func get_input() -> void:
 func _process(delta: float) -> void:
 	if active:
 		get_input()
-		position += velocity * delta
+		var _collision = move_and_collide(velocity * delta)
 		if position.x < 0 + 32:
 			position.x = 0 + 32
 		if position.x > 360 - 32:
