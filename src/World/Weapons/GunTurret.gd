@@ -17,7 +17,8 @@ onready var _cooldown_timer := $Timer
 var Database: Resource = preload("res://data/database.tres")
 
 func _ready() -> void:
-	pass # Replace with function body.
+	_laser_sight.add_point(Vector2.ZERO)
+	_laser_sight.add_point(Vector2.ZERO)
 
 func update_level(new_level: int) -> void:
 	if visible:

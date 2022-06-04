@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Witch Cat"
+config/name="Cat Witch"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 

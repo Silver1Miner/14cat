@@ -49,6 +49,44 @@ margin_right = 200.0
 margin_bottom = 260.0
 rect_min_size = Vector2( 0, 50 )
 
+[node name="GameOptions" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -260.0
+margin_right = 100.0
+custom_constants/separation = 20
+
+[node name="CampaignMode" type="Button" parent="GameOptions"]
+margin_right = 200.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
+disabled = true
+text = "Campaign Mode"
+
+[node name="SurvivalMode" type="Button" parent="GameOptions"]
+margin_top = 70.0
+margin_right = 200.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 200, 50 )
+text = "Survival Mode"
+
+[node name="Back" type="Button" parent="GameOptions"]
+margin_top = 140.0
+margin_right = 200.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 200, 50 )
+text = "Back"
+
+[node name="Control" type="Control" parent="GameOptions"]
+margin_top = 210.0
+margin_right = 200.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 0, 50 )
+
 [node name="AchievementsMenu" parent="." instance=ExtResource( 3 )]
 visible = false
 
@@ -58,3 +96,4 @@ visible = false
 [connection signal="pressed" from="Options/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Options/Achievements" to="." method="_on_Achievements_pressed"]
 [connection signal="pressed" from="Options/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="GameOptions/Back" to="." method="_on_Back_pressed"]

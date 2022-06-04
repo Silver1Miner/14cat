@@ -23,12 +23,12 @@ func _process(delta: float) -> void:
 	if active:
 		get_input()
 		position += velocity * delta
-		if position.x < 0 + 16:
-			position.x = 0 + 16
-		if position.x > 360 - 16:
-			position.x = 360 - 16
-		if position.y < 0 + 16:
-			position.y = 0 + 16
-		if position.y > (640 - 150) - 16:
-			position.y = (640 - 150) - 16
+		if position.x < 0 + 32:
+			position.x = 0 + 32
+		if position.x > 360 - 32:
+			position.x = 360 - 32
+		if position.y < 0 + 32:
+			position.y = 0 + 32
+		if position.y > (640 - 128) - 32:
+			position.y = (640 - 128) - 32
 	

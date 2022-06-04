@@ -12,9 +12,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -180.0
-margin_top = -150.0
+margin_top = -128.0
 margin_right = 180.0
 rect_min_size = Vector2( 360, 0 )
 
 [node name="Joypad" parent="." instance=ExtResource( 1 )]
-position = Vector2( 180, 560 )
+position = Vector2( 180, 576 )
