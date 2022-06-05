@@ -1,15 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://src/World/Weapons/Explosion.gd" type="Script" id=1]
-[ext_resource path="res://assets/Weapons/Explosion/explosion4.png" type="Texture" id=2]
-[ext_resource path="res://assets/Weapons/Explosion/explosion3.png" type="Texture" id=3]
-[ext_resource path="res://assets/Weapons/Explosion/explosion1.png" type="Texture" id=4]
-[ext_resource path="res://assets/Weapons/Explosion/explosion2.png" type="Texture" id=5]
-[ext_resource path="res://assets/Weapons/Explosion/explosion5.png" type="Texture" id=6]
+[ext_resource path="res://src/World/Effects/Explosion.gd" type="Script" id=1]
+[ext_resource path="res://assets/Weapons/Explosion/explosion1.png" type="Texture" id=2]
+[ext_resource path="res://assets/Weapons/Explosion/explosion4.png" type="Texture" id=3]
+[ext_resource path="res://assets/Weapons/Explosion/explosion2.png" type="Texture" id=4]
+[ext_resource path="res://assets/Weapons/Explosion/explosion5.png" type="Texture" id=5]
+[ext_resource path="res://assets/Weapons/Explosion/explosion3.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 10.0

@@ -4,7 +4,7 @@ export var damage := 5.0
 export var speed := 200.0
 export var lifetime := 1.0
 export var piercing := false
-export var Explosion: PackedScene = preload("res://src/World/Weapons/Explosion.tscn")
+export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var target_groups := [
 	"enemy"
 ]
@@ -28,5 +28,5 @@ func _on_Bullet_area_entered(area: Area2D) -> void:
 					explosion.damage = 0
 					explosion.size_scale = 0.5
 					explosion.global_position = global_position
-					get_parent().add_child(explosion)
+					get_parent().call_deferred("add_child", explosion)
 					queue_free()

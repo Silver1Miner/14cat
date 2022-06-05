@@ -14,6 +14,10 @@ config/name="Cat Witch"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerData="*res://src/PlayerData/PlayerData.tscn"
+
 [display]
 
 window/size/width=360

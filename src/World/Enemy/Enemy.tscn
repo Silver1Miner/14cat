@@ -27,7 +27,6 @@ shape = SubResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = 3.14159
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
