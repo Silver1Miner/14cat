@@ -5,4 +5,7 @@
 [node name="Clock" type="Label"]
 margin_right = 40.0
 margin_bottom = 14.0
+rect_min_size = Vector2( 120, 20 )
+text = "00:00"
+align = 2
 script = ExtResource( 1 )

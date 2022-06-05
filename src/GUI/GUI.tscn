@@ -1,12 +1,71 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/GUI/Joypad/Joypad.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/GUI/Clock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/GUI/GUI.gd" type="Script" id=3]
+[ext_resource path="res://src/GUI/PauseScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/GUI/UpgradeSelect/UpgradeScreen.tscn" type="PackedScene" id=5]
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Status" type="ColorRect" parent="."]
+anchor_right = 1.0
+rect_min_size = Vector2( 360, 64 )
+color = Color( 0.376471, 0.690196, 0.384314, 0.576471 )
+
+[node name="Bars" type="VBoxContainer" parent="Status"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HPDisplay" type="HBoxContainer" parent="Status/Bars"]
+margin_right = 174.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Status/Bars/HPDisplay"]
+margin_right = 30.0
+margin_bottom = 14.0
+text = " HP: "
+
+[node name="HPBar" type="TextureProgress" parent="Status/Bars/HPDisplay"]
+margin_left = 34.0
+margin_right = 35.0
+margin_bottom = 14.0
+
+[node name="ENDisplay" type="HBoxContainer" parent="Status/Bars"]
+margin_top = 18.0
+margin_right = 174.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="Status/Bars/ENDisplay"]
+margin_right = 29.0
+margin_bottom = 14.0
+text = " EN: "
+
+[node name="ENBar" type="TextureProgress" parent="Status/Bars/ENDisplay"]
+margin_left = 33.0
+margin_right = 34.0
+margin_bottom = 14.0
+
+[node name="Status" type="HBoxContainer" parent="Status/Bars"]
+margin_top = 36.0
+margin_right = 174.0
+margin_bottom = 56.0
+
+[node name="Level" type="Label" parent="Status/Bars/Status"]
+margin_top = 3.0
+margin_right = 50.0
+margin_bottom = 17.0
+text = "Level: 1"
+
+[node name="Clock" parent="Status/Bars/Status" instance=ExtResource( 2 )]
+margin_left = 54.0
+margin_right = 174.0
+margin_bottom = 20.0
+
+[node name="Controls" type="ColorRect" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -15,6 +74,11 @@ margin_left = -180.0
 margin_top = -128.0
 margin_right = 180.0
 rect_min_size = Vector2( 360, 0 )
+color = Color( 0.32549, 0.34902, 0.705882, 0.392157 )
 
 [node name="Joypad" parent="." instance=ExtResource( 1 )]
 position = Vector2( 180, 576 )
+
+[node name="UpgradeScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="PauseScreen" parent="." instance=ExtResource( 4 )]
