@@ -4,6 +4,7 @@ export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
 export var speed := 100
 export var direction := Vector2(2, 1)
+export var attack := 10
 var invulnerable = false
 var entered_screen = false
 
@@ -21,6 +22,12 @@ func _physics_process(delta: float) -> void:
 			direction.x = - direction.x
 		if global_position.x < 32 or global_position.x > 360 - 32:
 			direction.x = -direction.x
+		attack_damage(delta)
+
+func attack_damage(delta: float) -> void:
+	for a in $Hitbox.get_overlapping_areas():
+		if a.is_in_group("player"):
+			a.set_hp(a.hp - attack * delta)
 
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	entered_screen = true

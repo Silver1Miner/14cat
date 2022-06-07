@@ -1,11 +1,26 @@
 extends KinematicBody2D
 
+export var hp := 100.0 setget _set_hp
+export var max_hp := 100.0
+export var xp := 0
+export var max_xp := 2
 export var speed := 100
 var velocity := Vector2.ZERO
 var active := true
 
+signal hp_changed(hp, max_hp)
+signal xp_changed(xp, max_xp, level)
+signal coins_changed()
+signal player_died
+
 func _ready() -> void:
-	pass # Replace with function body.
+	PlayerData.current_level = 1
+	if PlayerData.connect("player_upgraded", self, "_on_player_upgraded") != OK:
+		push_error("player upgrade signal connect fail")
+	_on_player_upgraded()
+	emit_signal("hp_changed", hp, max_hp)
+	emit_signal("coins_changed")
+	add_to_group("player")
 
 func get_input() -> void:
 	velocity = Vector2.ZERO
@@ -31,4 +46,34 @@ func _process(delta: float) -> void:
 			position.y = 0 + 32
 		if position.y > (640 - 128) - 32:
 			position.y = (640 - 128) - 32
-	
+
+func _set_hp(new_hp: float) -> void:
+	if new_hp > hp:
+		print("heal")
+	elif new_hp < hp:
+		print("damage") # play damage animation/sound
+	hp = clamp(new_hp, 0.0, max_hp)
+	emit_signal("hp_changed", hp, max_hp)
+	if hp <= 0.0:
+		player_death()
+
+func player_death() -> void:
+	emit_signal("player_died")
+	active = false
+
+func increase_xp(xp_amount: int) -> void:
+	xp += xp_amount
+	PlayerData.total_exp += xp_amount
+	if xp >= max_xp:
+		PlayerData.current_level += 1
+		xp -= max_xp
+		max_xp = PlayerData.current_level * 3
+	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
+
+func _on_player_upgraded() -> void:
+	emit_signal("hp_changed", hp, max_hp)
+	emit_signal("coins_changed")
+
+func _on_PickupBox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("pickup"):
+		print("pickup")
