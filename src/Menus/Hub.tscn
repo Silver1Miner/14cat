@@ -14,7 +14,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -100.0
-margin_top = -330.0
+margin_top = -400.0
 margin_right = 100.0
 custom_constants/separation = 20
 
@@ -38,15 +38,22 @@ margin_bottom = 190.0
 rect_min_size = Vector2( 200, 50 )
 text = "Shop"
 
-[node name="Library" type="Button" parent="Options"]
+[node name="Trophies" type="Button" parent="Options"]
 margin_top = 210.0
 margin_right = 200.0
 margin_bottom = 260.0
 rect_min_size = Vector2( 200, 50 )
-text = "Library"
+text = "Trophies"
 
-[node name="Control" type="Control" parent="Options"]
+[node name="Library" type="Button" parent="Options"]
 margin_top = 280.0
 margin_right = 200.0
 margin_bottom = 330.0
+rect_min_size = Vector2( 200, 50 )
+text = "Library"
+
+[node name="Control" type="Control" parent="Options"]
+margin_top = 350.0
+margin_right = 200.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 0, 50 )
