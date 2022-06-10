@@ -4,6 +4,7 @@ var loader
 var wait_frames
 var time_max = 100 #msec
 onready var current_scene = $MainMenu
+onready var animator = $Loading/AnimationPlayer
 
 func _ready() -> void:
 	$Loading.visible = false
@@ -13,6 +14,8 @@ func go_to_scene(path) -> void:
 	if loader == null:
 		push_error("no scene to load")
 		return
+	animator.play("fade-in")
+	yield(animator, "animation_finished")
 	set_process(true)
 	current_scene.queue_free()
 	wait_frames = 1

@@ -1,19 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/GUI/UpgradeSelect/UpgradeScreen.gd" type="Script" id=1]
 [ext_resource path="res://src/GUI/UpgradeSelect/UpgradeChoice.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/GUI/Theme/HUD.tres" type="Theme" id=3]
 
 [node name="UpgradeScreen" type="ColorRect"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 color = Color( 0, 0, 0, 0.784314 )
 script = ExtResource( 1 )
-
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Choose an Upgrade"
 
 [node name="Choices" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -21,24 +18,64 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -120.0
-margin_top = -154.0
+margin_top = -165.5
 margin_right = 120.0
-margin_bottom = 154.0
+margin_bottom = 165.5
+
+[node name="Label" type="Label" parent="Choices"]
+margin_right = 240.0
+margin_bottom = 19.0
+text = "Choose an Upgrade"
+align = 1
 
 [node name="Choice1" parent="Choices" instance=ExtResource( 2 )]
+margin_top = 23.0
 margin_right = 240.0
-margin_bottom = 100.0
+margin_bottom = 123.0
 
 [node name="Choice2" parent="Choices" instance=ExtResource( 2 )]
-margin_top = 104.0
+margin_top = 127.0
 margin_right = 240.0
-margin_bottom = 204.0
+margin_bottom = 227.0
 
 [node name="Choice3" parent="Choices" instance=ExtResource( 2 )]
-margin_top = 208.0
+margin_top = 231.0
 margin_right = 240.0
-margin_bottom = 308.0
+margin_bottom = 331.0
+
+[node name="Decide" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -113.5
+margin_right = 100.0
+margin_bottom = 113.5
+
+[node name="Label" type="Label" parent="Decide"]
+margin_right = 200.0
+margin_bottom = 19.0
+text = "Unleash or Upgrade?"
+align = 1
+
+[node name="Unleash" type="Button" parent="Decide"]
+margin_top = 23.0
+margin_right = 200.0
+margin_bottom = 123.0
+rect_min_size = Vector2( 200, 100 )
+text = "Unleash!"
+
+[node name="Upgrade" type="Button" parent="Decide"]
+margin_top = 127.0
+margin_right = 200.0
+margin_bottom = 227.0
+rect_min_size = Vector2( 200, 100 )
+text = "Upgrade!"
 
 [connection signal="pressed" from="Choices/Choice1" to="." method="_on_Choice1_pressed"]
 [connection signal="pressed" from="Choices/Choice2" to="." method="_on_Choice2_pressed"]
 [connection signal="pressed" from="Choices/Choice3" to="." method="_on_Choice3_pressed"]
+[connection signal="pressed" from="Decide/Unleash" to="." method="_on_Unleash_pressed"]
+[connection signal="pressed" from="Decide/Upgrade" to="." method="_on_Upgrade_pressed"]
