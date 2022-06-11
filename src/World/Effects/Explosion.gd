@@ -11,7 +11,7 @@ func _ready() -> void:
 	$AnimatedSprite.play("default")
 
 func _on_Explosion_area_entered(area: Area2D) -> void:
-	if area.get_parent().has_method("take_damage"):
+	if damage > 0 and area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(damage)
 
 func _on_Timer_timeout() -> void:

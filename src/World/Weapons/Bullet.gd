@@ -6,7 +6,7 @@ export var lifetime := 1.0
 export var piercing := false
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var target_groups := [
-	"enemy"
+	"enemy","environment"
 ]
 
 func _ready() -> void:

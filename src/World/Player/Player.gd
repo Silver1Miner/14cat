@@ -80,6 +80,11 @@ func _on_PickupBox_area_entered(area: Area2D) -> void:
 
 func pickup_effect(pickup_id: int) -> void:
 	match pickup_id:
-		0:
-			pass
+		0: # xp gem
+			increase_xp(1)
+		1: # coin
+			PlayerData.total_coins += 1
+			PlayerData.current_coins += 1
+			PlayerData.mission_coins += 1
+			emit_signal("coins_changed")
 	print("picked up ", pickup_id)

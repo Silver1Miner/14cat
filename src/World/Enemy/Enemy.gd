@@ -1,5 +1,7 @@
 extends KinematicBody2D
+class_name Enemy
 
+export var group = "enemy"
 export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
 export var speed := 100
@@ -13,7 +15,7 @@ export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
 
 func _ready() -> void:
-	add_to_group("enemy")
+	add_to_group(group)
 
 func _physics_process(delta: float) -> void:
 	if entered_screen:
@@ -43,6 +45,8 @@ func take_damage(damage_value: float) -> void:
 	var fct = FCT.instance()
 	get_parent().add_child(fct)
 	fct.rect_position = get_global_position() + Vector2(0, -16)
+	print(damage_value)
+	print(str(round(damage_value)))
 	fct.show_value(str(round(damage_value)), Vector2(0,-8), 1, PI/2)
 	_set_hp(hp - damage_value)
 

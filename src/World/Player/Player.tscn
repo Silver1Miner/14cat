@@ -34,7 +34,6 @@ shape = SubResource( 1 )
 shape = SubResource( 2 )
 
 [node name="GunTurret" parent="." instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 0, -32 )
 can_turn = false
 attack_cooldown = 1.0
