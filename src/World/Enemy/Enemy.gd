@@ -10,6 +10,7 @@ var entered_screen = false
 
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
+export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
 
 func _ready() -> void:
 	add_to_group("enemy")
@@ -54,6 +55,9 @@ func die() -> void:
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Hitbox.set_deferred("disabled", true)
 	create_explosion()
+	var drop_instance = Drop.instance()
+	get_parent().call_deferred("add_child", drop_instance)
+	drop_instance.global_position = get_global_position()
 	queue_free()
 
 func create_explosion() -> void:

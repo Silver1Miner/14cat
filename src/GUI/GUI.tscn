@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/GUI/Joypad/Joypad.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/GUI/Displays/Clock.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://src/GUI/PauseScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/GUI/UpgradeSelect/UpgradeScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/GUI/Theme/HUD.tres" type="Theme" id=6]
+[ext_resource path="res://assets/GUI/Bars/progress-bar-fill.png" type="Texture" id=7]
+[ext_resource path="res://assets/GUI/Bars/progress-bar-under.png" type="Texture" id=8]
+[ext_resource path="res://assets/GUI/Bars/progress-bar-over.png" type="Texture" id=9]
 
 [node name="GUI" type="Control"]
 anchor_right = 1.0
@@ -15,56 +18,84 @@ script = ExtResource( 3 )
 
 [node name="Status" type="ColorRect" parent="."]
 anchor_right = 1.0
+margin_bottom = 64.0
 rect_min_size = Vector2( 360, 64 )
 color = Color( 0.376471, 0.690196, 0.384314, 0.576471 )
 
-[node name="Bars" type="VBoxContainer" parent="Status"]
+[node name="Bars" type="GridContainer" parent="Status"]
 margin_right = 40.0
 margin_bottom = 40.0
+custom_constants/vseparation = 0
+columns = 2
 
 [node name="HPDisplay" type="HBoxContainer" parent="Status/Bars"]
-margin_right = 182.0
-margin_bottom = 19.0
+margin_right = 263.0
+margin_bottom = 32.0
 
 [node name="Label" type="Label" parent="Status/Bars/HPDisplay"]
+margin_top = 6.0
 margin_right = 35.0
-margin_bottom = 19.0
+margin_bottom = 25.0
 text = " HP: "
 
 [node name="HPBar" type="TextureProgress" parent="Status/Bars/HPDisplay"]
 margin_left = 39.0
-margin_right = 40.0
-margin_bottom = 19.0
+margin_right = 263.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 224, 32 )
+texture_under = ExtResource( 8 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 7 )
+nine_patch_stretch = true
+
+[node name="Clock" parent="Status/Bars" instance=ExtResource( 2 )]
+margin_left = 267.0
+margin_top = 6.0
+margin_right = 347.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 64, 20 )
 
 [node name="ENDisplay" type="HBoxContainer" parent="Status/Bars"]
-margin_top = 23.0
-margin_right = 182.0
-margin_bottom = 42.0
+margin_top = 32.0
+margin_right = 263.0
+margin_bottom = 64.0
 
 [node name="Label" type="Label" parent="Status/Bars/ENDisplay"]
+margin_top = 6.0
 margin_right = 35.0
-margin_bottom = 19.0
+margin_bottom = 25.0
 text = " EN: "
 
 [node name="ENBar" type="TextureProgress" parent="Status/Bars/ENDisplay"]
 margin_left = 39.0
-margin_right = 40.0
-margin_bottom = 19.0
+margin_right = 263.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 224, 32 )
+texture_under = ExtResource( 8 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 7 )
+nine_patch_stretch = true
 
 [node name="Status" type="HBoxContainer" parent="Status/Bars"]
-margin_top = 46.0
-margin_right = 182.0
-margin_bottom = 66.0
+margin_left = 267.0
+margin_top = 32.0
+margin_right = 347.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="Status/Bars/Status"]
+margin_top = 6.0
+margin_right = 52.0
+margin_bottom = 25.0
+text = " Level: "
 
 [node name="Level" type="Label" parent="Status/Bars/Status"]
-margin_right = 58.0
-margin_bottom = 19.0
-text = " Level: 1"
-
-[node name="Clock" parent="Status/Bars/Status" instance=ExtResource( 2 )]
-margin_left = 62.0
-margin_right = 182.0
-margin_bottom = 20.0
+margin_left = 56.0
+margin_top = 6.0
+margin_right = 80.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 24, 0 )
+text = "1"
+align = 2
 
 [node name="ControlPanel" type="ColorRect" parent="."]
 anchor_left = 0.5

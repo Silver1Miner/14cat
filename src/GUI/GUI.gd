@@ -3,7 +3,7 @@ extends Control
 onready var hp_bar = $Status/Bars/HPDisplay/HPBar
 onready var en_bar = $Status/Bars/ENDisplay/ENBar
 onready var level_text = $Status/Bars/Status/Level
-onready var clock = $Status/Bars/Status/Clock
+onready var clock = $Status/Bars/Clock
 onready var joystick = $Joypad
 
 func _ready() -> void:

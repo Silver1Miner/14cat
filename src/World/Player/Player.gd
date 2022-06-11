@@ -42,8 +42,8 @@ func _process(delta: float) -> void:
 			position.x = 0 + 32
 		if position.x > 360 - 32:
 			position.x = 360 - 32
-		if position.y < 0 + 32:
-			position.y = 0 + 32
+		if position.y < (0+64) + 32:
+			position.y = (0+64) + 32
 		if position.y > (640 - 128) - 32:
 			position.y = (640 - 128) - 32
 
@@ -76,4 +76,10 @@ func _on_player_upgraded() -> void:
 
 func _on_PickupBox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickup"):
-		print("pickup")
+		area.activate(self)
+
+func pickup_effect(pickup_id: int) -> void:
+	match pickup_id:
+		0:
+			pass
+	print("picked up ", pickup_id)
