@@ -6,7 +6,7 @@ var delta_time := 0.0
 var total_coins := 0
 var current_coins := 0
 var mission_coins := 0
-var total_exp := 0
+var total_xp := 0
 var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
@@ -57,7 +57,7 @@ func load_player_data() -> void:
 	total_coins = parse_json(save_game.get_line())
 	current_coins = parse_json(save_game.get_line())
 	bought_upgrades = parse_json(save_game.get_line())
-	total_exp = parse_json(save_game.get_line())
+	total_xp = parse_json(save_game.get_line())
 	highest_level = parse_json(save_game.get_line())
 	highest_time = parse_json(save_game.get_line())
 	lore_collected = parse_json(save_game.get_line())
@@ -72,7 +72,7 @@ func save_player_data() -> void:
 	save_game.store_line(to_json(total_coins))
 	save_game.store_line(to_json(current_coins))
 	save_game.store_line(to_json(bought_upgrades))
-	save_game.store_line(to_json(total_exp))
+	save_game.store_line(to_json(total_xp))
 	save_game.store_line(to_json(highest_level))
 	save_game.store_line(to_json(highest_time))
 	save_game.store_line(to_json(lore_collected))
@@ -85,7 +85,7 @@ func clear_player_data() -> void:
 	current_coins = 0
 	mission_coins = 0
 	bought_upgrades = [0,0,0,0]
-	total_exp = 0
+	total_xp = 0
 	highest_level = 1
 	highest_time = 0.0
 	lore_collected = 0

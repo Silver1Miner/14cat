@@ -7,7 +7,7 @@ export var hp := 20.0 setget _set_hp
 export var speed := 100
 export var direction := Vector2(2, 1)
 export var attack := 10
-var invulnerable = false
+var invulnerable = true
 var entered_screen = false
 
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")

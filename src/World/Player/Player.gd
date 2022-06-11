@@ -63,7 +63,7 @@ func player_death() -> void:
 
 func increase_xp(xp_amount: int) -> void:
 	xp += xp_amount
-	PlayerData.total_exp += xp_amount
+	PlayerData.total_xp += xp_amount
 	if xp >= max_xp:
 		PlayerData.current_level += 1
 		xp -= max_xp
