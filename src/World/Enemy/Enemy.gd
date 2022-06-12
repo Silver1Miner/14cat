@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 func attack_damage(delta: float) -> void:
 	for a in $Hitbox.get_overlapping_areas():
 		if a.is_in_group("player"):
-			a.set_hp(a.hp - attack * delta)
+			a.get_parent()._set_hp(a.get_parent().hp - attack * delta)
 
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	entered_screen = true

@@ -22,51 +22,49 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 360, 64 )
 color = Color( 0.376471, 0.690196, 0.384314, 0.576471 )
 
-[node name="Bars" type="GridContainer" parent="Status"]
+[node name="Status" type="HBoxContainer" parent="Status"]
 margin_right = 40.0
 margin_bottom = 40.0
-custom_constants/vseparation = 0
-columns = 2
+custom_constants/separation = 16
 
-[node name="HPDisplay" type="HBoxContainer" parent="Status/Bars"]
+[node name="Bars" type="VBoxContainer" parent="Status/Status"]
+margin_right = 263.0
+margin_bottom = 66.0
+custom_constants/separation = 0
+
+[node name="HPDisplay" type="HBoxContainer" parent="Status/Status/Bars"]
 margin_right = 263.0
 margin_bottom = 32.0
 
-[node name="Label" type="Label" parent="Status/Bars/HPDisplay"]
+[node name="Label" type="Label" parent="Status/Status/Bars/HPDisplay"]
 margin_top = 6.0
 margin_right = 35.0
 margin_bottom = 25.0
 text = " HP: "
 
-[node name="HPBar" type="TextureProgress" parent="Status/Bars/HPDisplay"]
+[node name="HPBar" type="TextureProgress" parent="Status/Status/Bars/HPDisplay"]
 margin_left = 39.0
 margin_right = 263.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 224, 32 )
+value = 100.0
 texture_under = ExtResource( 8 )
 texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 7 )
 nine_patch_stretch = true
 
-[node name="Clock" parent="Status/Bars" instance=ExtResource( 2 )]
-margin_left = 267.0
-margin_top = 6.0
-margin_right = 347.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 64, 20 )
-
-[node name="ENDisplay" type="HBoxContainer" parent="Status/Bars"]
+[node name="ENDisplay" type="HBoxContainer" parent="Status/Status/Bars"]
 margin_top = 32.0
 margin_right = 263.0
 margin_bottom = 64.0
 
-[node name="Label" type="Label" parent="Status/Bars/ENDisplay"]
+[node name="Label" type="Label" parent="Status/Status/Bars/ENDisplay"]
 margin_top = 6.0
 margin_right = 35.0
 margin_bottom = 25.0
 text = " EN: "
 
-[node name="ENBar" type="TextureProgress" parent="Status/Bars/ENDisplay"]
+[node name="ENBar" type="TextureProgress" parent="Status/Status/Bars/ENDisplay"]
 margin_left = 39.0
 margin_right = 263.0
 margin_bottom = 32.0
@@ -76,26 +74,28 @@ texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 7 )
 nine_patch_stretch = true
 
-[node name="Status" type="HBoxContainer" parent="Status/Bars"]
-margin_left = 267.0
-margin_top = 32.0
-margin_right = 347.0
-margin_bottom = 64.0
+[node name="Status" type="VBoxContainer" parent="Status/Status"]
+margin_left = 279.0
+margin_right = 343.0
+margin_bottom = 66.0
 
-[node name="Label" type="Label" parent="Status/Bars/Status"]
-margin_top = 6.0
-margin_right = 52.0
-margin_bottom = 25.0
-text = " Level: "
+[node name="Coins" type="Label" parent="Status/Status/Status"]
+margin_right = 64.0
+margin_bottom = 19.0
+text = "Coins: 0"
 
-[node name="Level" type="Label" parent="Status/Bars/Status"]
-margin_left = 56.0
-margin_top = 6.0
-margin_right = 80.0
-margin_bottom = 25.0
+[node name="Level" type="Label" parent="Status/Status/Status"]
+margin_top = 23.0
+margin_right = 64.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 24, 0 )
-text = "1"
-align = 2
+text = "Level: 1"
+
+[node name="Clock" parent="Status/Status/Status" instance=ExtResource( 2 )]
+margin_top = 46.0
+margin_right = 64.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 64, 20 )
 
 [node name="ControlPanel" type="ColorRect" parent="."]
 anchor_left = 0.5

@@ -10,8 +10,10 @@ var active := true
 
 signal hp_changed(hp, max_hp)
 signal xp_changed(xp, max_xp, level)
+signal level_up()
 signal coins_changed()
-signal player_died
+signal player_died()
+onready var hitbox = $HitBox
 
 func _ready() -> void:
 	PlayerData.current_level = 1
@@ -21,6 +23,7 @@ func _ready() -> void:
 	emit_signal("hp_changed", hp, max_hp)
 	emit_signal("coins_changed")
 	add_to_group("player")
+	hitbox.add_to_group("player")
 
 func get_input() -> void:
 	velocity = Vector2.ZERO
@@ -66,6 +69,7 @@ func increase_xp(xp_amount: int) -> void:
 	PlayerData.total_xp += xp_amount
 	if xp >= max_xp:
 		PlayerData.current_level += 1
+		emit_signal("level_up")
 		xp -= max_xp
 		max_xp = PlayerData.current_level * 3
 	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)

@@ -2,7 +2,7 @@ extends Area2D
 
 export var pickup_id := 0
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
-export var steer_force := 50.0
+export var steer_force := 200.0
 export var speed := 400
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO

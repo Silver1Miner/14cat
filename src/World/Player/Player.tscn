@@ -39,6 +39,7 @@ can_turn = false
 attack_cooldown = 1.0
 
 [node name="GunTurret2" parent="." instance=ExtResource( 3 )]
+visible = false
 bullet = ExtResource( 4 )
 
 [connection signal="area_entered" from="PickupBox" to="." method="_on_PickupBox_area_entered"]
