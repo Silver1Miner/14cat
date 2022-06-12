@@ -30,3 +30,6 @@ func level_up() -> void:
 	level_text.text = "Level: " + str(PlayerData.current_level)
 	upgrade_screen.activate()
 	joystick.reset()
+
+func _on_Pause_pressed() -> void:
+	$PauseScreen.activate()

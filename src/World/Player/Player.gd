@@ -53,8 +53,10 @@ func _process(delta: float) -> void:
 func _set_hp(new_hp: float) -> void:
 	if new_hp > hp:
 		print("heal")
+		# play heal animation/sound
 	elif new_hp < hp:
-		print("damage") # play damage animation/sound
+		pass
+		# play damage animation/sound
 	hp = clamp(new_hp, 0.0, max_hp)
 	emit_signal("hp_changed", hp, max_hp)
 	if hp <= 0.0:
