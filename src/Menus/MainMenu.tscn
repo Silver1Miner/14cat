@@ -22,6 +22,7 @@ theme = ExtResource( 3 )
 script = ExtResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
+self_modulate = Color( 0.384314, 0.384314, 0.384314, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 5 )
@@ -33,16 +34,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -100.0
-margin_top = -220.0
+margin_top = -300.0
 margin_right = 100.0
 rect_min_size = Vector2( 0, 220 )
 custom_constants/separation = 20
+alignment = 2
 
 [node name="Campaign" type="Button" parent="Options"]
 margin_right = 200.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 200, 50 )
-disabled = true
 text = "Campaign `"
 
 [node name="Survival" type="Button" parent="Options"]
@@ -58,6 +59,19 @@ margin_right = 200.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 200, 50 )
 text = "Options `"
+
+[node name="Quit" type="Button" parent="Options"]
+margin_top = 210.0
+margin_right = 200.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 200, 50 )
+text = "Quit ^"
+
+[node name="Control" type="Control" parent="Options"]
+margin_top = 280.0
+margin_right = 200.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 20 )
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 1 )]
 visible = false
@@ -95,5 +109,7 @@ text = "CAT WITCH"
 align = 1
 valign = 2
 
+[connection signal="pressed" from="Options/Campaign" to="." method="_on_Campaign_pressed"]
 [connection signal="pressed" from="Options/Survival" to="." method="_on_Survival_pressed"]
 [connection signal="pressed" from="Options/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Options/Quit" to="." method="_on_Quit_pressed"]

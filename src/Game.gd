@@ -4,10 +4,11 @@ var loader
 var wait_frames
 var time_max = 100 #msec
 onready var current_scene = $MainMenu
-onready var animator = $Loading/AnimationPlayer
+onready var animator = $CanvasLayer/Loading/AnimationPlayer
+onready var loading = $CanvasLayer/Loading
 
 func _ready() -> void:
-	$Loading.visible = false
+	loading.visible = false
 
 func go_to_scene(path) -> void:
 	loader = ResourceLoader.load_interactive(path)
@@ -22,7 +23,7 @@ func go_to_scene(path) -> void:
 
 func _process(_delta: float) -> void:
 	if loader == null:
-		$Loading.visible = false
+		loading.visible = false
 		set_process(false)
 		return
 	if wait_frames > 0:
@@ -44,7 +45,7 @@ func _process(_delta: float) -> void:
 			break
 
 func update_progress() -> void:
-	$Loading.visible = true
+	loading.visible = true
 
 func set_new_scene(scene_resource) -> void:
 	current_scene = scene_resource.instance()

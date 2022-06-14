@@ -22,6 +22,8 @@ _global_script_class_icons={
 
 config/name="Cat Witch"
 run/main_scene="res://src/Game.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
