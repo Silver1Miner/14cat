@@ -35,7 +35,7 @@ margin_left = 32.0
 margin_right = 182.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 150, 32 )
-text = "Cat Paw"
+text = "Error"
 valign = 1
 
 [node name="Level" type="Label" parent="Info/Header"]
@@ -52,4 +52,5 @@ margin_top = 32.0
 margin_right = 214.0
 margin_bottom = 82.0
 rect_min_size = Vector2( 190, 50 )
-text = "A paw-y wand."
+text = "Error"
+autowrap = true

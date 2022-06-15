@@ -84,3 +84,4 @@ visible = false
 [connection signal="pressed" from="Options/SelectMission" to="." method="_on_SelectMission_pressed"]
 [connection signal="pressed" from="Options/Trophies" to="." method="_on_Trophies_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_Back_pressed"]
+[connection signal="go_to_mission" from="MissionSelect" to="." method="_on_MissionSelect_go_to_mission"]

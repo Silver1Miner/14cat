@@ -16,3 +16,7 @@ func _on_Trophies_pressed() -> void:
 
 func _on_SelectMission_pressed() -> void:
 	mission_select.visible = true
+
+func _on_MissionSelect_go_to_mission(e, m) -> void:
+	print("e",e,"m",m)
+	Game.go_to_scene("res://src/World/World.tscn")

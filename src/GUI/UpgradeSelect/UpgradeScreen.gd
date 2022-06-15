@@ -5,15 +5,16 @@ onready var choices = $Choices
 onready var choice1 = $Choices/Choice1
 onready var choice2 = $Choices/Choice2
 onready var choice3 = $Choices/Choice3
-var available_upgrades = [0,1,2,3,4,5]
+var available_upgrades = [0,1,2,3,4,5,6]
 var Database: Resource = preload("res://data/database.tres")
 
 func _ready() -> void:
 	pass # Replace with function body.
 
 func activate() -> void:
-	decide.visible = true
-	choices.visible = false
+	#decide.visible = false
+	#choices.visible = true
+	prepare_upgrade_screen()
 	visible = true
 	get_tree().paused = true
 

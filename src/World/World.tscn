@@ -41,3 +41,5 @@ position = Vector2( 180, 456 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="UI" instance=ExtResource( 1 )]
+
+[connection signal="quit_early" from="UI/GUI" to="." method="_on_GUI_quit_early"]

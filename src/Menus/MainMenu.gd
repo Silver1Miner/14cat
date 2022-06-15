@@ -14,9 +14,11 @@ func _on_Options_pressed() -> void:
 	$SettingsMenu.visible = true
 
 func _on_Survival_pressed() -> void:
+	PlayerData.is_survival = true
 	Game.go_to_scene("res://src/World/World.tscn")
 
 func _on_Campaign_pressed() -> void:
+	PlayerData.is_survival = false
 	Game.go_to_scene("res://src/Hub/Hub.tscn")
 
 func _on_Quit_pressed() -> void:

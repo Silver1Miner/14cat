@@ -1,5 +1,6 @@
 extends Node
 
+var is_survival = false
 var music_db := 0.4
 var sound_db := 0.2
 var delta_time := 0.0
@@ -15,10 +16,11 @@ var max_lore_entries = 6
 var player_upgrades := { #upgrade_id: level,
 	0: 1, # Coin
 	1: 1, # Forward Gun 1
-	2: 0, # 
-	3: 0, #
-	4: 0, # 
-	5: 0, #
+	2: 0, # Turret 1
+	3: 0, # Turret 2
+	4: 0, # Turret 3
+	5: 0, # Turret 4
+	6: 0, # Turret 5
 }
 var bought_upgrades := [ #upgrade_id: level,
 	0, # Max Health Bonus
@@ -32,7 +34,7 @@ var achievements := [
 	0,
 	0,
 ]
-var Database: Resource = preload("res://data/database.gd")
+onready var database: Resource = preload("res://data/database.gd")
 signal player_upgraded()
 
 func _ready() -> void:
@@ -40,11 +42,11 @@ func _ready() -> void:
 	pass
 
 func upgrade(upgrade_id: int) -> void:
-	if upgrade_id < 0: # coin
+	if upgrade_id == 0: # coin
 		PlayerData.total_coins += 1
 		PlayerData.current_coins += 1
 		PlayerData.mission_coins += 1
-	elif player_upgrades[upgrade_id] < Database.upgrades[upgrade_id]["max_level"]:
+	elif player_upgrades[upgrade_id] < database.upgrades[upgrade_id]["max_level"]:
 		player_upgrades[upgrade_id] += 1
 	emit_signal("player_upgraded")
 

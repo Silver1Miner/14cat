@@ -1,7 +1,6 @@
 extends ColorRect
 
-func _ready() -> void:
-	pass # Replace with function body.
+signal quit_early()
 
 func activate() -> void:
 	get_tree().paused = true
@@ -10,3 +9,7 @@ func activate() -> void:
 func _on_Close_pressed() -> void:
 	get_tree().paused = false
 	visible = false
+
+func _on_Quit_pressed() -> void:
+	get_tree().paused = false
+	emit_signal("quit_early")
