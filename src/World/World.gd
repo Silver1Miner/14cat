@@ -15,6 +15,8 @@ func _ready() -> void:
 		push_error("signal connect fail")
 	if player.connect("level_up", self, "_on_Player_level_up") != OK:
 		push_error("signal connect fail")
+	if player.connect("player_died", self, "_on_Player_died") != OK:
+		push_error("signal connect fail")
 	PlayerData.delta_time = 0.0
 
 var timer_accumulated = 0
@@ -37,7 +39,11 @@ func _on_Player_xp_changed(xp, max_xp, level) -> void:
 func _on_Player_level_up() -> void:
 	gui.level_up()
 
-func _on_GUI_quit_early() -> void:
+func _on_Player_died() -> void:
+	gui.activate_death()
+
+func _on_GUI_quit() -> void:
+	get_tree().paused = false
 	if PlayerData.is_survival:
 		Game.go_to_scene("res://src/Menus/MainMenu.tscn")
 	else:

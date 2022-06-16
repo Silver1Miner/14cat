@@ -15,12 +15,11 @@ var lore_collected := 0
 var max_lore_entries = 6
 var player_upgrades := { #upgrade_id: level,
 	0: 1, # Coin
-	1: 1, # Forward Gun 1
-	2: 0, # Turret 1
-	3: 0, # Turret 2
-	4: 0, # Turret 3
-	5: 0, # Turret 4
-	6: 0, # Turret 5
+	1: 1, # Forward Gun 1, Colorless
+	2: 0, # Turret 1, Red
+	3: 0, # Turret 2, Yellow
+	4: 0, # Turret 3, Blue
+	5: 0, # Turret 4, Green
 }
 var bought_upgrades := [ #upgrade_id: level,
 	0, # Max Health Bonus
@@ -34,7 +33,7 @@ var achievements := [
 	0,
 	0,
 ]
-onready var database: Resource = preload("res://data/database.gd")
+onready var database: Resource = preload("res://data/database.tres")
 signal player_upgraded()
 
 func _ready() -> void:

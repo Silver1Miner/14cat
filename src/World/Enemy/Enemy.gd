@@ -6,7 +6,7 @@ export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
 export var speed := 100
 export var direction := Vector2(2, 1)
-export var attack := 10
+export var attack := 50
 var invulnerable = true
 var entered_screen = false
 

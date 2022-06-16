@@ -1,8 +1,14 @@
 extends ColorRect
 
-signal quit_early()
+signal quit()
 
 func activate() -> void:
+	get_tree().paused = true
+	visible = true
+
+func activate_death() -> void:
+	$Buttons/Quit.text = "Quit"
+	$Buttons/Close.visible = false
 	get_tree().paused = true
 	visible = true
 
@@ -12,4 +18,5 @@ func _on_Close_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().paused = false
-	emit_signal("quit_early")
+	print("quit")
+	emit_signal("quit")

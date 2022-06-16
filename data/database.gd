@@ -6,9 +6,9 @@ var upgrades := {
 		"descriptions": ["+1 Coin"],
 		"icon": null
 	},
-	1: {"name": "Cat Paw", "max_level": 11,
+	1: {"name": "Cat's Paw", "max_level": 11,
 	"descriptions": [
-		"A reliable wrist-mounted shotgun.", #0
+		"A solid punch of a spell.", #0
 		"Level 2: Damage +20% from Base", #1
 		"Level 3: Fire Rate +25% from Base",
 		"Level 4: Damage +60% from Base",
@@ -24,9 +24,9 @@ var upgrades := {
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	},
-	2: {"name": "Catalyst", "max_level": 11,
-	"descriptions": [
-		"Punchy.",
+	2: {"name": "Catabolize", "max_level": 11,
+	"descriptions": [ # Red
+		"Punchy.", # 0
 		"Level 2: Damage +50% from Base", #1
 		"Level 3: Damage +100% from Base",
 		"Level 4: Fire Rate +100% from Base",
@@ -42,8 +42,8 @@ var upgrades := {
 	"damage": [1, 1.5, 2, 2, 3, 4, 5, 6, 7, 8, 10],
 	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
 	},
-	3: {"name": "Catapult", "max_level": 11,
-	"descriptions": [
+	3: {"name": "Cataclysm", "max_level": 11,
+	"descriptions": [ # Yellow
 		"Pierching shots.", #0
 		"Level 2: Damage +20% from Base",
 		"Level 3: Fire Rate +25% from Base",
@@ -62,7 +62,7 @@ var upgrades := {
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
 	4: {"name": "Cataract", "max_level": 11,
-	"descriptions": [
+	"descriptions": [ # Blue
 		"High rate of fire.",
 		"Level 2: Damage +50% from Base", #1
 		"Level 3: Damage +100% from Base",
@@ -80,27 +80,8 @@ var upgrades := {
 	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
 	"attack_range": [128,128,128,128,256,256,256,384,384,384,384]
 	},
-	5: {"name": "Catacomb", "max_level": 11,
-	"descriptions": [
-		"Hard punching homing attacks.",
-		"Level 2: Damage +20% from Base",
-		"Level 3: Fire Rate +25% from Base",
-		"Level 4: Damage +60% from Base",
-		"Level 5: Range +100% from Base",
-		"Level 6: Damage +100% from Base",
-		"Level 7: Fire Rate +100% from Base",
-		"Level 8: Damage +200% from Base",
-		"Level 9: Range +200% from Base",
-		"Level 10: Damage +300% from Base",
-		"Level 11: Damage +400% from Base",
-	],
-	"icon": null,
-	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
-	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.8, 0.8, 0.5, 0.5, 0.5, 0.5],
-	"attack_range": [128,128,128,128,256,256,256,256,384,384,384]
-	},
-	6: {"name": "Catastrophe", "max_level": 11,
-	"descriptions": [
+	5: {"name": "Catastrophe", "max_level": 11,
+	"descriptions": [ # Green
 		"A continuous stream of destruction.",
 		"Level 2: Range +100% from Base", #1
 		"Level 3: Damage +100% from Base",

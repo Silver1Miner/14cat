@@ -64,7 +64,7 @@ func _set_hp(new_hp: float) -> void:
 
 func player_death() -> void:
 	emit_signal("player_died")
-	active = false
+	#active = false
 
 func increase_xp(xp_amount: int) -> void:
 	xp += xp_amount

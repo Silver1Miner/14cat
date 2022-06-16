@@ -142,4 +142,4 @@ visible = false
 visible = false
 
 [connection signal="pressed" from="ControlPanel/Controls/Pause" to="." method="_on_Pause_pressed"]
-[connection signal="quit_early" from="PauseScreen" to="." method="_on_PauseScreen_quit_early"]
+[connection signal="quit" from="PauseScreen" to="." method="_on_PauseScreen_quit"]

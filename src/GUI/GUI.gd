@@ -8,7 +8,7 @@ onready var coins_text = $Status/Status/Status/Coins
 onready var joystick = $Joypad
 onready var upgrade_screen = $UpgradeScreen
 
-signal quit_early()
+signal quit()
 
 func update_hp(new_hp, max_hp) -> void:
 	hp_bar.value = new_hp
@@ -33,5 +33,8 @@ func level_up() -> void:
 func _on_Pause_pressed() -> void:
 	$PauseScreen.activate()
 
-func _on_PauseScreen_quit_early() -> void:
-	emit_signal("quit_early")
+func _on_PauseScreen_quit() -> void:
+	emit_signal("quit")
+
+func activate_death() -> void:
+	$PauseScreen.activate_death()
