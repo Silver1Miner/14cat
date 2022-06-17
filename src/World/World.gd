@@ -6,6 +6,7 @@ onready var gui = $UI/GUI
 onready var player = $Player
 
 func _ready() -> void:
+	get_tree().paused = false
 	background.set_background(preload("res://assets/Backgrounds/grass.png"))
 	if player.connect("hp_changed", self, "_on_Player_hp_changed") != OK:
 		push_error("signal connect fail")

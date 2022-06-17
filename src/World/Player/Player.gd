@@ -14,6 +14,11 @@ signal level_up()
 signal coins_changed()
 signal player_died()
 onready var hitbox = $HitBox
+onready var gun1 = $GunTurret
+onready var gun2 = $GunTurret2
+onready var gun3 = $GunTurret3
+onready var gun4 = $GunTurret4
+onready var gun5 = $GunTurret5
 
 func _ready() -> void:
 	PlayerData.current_level = 1
@@ -77,6 +82,11 @@ func increase_xp(xp_amount: int) -> void:
 	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
 
 func _on_player_upgraded() -> void:
+	gun1.update_level()
+	gun2.update_level()
+	gun3.update_level()
+	gun4.update_level()
+	gun5.update_level()
 	emit_signal("hp_changed", hp, max_hp)
 	emit_signal("coins_changed")
 
@@ -93,4 +103,4 @@ func pickup_effect(pickup_id: int) -> void:
 			PlayerData.current_coins += 1
 			PlayerData.mission_coins += 1
 			emit_signal("coins_changed")
-	print("picked up ", pickup_id)
+	#print("picked up ", pickup_id)

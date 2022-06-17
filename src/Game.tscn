@@ -127,12 +127,14 @@ tracks/1/keys = {
 }
 
 [node name="Game" type="Node"]
+pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="Loading" type="ColorRect" parent="CanvasLayer"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 4 )
@@ -143,6 +145,7 @@ visible = false
 position = Vector2( 185, 217 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 9 )
+frame = 3
 playing = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Loading"]

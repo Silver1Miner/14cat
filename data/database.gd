@@ -23,6 +23,7 @@ var upgrades := {
 	"icon": null,
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
+	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
 	2: {"name": "Catabolize", "max_level": 11,
 	"descriptions": [ # Red
@@ -41,6 +42,7 @@ var upgrades := {
 	"icon": null,
 	"damage": [1, 1.5, 2, 2, 3, 4, 5, 6, 7, 8, 10],
 	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
 	3: {"name": "Cataclysm", "max_level": 11,
 	"descriptions": [ # Yellow

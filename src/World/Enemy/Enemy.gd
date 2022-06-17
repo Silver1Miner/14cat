@@ -45,8 +45,8 @@ func take_damage(damage_value: float) -> void:
 	var fct = FCT.instance()
 	get_parent().add_child(fct)
 	fct.rect_position = get_global_position() + Vector2(0, -16)
-	print(damage_value)
-	print(str(round(damage_value)))
+	#print(damage_value)
+	#print(str(round(damage_value)))
 	fct.show_value(str(round(damage_value)), Vector2(0,-8), 1, PI/2)
 	_set_hp(hp - damage_value)
 

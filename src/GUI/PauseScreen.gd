@@ -7,10 +7,8 @@ func activate() -> void:
 	visible = true
 
 func activate_death() -> void:
-	$Buttons/Quit.text = "Quit"
 	$Buttons/Close.visible = false
-	get_tree().paused = true
-	visible = true
+	activate()
 
 func _on_Close_pressed() -> void:
 	get_tree().paused = false
@@ -18,5 +16,4 @@ func _on_Close_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().paused = false
-	print("quit")
 	emit_signal("quit")
