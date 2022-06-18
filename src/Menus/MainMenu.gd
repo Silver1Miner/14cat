@@ -2,7 +2,6 @@ extends Control
 
 onready var Game = get_tree().get_root().get_node("Game")
 onready var quit_button = $Options/Quit
-onready var arcade_button = $Options/Survival
 var nonquit = ["Android", "iOS", "HTML5"]
 
 func _ready() -> void:
@@ -23,3 +22,6 @@ func _on_Campaign_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_Start_pressed() -> void:
+	Game.go_to_scene("res://src/Hub/Hub.tscn")

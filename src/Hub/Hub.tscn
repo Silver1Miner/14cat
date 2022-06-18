@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=1]
 [ext_resource path="res://src/Hub/Hub.gd" type="Script" id=2]
 [ext_resource path="res://src/Hub/Trophies.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Hub/MissionSelect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Hub/SurvivalUI/SurvivalSelect.tscn" type="PackedScene" id=5]
 
 [node name="Hub" type="Control"]
 anchor_right = 1.0
@@ -23,21 +24,22 @@ anchor_bottom = 1.0
 margin_left = -125.0
 margin_top = -420.0
 margin_right = 125.0
+grow_vertical = 0
 custom_constants/separation = 20
 
-[node name="SelectMission" type="Button" parent="Options"]
+[node name="Campaign" type="Button" parent="Options"]
 margin_right = 250.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
-text = "Select Mission"
+disabled = true
+text = "Campaign"
 
-[node name="Loadout" type="Button" parent="Options"]
+[node name="Survival" type="Button" parent="Options"]
 margin_top = 70.0
 margin_right = 250.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 200, 50 )
-disabled = true
-text = "Loadout"
+text = "Survival"
 
 [node name="Shop" type="Button" parent="Options"]
 margin_top = 140.0
@@ -81,7 +83,12 @@ visible = false
 [node name="MissionSelect" parent="." instance=ExtResource( 4 )]
 visible = false
 
-[connection signal="pressed" from="Options/SelectMission" to="." method="_on_SelectMission_pressed"]
+[node name="SurvivalSelect" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[connection signal="pressed" from="Options/Campaign" to="." method="_on_Campaign_pressed"]
+[connection signal="pressed" from="Options/Survival" to="." method="_on_Survival_pressed"]
 [connection signal="pressed" from="Options/Trophies" to="." method="_on_Trophies_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_Back_pressed"]
 [connection signal="go_to_mission" from="MissionSelect" to="." method="_on_MissionSelect_go_to_mission"]
+[connection signal="go_to_survival" from="SurvivalSelect" to="." method="_on_SurvivalSelect_go_to_survival"]
