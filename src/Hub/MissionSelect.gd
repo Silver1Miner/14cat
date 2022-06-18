@@ -22,6 +22,11 @@ func update_page() -> void:
 	miss3.text = "e" + str(e) + "m3"
 	miss4.text = "e" + str(e) + "m4"
 	miss5.text = "e" + str(e) + "m5"
+	miss1.disabled = PlayerData.levels_unlocked < (e-1)*5 + 1
+	miss2.disabled = PlayerData.levels_unlocked < (e-1)*5 + 2
+	miss3.disabled = PlayerData.levels_unlocked < (e-1)*5 + 3
+	miss4.disabled = PlayerData.levels_unlocked < (e-1)*5 + 4
+	miss5.disabled = PlayerData.levels_unlocked < (e-1)*5 + 5
 
 func _on_Close_pressed() -> void:
 	visible = false

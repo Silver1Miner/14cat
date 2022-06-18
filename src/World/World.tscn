@@ -13,6 +13,8 @@ script = ExtResource( 4 )
 
 [node name="BackgroundScroll" parent="." instance=ExtResource( 3 )]
 
+[node name="Effects" type="Node2D" parent="."]
+
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 6 )
 

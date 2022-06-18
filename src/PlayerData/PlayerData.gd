@@ -1,6 +1,7 @@
 extends Node
 
 var is_survival = false
+var version = "0.0.1"
 var music_db := 0.4
 var sound_db := 0.2
 var delta_time := 0.0
@@ -11,16 +12,17 @@ var total_xp := 0
 var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
+var levels_unlocked := 1
 var lore_collected := 0
 var max_lore_entries = 6
-var player_upgrades := { #upgrade_id: level,
-	0: 1, # Coin
-	1: 1, # Forward Gun 1, Colorless
-	2: 0, # Turret 1, Red
-	3: 0, # Turret 2, Yellow
-	4: 0, # Turret 3, Blue
-	5: 0, # Turret 4, Green
-}
+var player_upgrades := [ #upgrade_id: level,
+	1, # Coin
+	1, # Forward Gun 1, Colorless
+	0, # Turret 1, Red
+	0, # Turret 2, Yellow
+	0, # Turret 3, Blue
+	0, # Turret 4, Green
+]
 var bought_upgrades := [ #upgrade_id: level,
 	0, # Max Health Bonus
 	0, # Regeneration Bonus
@@ -49,11 +51,17 @@ func upgrade(upgrade_id: int) -> void:
 		player_upgrades[upgrade_id] += 1
 	emit_signal("player_upgraded")
 
+func fresh_restart() -> void:
+	delta_time = 0.0
+	mission_coins = 0
+	player_upgrades = [1,1,0,0,0,0]
+
 func load_player_data() -> void:
 	var save_game = File.new()
 	if not save_game.file_exists("user://cat.save"):
 		return # Error! We don't have a save to load.
 	save_game.open("user://cat.save", File.READ)
+	version = parse_json(save_game.get_line())
 	achievements = parse_json(save_game.get_line())
 	total_coins = parse_json(save_game.get_line())
 	current_coins = parse_json(save_game.get_line())
@@ -61,6 +69,7 @@ func load_player_data() -> void:
 	total_xp = parse_json(save_game.get_line())
 	highest_level = parse_json(save_game.get_line())
 	highest_time = parse_json(save_game.get_line())
+	levels_unlocked = parse_json(save_game.get_line())
 	lore_collected = parse_json(save_game.get_line())
 	music_db = parse_json(save_game.get_line())
 	sound_db = parse_json(save_game.get_line())
@@ -69,6 +78,7 @@ func load_player_data() -> void:
 func save_player_data() -> void:
 	var save_game = File.new()
 	save_game.open("user://cat.save", File.WRITE)
+	save_game.store_line(to_json(version))
 	save_game.store_line(to_json(achievements))
 	save_game.store_line(to_json(total_coins))
 	save_game.store_line(to_json(current_coins))
@@ -76,6 +86,7 @@ func save_player_data() -> void:
 	save_game.store_line(to_json(total_xp))
 	save_game.store_line(to_json(highest_level))
 	save_game.store_line(to_json(highest_time))
+	save_game.store_line(to_json(levels_unlocked))
 	save_game.store_line(to_json(lore_collected))
 	save_game.store_line(to_json(music_db))
 	save_game.store_line(to_json(sound_db))
@@ -90,5 +101,6 @@ func clear_player_data() -> void:
 	highest_level = 1
 	highest_time = 0.0
 	lore_collected = 0
+	levels_unlocked = 1
 	var dir = Directory.new()
 	dir.remove("user://cat.save")

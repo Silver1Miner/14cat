@@ -41,12 +41,14 @@ custom_constants/separation = 20
 alignment = 2
 
 [node name="Campaign" type="Button" parent="Options"]
+margin_top = 70.0
 margin_right = 200.0
-margin_bottom = 50.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 200, 50 )
 text = "Campaign `"
 
 [node name="Survival" type="Button" parent="Options"]
+visible = false
 margin_top = 70.0
 margin_right = 200.0
 margin_bottom = 120.0

@@ -45,6 +45,7 @@ func _on_Player_died() -> void:
 
 func _on_GUI_quit() -> void:
 	get_tree().paused = false
+	PlayerData.fresh_restart()
 	if PlayerData.is_survival:
 		Game.go_to_scene("res://src/Menus/MainMenu.tscn")
 	else:

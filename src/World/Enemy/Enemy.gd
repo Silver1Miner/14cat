@@ -4,6 +4,10 @@ class_name Enemy
 export var group = "enemy"
 export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
+export var y_limit_top := 64
+export var y_limit_bottom := 256 
+var hit_bottom = false
+var hit_side = false
 export var speed := 100
 export var direction := Vector2(2, 1)
 export var attack := 50
@@ -22,9 +26,14 @@ func _physics_process(delta: float) -> void:
 		var velocity = speed * direction.normalized()
 		var collision = move_and_collide(velocity * delta)
 		if collision:
-			direction.x = - direction.x
+			direction.x = -direction.x
 		if global_position.x < 32 or global_position.x > 360 - 32:
 			direction.x = -direction.x
+		if hit_bottom and global_position.y <= y_limit_top:
+			direction.y = -direction.y
+		if global_position.y > y_limit_bottom:
+			hit_bottom = true
+			direction.y = -direction.y
 		attack_damage(delta)
 
 func attack_damage(delta: float) -> void:
