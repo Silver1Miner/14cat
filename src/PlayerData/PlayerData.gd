@@ -37,9 +37,9 @@ var achievements := [
 	0,
 ]
 var survival_records := [
-	0,
-	0,
-	0,
+	40,1800,108,
+	340,10,250,
+	90,45,60,
 ]
 onready var database: Resource = preload("res://data/database.tres")
 signal player_upgraded()

@@ -18,9 +18,9 @@ var survival_names := ["",
 "","","",]
 func update_page() -> void:
 	episode.text = "Episode " + str(e)
-	miss1.update_display("e" + str(e) + "m1", 0)
-	miss2.update_display("e" + str(e) + "m2", 1800)
-	miss3.update_display("e" + str(e) + "m3", 0)
+	miss1.update_display("e" + str(e) + "m1", PlayerData.survival_records[(e-1)*3+0])
+	miss2.update_display("e" + str(e) + "m2", PlayerData.survival_records[(e-1)*3+1])
+	miss3.update_display("e" + str(e) + "m3", PlayerData.survival_records[(e-1)*3+2])
 	miss1.disabled = PlayerData.survival_unlocked < (e-1)*3 + 1
 	miss2.disabled = PlayerData.survival_unlocked < (e-1)*3 + 2
 	miss3.disabled = PlayerData.survival_unlocked < (e-1)*3 + 3

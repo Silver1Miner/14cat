@@ -35,15 +35,15 @@ margin_top = 37.0
 margin_right = 164.0
 margin_bottom = 77.0
 
+[node name="Clock" parent="Info/Records" instance=ExtResource( 4 )]
+margin_top = 1.0
+margin_right = 120.0
+margin_bottom = 38.0
+
 [node name="TrophyIcon" type="TextureRect" parent="Info/Records"]
-margin_right = 40.0
+margin_left = 124.0
+margin_right = 164.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 texture = ExtResource( 3 )
-expand = true
-
-[node name="Clock" parent="Info/Records" instance=ExtResource( 4 )]
-margin_left = 44.0
-margin_top = 1.0
-margin_right = 164.0
-margin_bottom = 38.0
+stretch_mode = 4

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=1]
 [ext_resource path="res://src/Hub/Hub.gd" type="Script" id=2]
 [ext_resource path="res://src/Hub/Trophies.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Hub/MissionSelect.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Hub/SurvivalUI/SurvivalSelect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Art/title-art.png" type="Texture" id=6]
 
 [node name="Hub" type="Control"]
 anchor_right = 1.0
@@ -13,8 +14,11 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
+self_modulate = Color( 0.317647, 0.317647, 0.317647, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
 
 [node name="Options" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -31,7 +35,6 @@ custom_constants/separation = 20
 margin_right = 250.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
-disabled = true
 text = "Campaign"
 
 [node name="Survival" type="Button" parent="Options"]
