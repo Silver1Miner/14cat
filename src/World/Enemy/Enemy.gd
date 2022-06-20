@@ -5,7 +5,8 @@ export var group = "enemy"
 export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
 export var y_limit_top := 64
-export var y_limit_bottom := 256 
+export var y_limit_bottom := 256
+export var ignore_collision = false
 var hit_bottom = false
 var hit_side = false
 export var speed := 100
@@ -23,18 +24,25 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if entered_screen:
-		var velocity = speed * direction.normalized()
-		var collision = move_and_collide(velocity * delta)
-		if collision:
-			direction.x = -direction.x
-		if global_position.x < 32 or global_position.x > 360 - 32:
-			direction.x = -direction.x
-		if hit_bottom and global_position.y <= y_limit_top:
+		move_and_attack(delta)
+	else:
+		position.y += 30
+
+func move_and_attack(delta: float) -> void:
+	var velocity = speed * direction.normalized()
+	var collision = move_and_collide(velocity * delta)
+	if collision and not ignore_collision:
+		direction.x = -direction.x
+		if direction.y < 0:
 			direction.y = -direction.y
-		if global_position.y > y_limit_bottom:
-			hit_bottom = true
-			direction.y = -direction.y
-		attack_damage(delta)
+	if global_position.x < 32 or global_position.x > 360 - 32:
+		direction.x = -direction.x
+	if hit_bottom and global_position.y <= y_limit_top and not ignore_collision:
+		direction.y = -direction.y
+	if global_position.y > y_limit_bottom:
+		hit_bottom = true
+		direction.y = -direction.y
+	attack_damage(delta)
 
 func attack_damage(delta: float) -> void:
 	for a in $Hitbox.get_overlapping_areas():

@@ -13,7 +13,7 @@ var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
 var levels_unlocked := 1
-var survival_unlocked := 2
+var survival_unlocked := 1
 var lore_collected := 0
 var max_lore_entries = 6
 var player_upgrades := [ #upgrade_id: level,
@@ -37,9 +37,9 @@ var achievements := [
 	0,
 ]
 var survival_records := [
-	40,1800,108,
-	340,10,250,
-	90,45,60,
+	0,0,0,
+	0,0,0,
+	0,0,0,
 ]
 onready var database: Resource = preload("res://data/database.tres")
 signal player_upgraded()

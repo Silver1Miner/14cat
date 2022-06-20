@@ -1,6 +1,6 @@
 extends Node2D
 
-export (PackedScene) var Crab = preload("res://src/World/Enemy/Enemy.tscn")
+export (PackedScene) var Crab = preload("res://src/World/Enemy/EnemyCrab.tscn")
 var Database: Resource = preload("res://data/database.tres")
 var spawn_schedule := {
 	"max_level": 6,
