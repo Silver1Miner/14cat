@@ -14,11 +14,12 @@ signal level_up()
 signal coins_changed()
 signal player_died()
 onready var hitbox = $HitBox
-onready var gun1 = $GunTurret
-onready var gun2 = $GunTurret2
-onready var gun3 = $GunTurret3
-onready var gun4 = $GunTurret4
-onready var gun5 = $GunTurret5
+onready var gun1 = $Pivot/GunTurret
+onready var gun2 = $Pivot/GunTurret2
+onready var gun3 = $Pivot/GunTurret3
+onready var gun4 = $Pivot/GunTurret4
+onready var gun5 = $Pivot/GunTurret5
+onready var pivot = $Pivot
 
 func _ready() -> void:
 	PlayerData.current_level = 1
@@ -43,6 +44,12 @@ func get_input() -> void:
 	velocity = velocity.normalized() * speed
 
 func _process(delta: float) -> void:
+	pivot.rotation += PI/4 * delta
+	gun1.global_rotation = 0
+	gun2.global_rotation = 0
+	gun3.global_rotation = 0
+	gun4.global_rotation = 0
+	gun5.global_rotation = 0
 	if active:
 		get_input()
 		var _collision = move_and_collide(velocity * delta)

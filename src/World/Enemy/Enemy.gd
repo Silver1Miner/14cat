@@ -19,6 +19,8 @@ export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.t
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
 
+onready var effects = get_parent().get_parent().get_node_or_null("Effects")
+
 func _ready() -> void:
 	add_to_group(group)
 
@@ -77,11 +79,11 @@ func die() -> void:
 	$Hitbox.set_deferred("disabled", true)
 	create_explosion()
 	var drop_instance = Drop.instance()
-	get_parent().call_deferred("add_child", drop_instance)
+	effects.call_deferred("add_child", drop_instance)
 	drop_instance.global_position = get_global_position()
 	queue_free()
 
 func create_explosion() -> void:
 	var explosion_instance = Explosion.instance()
-	get_parent().call_deferred("add_child", explosion_instance)
+	effects.call_deferred("add_child", explosion_instance)
 	explosion_instance.global_position = get_global_position()

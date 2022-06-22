@@ -18,6 +18,8 @@ onready var _attack_range := $AttackRange/CollisionShape2D
 onready var _cooldown_timer := $Timer
 var Database: Resource = preload("res://data/database.tres")
 
+onready var effects = get_parent().get_parent().get_parent().get_node_or_null("Effects")
+
 func _ready() -> void:
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
@@ -70,7 +72,7 @@ func _process(_delta: float) -> void:
 func shoot_at() -> void:
 	$AudioStreamPlayer2D.play()
 	var bullet_instance = bullet.instance()
-	get_parent().get_parent().add_child(bullet_instance)
+	effects.add_child(bullet_instance)
 	bullet_instance.speed = projectile_speed
 	bullet_instance.lifetime = projectile_lifetime
 	bullet_instance.damage = attack_damage

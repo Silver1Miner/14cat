@@ -9,7 +9,7 @@ onready var spawner = $EnemySpawner
 func _ready() -> void:
 	get_tree().paused = false
 	spawner.set_process(PlayerData.is_survival)
-	background.set_background(preload("res://assets/Backgrounds/grass.png"))
+	background.set_background(preload("res://assets/Backgrounds/background.png"))
 	if player.connect("hp_changed", self, "_on_Player_hp_changed") != OK:
 		push_error("signal connect fail")
 	if player.connect("xp_changed", self, "_on_Player_xp_changed") != OK:
@@ -48,7 +48,4 @@ func _on_Player_died() -> void:
 func _on_GUI_quit() -> void:
 	get_tree().paused = false
 	PlayerData.fresh_restart()
-	if PlayerData.is_survival:
-		Game.go_to_scene("res://src/Menus/MainMenu.tscn")
-	else:
-		Game.go_to_scene("res://src/Hub/Hub.tscn")
+	Game.go_to_scene("res://src/Hub/Hub.tscn")
