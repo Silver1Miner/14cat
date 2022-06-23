@@ -45,11 +45,11 @@ func get_input() -> void:
 
 func _process(delta: float) -> void:
 	pivot.rotation += PI/4 * delta
-	gun1.global_rotation = 0
-	gun2.global_rotation = 0
-	gun3.global_rotation = 0
-	gun4.global_rotation = 0
-	gun5.global_rotation = 0
+	gun1.get_node("Aim").global_rotation = 0
+	gun2.get_node("Aim").global_rotation = 0
+	gun3.get_node("Aim").global_rotation = 0
+	gun4.get_node("Aim").global_rotation = 0
+	gun5.get_node("Aim").global_rotation = 0
 	if active:
 		get_input()
 		var _collision = move_and_collide(velocity * delta)

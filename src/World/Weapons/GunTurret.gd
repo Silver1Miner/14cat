@@ -1,6 +1,7 @@
 extends Node2D
 
 export var gun_id := 1
+export var damage_type := 0
 export var can_turn := true # true for turret, false for auto fire
 export var attack_damage := 10.0
 export var attack_cooldown := 0.1
@@ -11,10 +12,10 @@ export var projectile_blast_radius := 32
 export var bullet: PackedScene = preload("res://src/World/Weapons/Bullet.tscn")
 
 var current_level = -1
-onready var _laser_sight := $Line2D
-onready var _raycast = $RayCast2D
-onready var _attack_radius := $AttackRange
-onready var _attack_range := $AttackRange/CollisionShape2D
+onready var _laser_sight := $Aim/Line2D
+onready var _raycast = $Aim/RayCast2D
+onready var _attack_radius := $Pivot/AttackRange
+onready var _attack_range := $Pivot/AttackRange/CollisionShape2D
 onready var _cooldown_timer := $Timer
 var Database: Resource = preload("res://data/database.tres")
 
@@ -77,6 +78,7 @@ func shoot_at() -> void:
 	bullet_instance.lifetime = projectile_lifetime
 	bullet_instance.damage = attack_damage
 	bullet_instance.global_position = global_position
+	bullet_instance.damage_type = damage_type
 	var angle = _raycast.cast_to.angle()
 	bullet_instance.rotation = angle
 	_cooldown_timer.start(attack_cooldown)

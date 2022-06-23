@@ -41,50 +41,51 @@ shape = SubResource( 2 )
 [node name="GunTurret5" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( -16, 16 )
 gun_id = 5
+damage_type = 4
 bullet = ExtResource( 9 )
 
 [node name="Sprite" parent="Pivot/GunTurret5" index="0"]
 texture = ExtResource( 10 )
 
-[node name="Line2D" parent="Pivot/GunTurret5" index="3"]
-default_color = Color( 0, 0, 1, 1 )
+[node name="Pivot" parent="Pivot/GunTurret5" index="2"]
+rotation = 3.92699
 
 [node name="GunTurret4" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( 16, 16 )
 gun_id = 4
+damage_type = 3
 bullet = ExtResource( 6 )
 
 [node name="Sprite" parent="Pivot/GunTurret4" index="0"]
 texture = ExtResource( 8 )
 
-[node name="Line2D" parent="Pivot/GunTurret4" index="3"]
-default_color = Color( 0, 1, 0, 1 )
+[node name="Pivot" parent="Pivot/GunTurret4" index="2"]
+rotation = 2.35619
 
 [node name="GunTurret3" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( -16, -16 )
 gun_id = 3
+damage_type = 2
 bullet = ExtResource( 7 )
 
 [node name="Sprite" parent="Pivot/GunTurret3" index="0"]
 texture = ExtResource( 5 )
 
-[node name="Line2D" parent="Pivot/GunTurret3" index="3"]
-default_color = Color( 1, 1, 0, 1 )
+[node name="Pivot" parent="Pivot/GunTurret3" index="2"]
+rotation = 5.49779
 
 [node name="GunTurret2" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( 16, -16 )
 gun_id = 2
+damage_type = 1
 bullet = ExtResource( 4 )
 
-[node name="Line2D" parent="Pivot/GunTurret2" index="3"]
-default_color = Color( 1, 0, 0, 1 )
+[node name="Pivot" parent="Pivot/GunTurret2" index="2"]
+rotation = 0.785398
 
 [node name="GunTurret" parent="Pivot" instance=ExtResource( 3 )]
 can_turn = false
 attack_cooldown = 1.0
-
-[node name="Line2D" parent="Pivot/GunTurret" index="3"]
-default_color = Color( 0.4, 0.501961, 1, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

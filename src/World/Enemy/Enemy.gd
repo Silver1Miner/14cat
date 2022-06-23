@@ -7,6 +7,7 @@ export var hp := 20.0 setget _set_hp
 export var y_limit_top := 64
 export var y_limit_bottom := 256
 export var ignore_collision = false
+export var weaknesses = [3]
 var hit_bottom = false
 var hit_side = false
 export var speed := 100
@@ -58,7 +59,7 @@ func _on_VisibilityNotifier2D_screen_entered() -> void:
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	queue_free()
 
-func take_damage(damage_value: float) -> void:
+func take_damage(damage_value: float, damage_type: int) -> void:
 	if invulnerable:
 		return
 	var fct = FCT.instance()
@@ -66,8 +67,12 @@ func take_damage(damage_value: float) -> void:
 	fct.rect_position = get_global_position() + Vector2(0, -16)
 	#print(damage_value)
 	#print(str(round(damage_value)))
-	fct.show_value(str(round(damage_value)), Vector2(0,-8), 1, PI/2)
-	_set_hp(hp - damage_value)
+	if damage_type in weaknesses:
+		fct.show_value(str(round(damage_value * 3))+"!", Vector2(0,-8), 1, PI/2,true)
+		_set_hp(hp - damage_value * 3)
+	else:
+		fct.show_value(str(round(damage_value)), Vector2(0,-8), 1, PI/2)
+		_set_hp(hp - damage_value)
 
 func _set_hp(new_hp: float) -> void:
 	hp = clamp(new_hp, 0.0, max_hp)

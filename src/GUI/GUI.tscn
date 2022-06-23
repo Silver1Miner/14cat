@@ -124,7 +124,7 @@ custom_constants/separation = 140
 margin_right = 100.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
-text = "Coin Bomb"
+text = "Rotate Gems"
 
 [node name="Pause" type="Button" parent="ControlPanel/Controls"]
 margin_left = 240.0

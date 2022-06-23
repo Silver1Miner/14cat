@@ -8,6 +8,7 @@ export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.t
 export var target_groups := [
 	"enemy","environment"
 ]
+export var damage_type := 0
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -22,7 +23,7 @@ func _on_Bullet_area_entered(area: Area2D) -> void:
 	for group in target_groups:
 		if area.get_parent().is_in_group(group):
 			if area.get_parent().has_method("take_damage"):
-				area.get_parent().take_damage(damage)
+				area.get_parent().take_damage(damage, damage_type)
 				if !piercing:
 					var explosion = Explosion.instance()
 					explosion.damage = 0

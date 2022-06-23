@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	rotation = velocity.angle()
 	position += velocity * delta
 
-func take_damage(damage_value) -> void:
+func take_damage(damage_value, _damage_type: int) -> void:
 	hp -= damage_value
 	if hp <= 0:
 		explode()
