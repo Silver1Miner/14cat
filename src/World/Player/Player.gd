@@ -7,6 +7,7 @@ export var max_xp := 2
 export var speed := 100
 var velocity := Vector2.ZERO
 var active := true
+var weapon_rotation := false
 
 signal hp_changed(hp, max_hp)
 signal xp_changed(xp, max_xp, level)
@@ -44,12 +45,13 @@ func get_input() -> void:
 	velocity = velocity.normalized() * speed
 
 func _process(delta: float) -> void:
-	pivot.rotation += PI/4 * delta
-	gun1.get_node("Aim").global_rotation = 0
-	gun2.get_node("Aim").global_rotation = 0
-	gun3.get_node("Aim").global_rotation = 0
-	gun4.get_node("Aim").global_rotation = 0
-	gun5.get_node("Aim").global_rotation = 0
+	if weapon_rotation:
+		pivot.rotation += PI/4 * delta
+		gun1.get_node("Aim").global_rotation = 0
+		gun2.get_node("Aim").global_rotation = 0
+		gun3.get_node("Aim").global_rotation = 0
+		gun4.get_node("Aim").global_rotation = 0
+		gun5.get_node("Aim").global_rotation = 0
 	if active:
 		get_input()
 		var _collision = move_and_collide(velocity * delta)

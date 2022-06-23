@@ -9,6 +9,7 @@ onready var joystick = $Joypad
 onready var upgrade_screen = $UpgradeScreen
 
 signal quit()
+signal rotation_toggled(is_rotating)
 
 func update_hp(new_hp, max_hp) -> void:
 	hp_bar.value = new_hp
@@ -38,3 +39,6 @@ func _on_PauseScreen_quit() -> void:
 
 func activate_death() -> void:
 	$PauseScreen.activate_death()
+
+func _on_Unleash_toggled(button_pressed: bool) -> void:
+	emit_signal("rotation_toggled", button_pressed)

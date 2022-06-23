@@ -63,7 +63,7 @@ func _process(_delta: float) -> void:
 		_laser_sight.points[1] = target.global_position - global_position
 		if target.get_parent() and _cooldown_timer.is_stopped():
 			if target.get_global_position().y < (18 * 30) - 16 and \
-			target.get_global_position().y > (4 * 30) + 16 and \
+			target.get_global_position().y > (1 * 30) + 16 and \
 			target.get_global_position().x > 0 + 16 and \
 			target.get_global_position().x < 360 - 16:
 				shoot_at()

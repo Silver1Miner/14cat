@@ -4,7 +4,7 @@ var upgrades := {
 	0: {
 		"name": "Bounty Bonus", "max_level": 0,
 		"descriptions": ["+1 Coin"],
-		"icon": null
+		"icon": preload("res://assets/Pickups/coin_26.png")
 	},
 	1: {"name": "Cat's Paw", "max_level": 11,
 	"descriptions": [
@@ -20,7 +20,7 @@ var upgrades := {
 		"Level 10: Damage +300% from Base",
 		"Level 11: Damage +400% from Base",
 	],
-	"icon": null,
+	"icon": preload("res://assets/GUI/Icons/paw-print.svg"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
@@ -39,7 +39,7 @@ var upgrades := {
 		"Level 10: Damage +700% from Base",
 		"Level 11: Damage +900% from Base",
 	],
-	"icon": null,
+	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_autumn.svg"),
 	"damage": [1, 1.5, 2, 2, 3, 4, 5, 6, 7, 8, 10],
 	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
@@ -58,7 +58,7 @@ var upgrades := {
 		"Level 10: Damage +300% from Base",
 		"Level 11: Damage +400% from Base",
 	],
-	"icon": null,
+	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_summer.svg"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
 	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
@@ -77,7 +77,7 @@ var upgrades := {
 		"Level 10: Damage +700% from Base",
 		"Level 11: Damage +900% from Base",
 	],
-	"icon": null,
+	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_winter.svg"),
 	"damage": [1, 1.5, 2, 2, 2, 4, 5, 5, 7, 8, 10],
 	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
 	"attack_range": [64,64,64,64,128,128,128,192,192,192,192]
@@ -96,7 +96,7 @@ var upgrades := {
 		"Level 10: Damage +700% from Base",
 		"Level 11: Damage +900% from Base",
 	],
-	"icon": null,
+	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_spring.svg"),
 	"damage": [1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 10],
 	"cooldown": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
 	"attack_range": [64,128,128,192,192,192,192,192,192,192,192]

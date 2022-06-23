@@ -49,3 +49,6 @@ func _on_GUI_quit() -> void:
 	get_tree().paused = false
 	PlayerData.fresh_restart()
 	Game.go_to_scene("res://src/Hub/Hub.tscn")
+
+func _on_GUI_rotation_toggled(is_rotating) -> void:
+	player.weapon_rotation = is_rotating

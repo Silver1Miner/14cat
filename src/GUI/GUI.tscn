@@ -124,6 +124,7 @@ custom_constants/separation = 140
 margin_right = 100.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
+toggle_mode = true
 text = "Rotate Gems"
 
 [node name="Pause" type="Button" parent="ControlPanel/Controls"]
@@ -142,5 +143,6 @@ visible = false
 [node name="PauseScreen" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[connection signal="toggled" from="ControlPanel/Controls/Unleash" to="." method="_on_Unleash_toggled"]
 [connection signal="pressed" from="ControlPanel/Controls/Pause" to="." method="_on_Pause_pressed"]
 [connection signal="quit" from="PauseScreen" to="." method="_on_PauseScreen_quit"]

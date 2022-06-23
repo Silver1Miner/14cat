@@ -46,3 +46,4 @@ position = Vector2( 180, 456 )
 [node name="GUI" parent="UI" instance=ExtResource( 1 )]
 
 [connection signal="quit" from="UI/GUI" to="." method="_on_GUI_quit"]
+[connection signal="rotation_toggled" from="UI/GUI" to="." method="_on_GUI_rotation_toggled"]
