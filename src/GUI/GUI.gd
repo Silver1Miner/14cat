@@ -40,5 +40,8 @@ func _on_PauseScreen_quit() -> void:
 func activate_death() -> void:
 	$PauseScreen.activate_death()
 
+func activate_end() -> void:
+	$PauseScreen.activate_end()
+
 func _on_Unleash_toggled(button_pressed: bool) -> void:
 	emit_signal("rotation_toggled", button_pressed)

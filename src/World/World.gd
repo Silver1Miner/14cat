@@ -52,3 +52,8 @@ func _on_GUI_quit() -> void:
 
 func _on_GUI_rotation_toggled(is_rotating) -> void:
 	player.weapon_rotation = is_rotating
+
+
+func _on_ExitEnd_area_entered(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		gui.activate_end()

@@ -35,7 +35,6 @@ custom_constants/separation = 20
 margin_right = 250.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
-disabled = true
 text = "Campaign"
 
 [node name="Survival" type="Button" parent="Options"]

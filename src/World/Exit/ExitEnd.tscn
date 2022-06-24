@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/GUI/Theme/HUD.tres" type="Theme" id=1]
+[ext_resource path="res://src/World/Exit/ExitEnd.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 180, 12 )
+
+[node name="ExitEnd" type="Area2D"]
+script = ExtResource( 2 )
+wait_time = 30
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 180, -20 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -40.0
+margin_right = 360.0
+theme = ExtResource( 1 )
+color = Color( 0, 0.298039, 1, 0.231373 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -9.5
+margin_right = 20.0
+margin_bottom = 9.5
+text = "EXIT"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
