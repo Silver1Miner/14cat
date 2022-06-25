@@ -24,7 +24,6 @@ func prepare_upgrade_screen() -> void:
 	choice1.populate_data(available_upgrades[0])
 	choice2.populate_data(available_upgrades[1])
 	choice3.populate_data(available_upgrades[2])
-	decide.visible = false
 	choices.visible = true
 	
 func deactivate() -> void:

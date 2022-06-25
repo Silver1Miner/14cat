@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 		if position.y > (640 - 128) - 32:
 			position.y = (640 - 128) - 32
 
-func take_damage(damage_value: float) -> void:
+func take_damage(damage_value: float, _damage_type: int) -> void:
 	if invincible:
 		return
 	_set_hp(hp - damage_value)

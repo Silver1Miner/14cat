@@ -18,16 +18,20 @@ var invulnerable = true
 var entered_screen = false
 var can_attack = false
 
+export var Bullet: PackedScene = preload("res://src/World/Weapons/BulletEnemy.tscn")
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
 onready var damage_timer = $DamageTimer
 onready var attack_timer = $AttackTimer
+onready var hitbox = $Hitbox
 onready var effects = get_parent().get_parent().get_node_or_null("Effects")
 onready var player = get_parent().get_parent().get_node_or_null("Player")
 
 func _ready() -> void:
 	add_to_group(group)
+	hitbox.add_to_group(group)
+	
 
 func _physics_process(delta: float) -> void:
 	if entered_screen:
@@ -63,6 +67,11 @@ func shoot() -> void:
 	if not can_attack:
 		return
 	print("shoot")
+	var b = Bullet.instance()
+	effects.add_child(b)
+	b.direction = Vector2.DOWN.rotated($Gun.rotation)
+	b.global_position = $Gun.global_position
+	b.rotation = $Gun.rotation
 	# TODO: add shooting
 	can_attack = false
 	attack_timer.start()

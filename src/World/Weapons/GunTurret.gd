@@ -2,6 +2,7 @@ extends Node2D
 
 export var gun_id := 1
 export var damage_type := 0
+export var direction :Vector2 = Vector2.UP
 export var can_turn := true # true for turret, false for auto fire
 export var attack_damage := 10.0
 export var attack_cooldown := 0.1
@@ -81,4 +82,5 @@ func shoot_at() -> void:
 	bullet_instance.damage_type = damage_type
 	var angle = _raycast.cast_to.angle()
 	bullet_instance.rotation = angle
+	bullet_instance.direction = direction.rotated(deg2rad(angle))
 	_cooldown_timer.start(attack_cooldown)
