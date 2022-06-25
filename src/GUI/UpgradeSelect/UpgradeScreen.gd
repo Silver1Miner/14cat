@@ -1,19 +1,17 @@
 extends ColorRect
 
-onready var decide = $Decide
 onready var choices = $Choices
 onready var choice1 = $Choices/Choice1
 onready var choice2 = $Choices/Choice2
 onready var choice3 = $Choices/Choice3
 var available_upgrades = [0,1,2,3,4,5]
+# 0 Coin 1 Colorless 2 Red 3 Yellow 4 Blue 5 Green
 var Database: Resource = preload("res://data/database.tres")
 
 func _ready() -> void:
 	pass # Replace with function body.
 
 func activate() -> void:
-	#decide.visible = false
-	#choices.visible = true
 	prepare_upgrade_screen()
 	visible = true
 	get_tree().paused = true
@@ -52,11 +50,3 @@ func check_limits(upgrade_id) -> void:
 	if PlayerData.player_upgrades[upgrade_id] >= Database.upgrades[upgrade_id]["max_level"]:
 		available_upgrades.erase(upgrade_id)
 		print(Database.upgrades[upgrade_id]["name"] + " maxed out")
-
-func _on_Unleash_pressed() -> void:
-	print("chose to unleash")
-	deactivate()
-
-func _on_Upgrade_pressed() -> void:
-	print("chose to upgrade")
-	prepare_upgrade_screen()

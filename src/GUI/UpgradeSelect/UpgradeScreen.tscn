@@ -43,39 +43,6 @@ margin_top = 231.0
 margin_right = 240.0
 margin_bottom = 331.0
 
-[node name="Decide" type="VBoxContainer" parent="."]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -113.5
-margin_right = 100.0
-margin_bottom = 113.5
-
-[node name="Label" type="Label" parent="Decide"]
-margin_right = 200.0
-margin_bottom = 19.0
-text = "Unleash or Upgrade?"
-align = 1
-
-[node name="Unleash" type="Button" parent="Decide"]
-margin_top = 23.0
-margin_right = 200.0
-margin_bottom = 123.0
-rect_min_size = Vector2( 200, 100 )
-text = "Unleash!"
-
-[node name="Upgrade" type="Button" parent="Decide"]
-margin_top = 127.0
-margin_right = 200.0
-margin_bottom = 227.0
-rect_min_size = Vector2( 200, 100 )
-text = "Upgrade!"
-
 [connection signal="pressed" from="Choices/Choice1" to="." method="_on_Choice1_pressed"]
 [connection signal="pressed" from="Choices/Choice2" to="." method="_on_Choice2_pressed"]
 [connection signal="pressed" from="Choices/Choice3" to="." method="_on_Choice3_pressed"]
-[connection signal="pressed" from="Decide/Unleash" to="." method="_on_Unleash_pressed"]
-[connection signal="pressed" from="Decide/Upgrade" to="." method="_on_Upgrade_pressed"]

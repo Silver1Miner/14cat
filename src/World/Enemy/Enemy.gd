@@ -10,17 +10,21 @@ export var ignore_collision = false
 export var weaknesses = [3]
 var hit_bottom = false
 var hit_side = false
+export var aim_at_player = false
 export var speed := 100
 export var direction := Vector2(2, 1)
 export var attack := 50
 var invulnerable = true
 var entered_screen = false
+var can_attack = false
 
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
-
+onready var damage_timer = $DamageTimer
+onready var attack_timer = $AttackTimer
 onready var effects = get_parent().get_parent().get_node_or_null("Effects")
+onready var player = get_parent().get_parent().get_node_or_null("Player")
 
 func _ready() -> void:
 	add_to_group(group)
@@ -45,16 +49,28 @@ func move_and_attack(delta: float) -> void:
 	if global_position.y > y_limit_bottom:
 		hit_bottom = true
 		direction.y = -direction.y
-	attack_damage(delta)
+	if aim_at_player:
+		$Gun.look_at(player.global_position)
+	shoot()
+	#attack_damage(delta)
 
 func attack_damage(delta: float) -> void:
 	for a in $Hitbox.get_overlapping_areas():
 		if a.is_in_group("player"):
 			a.get_parent()._set_hp(a.get_parent().hp - attack * delta)
 
+func shoot() -> void:
+	if not can_attack:
+		return
+	print("shoot")
+	# TODO: add shooting
+	can_attack = false
+	attack_timer.start()
+
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	entered_screen = true
 	invulnerable = false
+	can_attack = true
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	queue_free()
@@ -73,6 +89,8 @@ func take_damage(damage_value: float, damage_type: int) -> void:
 	else:
 		fct.show_value(str(round(damage_value)), Vector2(0,-8), 1, PI/2)
 		_set_hp(hp - damage_value)
+	damage_timer.wait_time = 0.05
+	damage_timer.start()
 
 func _set_hp(new_hp: float) -> void:
 	hp = clamp(new_hp, 0.0, max_hp)
@@ -92,3 +110,9 @@ func create_explosion() -> void:
 	var explosion_instance = Explosion.instance()
 	effects.call_deferred("add_child", explosion_instance)
 	explosion_instance.global_position = get_global_position()
+
+func _on_DamageTimer_timeout() -> void:
+	invulnerable = false
+
+func _on_AttackTimer_timeout() -> void:
+	can_attack = true

@@ -8,12 +8,14 @@ export var speed := 100
 var velocity := Vector2.ZERO
 var active := true
 var weapon_rotation := false
+var invincible = false
 
 signal hp_changed(hp, max_hp)
 signal xp_changed(xp, max_xp, level)
 signal level_up()
 signal coins_changed()
 signal player_died()
+onready var damage_timer = $DamageTimer
 onready var hitbox = $HitBox
 onready var gun1 = $Pivot/GunTurret
 onready var gun2 = $Pivot/GunTurret2
@@ -64,6 +66,13 @@ func _process(delta: float) -> void:
 		if position.y > (640 - 128) - 32:
 			position.y = (640 - 128) - 32
 
+func take_damage(damage_value: float) -> void:
+	if invincible:
+		return
+	_set_hp(hp - damage_value)
+	invincible = true
+	damage_timer.start()
+
 func _set_hp(new_hp: float) -> void:
 	if new_hp > hp:
 		print("heal")
@@ -113,3 +122,6 @@ func pickup_effect(pickup_id: int) -> void:
 			PlayerData.mission_coins += 1
 			emit_signal("coins_changed")
 	#print("picked up ", pickup_id)
+
+func _on_DamageTimer_timeout() -> void:
+	invincible = false

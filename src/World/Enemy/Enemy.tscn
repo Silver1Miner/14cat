@@ -21,16 +21,24 @@ radius = 32.0
 position = Vector2( 32, 32 )
 script = ExtResource( 3 )
 
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = 3.14159
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="Sprite" type="Sprite" parent="."]
+
+[node name="Gun" type="Position2D" parent="."]
 
 [node name="Hitbox" type="Area2D" parent="."]
 
@@ -39,5 +47,7 @@ shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
