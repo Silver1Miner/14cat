@@ -82,5 +82,5 @@ func shoot_at() -> void:
 	bullet_instance.damage_type = damage_type
 	var angle = _raycast.cast_to.angle()
 	bullet_instance.rotation = angle
-	bullet_instance.direction = direction.rotated(deg2rad(angle))
+	bullet_instance.direction = direction.rotated(angle+PI/2)
 	_cooldown_timer.start(attack_cooldown)

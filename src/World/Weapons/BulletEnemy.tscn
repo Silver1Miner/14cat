@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/World/Weapons/Bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Weapons/Bullet/bullet.png" type="Texture" id=2]
 
-[node name="BulletEnemy" instance=ExtResource( 1 )]
-target_groups = [ "player", "environment" ]
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
 
-[node name="Sprite" parent="." index="0"]
-scale = Vector2( 4, 4 )
+[node name="BulletEnemy" instance=ExtResource( 1 )]
+target_groups = [ "player" ]
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )

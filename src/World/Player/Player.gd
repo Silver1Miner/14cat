@@ -7,7 +7,7 @@ export var max_xp := 2
 export var speed := 100
 var velocity := Vector2.ZERO
 var active := true
-var weapon_rotation := false
+var weapon_rotation := true
 var invincible = false
 
 signal hp_changed(hp, max_hp)

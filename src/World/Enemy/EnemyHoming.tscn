@@ -7,10 +7,10 @@
 [node name="EnemyHoming" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="AnimatedSprite" parent="." index="1"]
+[node name="AnimatedSprite" parent="." index="3"]
 visible = false
 playing = false
 
-[node name="Sprite" parent="." index="2"]
+[node name="Sprite" parent="." index="4"]
 rotation = 4.71239
 texture = ExtResource( 2 )

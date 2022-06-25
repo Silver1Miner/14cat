@@ -18,6 +18,8 @@ var invulnerable = true
 var entered_screen = false
 var can_attack = false
 
+export var bullet_speed = 100
+export var attack_wait = 2.0
 export var Bullet: PackedScene = preload("res://src/World/Weapons/BulletEnemy.tscn")
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
@@ -37,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if entered_screen:
 		move_and_attack(delta)
 	else:
-		position.y += 30
+		position.y += 20
 
 func move_and_attack(delta: float) -> void:
 	var velocity = speed * direction.normalized()
@@ -69,12 +71,12 @@ func shoot() -> void:
 	print("shoot")
 	var b = Bullet.instance()
 	effects.add_child(b)
-	b.direction = Vector2.DOWN.rotated($Gun.rotation)
+	b.direction = Vector2.RIGHT.rotated($Gun.rotation)
 	b.global_position = $Gun.global_position
 	b.rotation = $Gun.rotation
-	# TODO: add shooting
+	b.speed = bullet_speed
 	can_attack = false
-	attack_timer.start()
+	attack_timer.start(attack_wait)
 
 func _on_VisibilityNotifier2D_screen_entered() -> void:
 	entered_screen = true

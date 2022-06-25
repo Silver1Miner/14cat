@@ -7,4 +7,5 @@
 pickup_id = 1
 
 [node name="Sprite" parent="." index="0"]
+scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
