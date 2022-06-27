@@ -11,9 +11,6 @@ export var target_groups := [
 ]
 export var damage_type := 0
 
-func _ready() -> void:
-	pass # Replace with function body.
-
 func _process(delta: float) -> void:
 	position += (delta * speed) * direction.normalized()
 
@@ -32,3 +29,6 @@ func _on_Bullet_area_entered(area: Area2D) -> void:
 					explosion.global_position = global_position
 					get_parent().call_deferred("add_child", explosion)
 					queue_free()
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	queue_free()

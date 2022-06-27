@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/World/Enemy/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/World/Weapons/Bullets/BulletEnemyAimed.tscn" type="PackedScene" id=2]
 
 [node name="EnemyTurret" instance=ExtResource( 1 )]
 y_limit_bottom = 720
@@ -8,6 +9,5 @@ ignore_collision = true
 aim_at_player = true
 speed = 20
 direction = Vector2( 0, 1 )
-
-[node name="AnimatedSprite" parent="." index="3"]
-frame = 0
+bullet_speed = 60
+Bullet = ExtResource( 2 )

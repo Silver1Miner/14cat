@@ -10,6 +10,7 @@ export var ignore_collision = false
 export var weaknesses = [3]
 var hit_bottom = false
 var hit_side = false
+export var shoots = true
 export var aim_at_player = false
 export var speed := 100
 export var direction := Vector2(2, 1)
@@ -20,7 +21,7 @@ var can_attack = false
 
 export var bullet_speed = 100
 export var attack_wait = 2.0
-export var Bullet: PackedScene = preload("res://src/World/Weapons/BulletEnemy.tscn")
+export var Bullet: PackedScene = preload("res://src/World/Weapons/Bullets/BulletEnemy.tscn")
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
@@ -57,7 +58,8 @@ func move_and_attack(delta: float) -> void:
 		direction.y = -direction.y
 	if aim_at_player:
 		$Gun.look_at(player.global_position)
-	shoot()
+	if shoots:
+		shoot()
 	#attack_damage(delta)
 
 func attack_damage(delta: float) -> void:
@@ -68,10 +70,12 @@ func attack_damage(delta: float) -> void:
 func shoot() -> void:
 	if not can_attack:
 		return
-	print("shoot")
 	var b = Bullet.instance()
 	effects.add_child(b)
-	b.direction = Vector2.RIGHT.rotated($Gun.rotation)
+	if aim_at_player:
+		b.direction = Vector2.RIGHT.rotated($Gun.rotation)
+	else:
+		b.direction = Vector2.DOWN
 	b.global_position = $Gun.global_position
 	b.rotation = $Gun.rotation
 	b.speed = bullet_speed

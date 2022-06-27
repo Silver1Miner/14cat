@@ -10,7 +10,7 @@ export var projectile_speed := 100.0
 export var projectile_lifetime := 10.0
 export var attack_radius := 20
 export var projectile_blast_radius := 32
-export var bullet: PackedScene = preload("res://src/World/Weapons/Bullet.tscn")
+export var bullet: PackedScene = preload("res://src/World/Weapons/Bullets/Bullet.tscn")
 
 var current_level = -1
 onready var _laser_sight := $Aim/Line2D

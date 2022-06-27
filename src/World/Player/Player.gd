@@ -17,8 +17,8 @@ signal coins_changed()
 signal player_died()
 onready var damage_timer = $DamageTimer
 onready var hitbox = $HitBox
-onready var gun1 = $Pivot/GunTurret
-onready var gun2 = $Pivot/GunTurret2
+onready var gun1 = $Pivot/GunTurretForward
+onready var gun2 = $Pivot/GunTurretFireball
 onready var gun3 = $Pivot/GunTurret3
 onready var gun4 = $Pivot/GunTurret4
 onready var gun5 = $Pivot/GunTurret5

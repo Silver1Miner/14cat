@@ -20,9 +20,9 @@ var player_upgrades := [ #upgrade_id: level,
 	1, # Coin
 	1, # Forward Gun 1, Colorless
 	1, # Turret 1, Red
-	1, # Turret 2, Yellow
-	1, # Turret 3, Blue
-	1, # Turret 4, Green
+	0, # Turret 2, Yellow
+	0, # Turret 3, Blue
+	0, # Turret 4, Green
 ]
 var bought_upgrades := [ #upgrade_id: level,
 	0, # Max Health Bonus

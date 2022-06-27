@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/World/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player/player.png" type="Texture" id=2]
 [ext_resource path="res://src/World/Weapons/GunTurret.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/World/Weapons/BulletRed.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/World/Weapons/GunTurretFireball.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Weapons/tileYellow_40.png" type="Texture" id=5]
-[ext_resource path="res://src/World/Weapons/BulletGreen.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/World/Weapons/BulletYellow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/World/Weapons/Bullets/BulletGreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/World/Weapons/Bullets/BulletYellow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Weapons/tileGreen_40.png" type="Texture" id=8]
-[ext_resource path="res://src/World/Weapons/BulletBlue.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/World/Weapons/Bullets/BulletBlue.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/Weapons/tileBlue_40.png" type="Texture" id=10]
+[ext_resource path="res://src/World/Weapons/GunTurretForward.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.0
@@ -42,8 +43,15 @@ shape = SubResource( 2 )
 
 [node name="Pivot" type="Node2D" parent="."]
 
+[node name="GunTurretForward" parent="Pivot" instance=ExtResource( 11 )]
+can_turn = false
+projectile_speed = 200.0
+
+[node name="GunTurretFireball" parent="Pivot" instance=ExtResource( 4 )]
+visible = false
+
 [node name="GunTurret5" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( -16, 16 )
+visible = false
 gun_id = 5
 damage_type = 4
 bullet = ExtResource( 9 )
@@ -55,7 +63,7 @@ texture = ExtResource( 10 )
 rotation = 3.92699
 
 [node name="GunTurret4" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( 16, 16 )
+visible = false
 gun_id = 4
 damage_type = 3
 bullet = ExtResource( 6 )
@@ -67,7 +75,7 @@ texture = ExtResource( 8 )
 rotation = 2.35619
 
 [node name="GunTurret3" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( -16, -16 )
+visible = false
 gun_id = 3
 damage_type = 2
 bullet = ExtResource( 7 )
@@ -78,19 +86,6 @@ texture = ExtResource( 5 )
 [node name="Pivot" parent="Pivot/GunTurret3" index="2"]
 rotation = 5.49779
 
-[node name="GunTurret2" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( 16, -16 )
-gun_id = 2
-damage_type = 1
-bullet = ExtResource( 4 )
-
-[node name="Pivot" parent="Pivot/GunTurret2" index="2"]
-rotation = 0.785398
-
-[node name="GunTurret" parent="Pivot" instance=ExtResource( 3 )]
-can_turn = false
-attack_cooldown = 1.0
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
@@ -100,5 +95,3 @@ texture = ExtResource( 2 )
 [editable path="Pivot/GunTurret5"]
 [editable path="Pivot/GunTurret4"]
 [editable path="Pivot/GunTurret3"]
-[editable path="Pivot/GunTurret2"]
-[editable path="Pivot/GunTurret"]

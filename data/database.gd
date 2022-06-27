@@ -22,7 +22,7 @@ var upgrades := {
 	],
 	"icon": preload("res://assets/GUI/Icons/paw-print.svg"),
 	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
-	"cooldown": [1.0, 1.0, 0.8, 0.8, 0.5, 0.5, 0.4, 0.4, 0.2, 0.2],
+	"cooldown": [0.2, 0.2, 0.16, 0.16, 0.1, 0.1, 0.08, 0.08, 0.04, 0.04],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
 	2: {"name": "Catabolize", "max_level": 11,
