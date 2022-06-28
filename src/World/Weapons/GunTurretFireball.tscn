@@ -5,4 +5,5 @@
 
 [node name="GunTurretFireball" instance=ExtResource( 1 )]
 gun_id = 2
+damage_type = 1
 bullet = ExtResource( 2 )

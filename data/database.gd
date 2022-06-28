@@ -27,7 +27,7 @@ var upgrades := {
 	},
 	2: {"name": "Catabolize", "max_level": 11,
 	"descriptions": [ # Red
-		"Punchy.", # 0
+		"Unstoppable balls of flame.", # 0
 		"Level 2: Damage +50% from Base", #1
 		"Level 3: Damage +100% from Base",
 		"Level 4: Fire Rate +100% from Base",
@@ -46,7 +46,7 @@ var upgrades := {
 	},
 	3: {"name": "Cataclysm", "max_level": 11,
 	"descriptions": [ # Yellow
-		"Pierching shots.", #0
+		"Destructive bolts of lightning.", #0
 		"Level 2: Damage +20% from Base",
 		"Level 3: Fire Rate +25% from Base",
 		"Level 4: Damage +60% from Base",
@@ -65,7 +65,7 @@ var upgrades := {
 	},
 	4: {"name": "Cataract", "max_level": 11,
 	"descriptions": [ # Blue
-		"High rate of fire.",
+		"A flood of cutting shards.",
 		"Level 2: Damage +50% from Base", #1
 		"Level 3: Damage +100% from Base",
 		"Level 4: Fire Rate +100% from Base",
@@ -84,7 +84,7 @@ var upgrades := {
 	},
 	5: {"name": "Catastrophe", "max_level": 11,
 	"descriptions": [ # Green
-		"A continuous stream of destruction.",
+		"Chasing blades of wind.",
 		"Level 2: Range +100% from Base", #1
 		"Level 3: Damage +100% from Base",
 		"Level 4: Range +200% from Base",
@@ -98,8 +98,8 @@ var upgrades := {
 	],
 	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_spring.svg"),
 	"damage": [1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 10],
-	"cooldown": [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
-	"attack_range": [64,128,128,192,192,192,192,192,192,192,192]
+	"cooldown": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	"attack_range": [128,256,256,384,384,384,384,384,384,384,384]
 	},
 }
 

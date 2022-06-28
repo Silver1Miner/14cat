@@ -151,7 +151,7 @@ visible = false
 position = Vector2( 185, 217 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 9 )
-frame = 6
+frame = 3
 playing = true
 
 [node name="Label" type="Label" parent="CanvasLayer/Loading"]

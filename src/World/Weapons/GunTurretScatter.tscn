@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/World/Weapons/GunTurret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/World/Weapons/Bullets/BulletBlue.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Weapons/tileBlue_40.png" type="Texture" id=3]
+
+[node name="GunTurretScatter" instance=ExtResource( 1 )]
+gun_id = 4
+damage_type = 3
+can_turn = false
+number_bullets = 3
+offset = 5
+bullet = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )

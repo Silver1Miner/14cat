@@ -19,9 +19,9 @@ onready var damage_timer = $DamageTimer
 onready var hitbox = $HitBox
 onready var gun1 = $Pivot/GunTurretForward
 onready var gun2 = $Pivot/GunTurretFireball
-onready var gun3 = $Pivot/GunTurret3
-onready var gun4 = $Pivot/GunTurret4
-onready var gun5 = $Pivot/GunTurret5
+onready var gun3 = $Pivot/GunTurretBolt
+onready var gun4 = $Pivot/GunTurretScatter
+onready var gun5 = $Pivot/GunTurretHoming
 onready var pivot = $Pivot
 
 func _ready() -> void:
