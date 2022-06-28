@@ -40,8 +40,8 @@ var upgrades := {
 		"Level 11: Damage +900% from Base",
 	],
 	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_autumn.svg"),
-	"damage": [1, 1.5, 2, 2, 3, 4, 5, 6, 7, 8, 10],
-	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+	"damage": [10, 15, 20, 20, 30, 40, 50, 60, 70, 80, 100],
+	"cooldown": [2.0, 2.0, 2.0, 1.0, 1.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
 	3: {"name": "Cataclysm", "max_level": 11,
@@ -79,7 +79,7 @@ var upgrades := {
 	],
 	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_winter.svg"),
 	"damage": [1, 1.5, 2, 2, 2, 4, 5, 5, 7, 8, 10],
-	"cooldown": [0.2, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+	"cooldown": [2, 2, 2, 1, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
 	"attack_range": [64,64,64,64,128,128,128,192,192,192,192]
 	},
 	5: {"name": "Catastrophe", "max_level": 11,
@@ -98,7 +98,7 @@ var upgrades := {
 	],
 	"icon": preload("res://assets/GUI/Icons/hairymnstr_seasons_spring.svg"),
 	"damage": [1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 10],
-	"cooldown": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	"cooldown": [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2],
 	"attack_range": [128,256,256,384,384,384,384,384,384,384,384]
 	},
 }

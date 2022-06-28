@@ -8,8 +8,8 @@
 gun_id = 4
 damage_type = 3
 can_turn = false
-number_bullets = 3
-offset = 5
+number_bullets = 5
+offset = 45
 bullet = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]

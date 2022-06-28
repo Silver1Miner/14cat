@@ -88,7 +88,7 @@ func shoot_at(target) -> void:
 		for n in range(number_bullets):
 			var b1 = bullet.instance()
 			fire_bullet(b1, n, angle, target)
-			if n > 0:
+			if n > 0 and (n * offset < 180):
 				var b2 = bullet.instance()
 				fire_bullet(b2, -n, angle, target)
 	_cooldown_timer.start(attack_cooldown)
