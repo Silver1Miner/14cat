@@ -23,6 +23,7 @@ onready var gun3 = $Pivot/GunTurretBolt
 onready var gun4 = $Pivot/GunTurretScatter
 onready var gun5 = $Pivot/GunTurretHoming
 onready var pivot = $Pivot
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
 func _ready() -> void:
 	PlayerData.current_level = 1

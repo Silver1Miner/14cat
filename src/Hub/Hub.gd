@@ -5,6 +5,7 @@ onready var trophies = $Trophies
 onready var mission_select = $MissionSelect
 onready var survival_select = $SurvivalSelect
 var levels = preload("res://episodes/levels.tres")
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
 func _ready() -> void:
 	trophies.visible = false

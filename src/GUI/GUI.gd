@@ -7,6 +7,8 @@ onready var clock = $Status/Status/Status/Clock
 onready var coins_text = $Status/Status/Status/Coins
 onready var joystick = $Joypad
 onready var upgrade_screen = $UpgradeScreen
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
+
 
 signal quit()
 signal rotation_toggled(is_rotating)

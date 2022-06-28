@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var Game = get_tree().get_root().get_node("Game")
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 onready var background = $BackgroundScroll
 onready var gui = $UI/GUI
 onready var player = $Player

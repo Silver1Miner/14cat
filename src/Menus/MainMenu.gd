@@ -1,6 +1,7 @@
 extends Control
 
 onready var Game = get_tree().get_root().get_node("Game")
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 onready var quit_button = $Options/Quit
 var nonquit = ["Android", "iOS", "HTML5"]
 

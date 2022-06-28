@@ -9,6 +9,7 @@ onready var miss2 = $Buttons/Mission2
 onready var miss3 = $Buttons/Mission3
 onready var miss4 = $Buttons/Mission4
 onready var miss5 = $Buttons/Mission5
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
 signal go_to_mission(e, m)
 

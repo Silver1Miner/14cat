@@ -7,6 +7,7 @@ onready var choice3 = $Choices/Choice3
 var available_upgrades = [0,1,2,3,4,5]
 # 0 Coin 1 Colorless 2 Red 3 Yellow 4 Blue 5 Green
 var Database: Resource = preload("res://data/database.tres")
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
 func _ready() -> void:
 	pass # Replace with function body.

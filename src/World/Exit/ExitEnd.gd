@@ -1,6 +1,7 @@
 extends Area2D
 
 export var wait_time := 120
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
 func _ready() -> void:
 	set_process(false)

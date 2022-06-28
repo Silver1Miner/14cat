@@ -50,9 +50,9 @@ func _ready() -> void:
 
 func upgrade(upgrade_id: int) -> void:
 	if upgrade_id == 0: # coin
-		PlayerData.total_coins += 1
-		PlayerData.current_coins += 1
-		PlayerData.mission_coins += 1
+		total_coins += 1
+		current_coins += 1
+		mission_coins += 1
 	elif player_upgrades[upgrade_id] < database.upgrades[upgrade_id]["max_level"]:
 		player_upgrades[upgrade_id] += 1
 	emit_signal("player_upgraded")

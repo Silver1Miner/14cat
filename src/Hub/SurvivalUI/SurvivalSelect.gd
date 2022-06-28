@@ -8,6 +8,8 @@ onready var miss1 = $Buttons/Mission1
 onready var miss2 = $Buttons/Mission2
 onready var miss3 = $Buttons/Mission3
 signal go_to_survival(e, m)
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
+
 
 func _ready() -> void:
 	update_page()

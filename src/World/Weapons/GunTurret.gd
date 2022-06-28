@@ -16,6 +16,7 @@ export var number_bullets := 1
 export var offset := 15
 export var bullet: PackedScene = preload("res://src/World/Weapons/Bullets/Bullet.tscn")
 
+onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 var current_level = -1
 onready var _laser_sight := $Aim/Line2D
 onready var _raycast = $Aim/RayCast2D
