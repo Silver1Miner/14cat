@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 [node name="BulletRed" instance=ExtResource( 1 )]
+piercing = true
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )

@@ -62,10 +62,10 @@ func _process(delta: float) -> void:
 			position.x = 0 + 32
 		if position.x > 360 - 32:
 			position.x = 360 - 32
-		if position.y < (0+64) + 32:
-			position.y = (0+64) + 32
-		if position.y > (640 - 128) - 32:
-			position.y = (640 - 128) - 32
+		if position.y < 0 + 32:
+			position.y = 0 + 32
+		if position.y > (640 - 128 - 64) - 32:
+			position.y = (640 - 128 - 64) - 32
 
 func take_damage(damage_value: float, _damage_type: int) -> void:
 	if invincible:

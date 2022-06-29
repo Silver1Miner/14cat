@@ -15,6 +15,7 @@ export var projectile_blast_radius := 32
 export var number_bullets := 1
 export var offset := 15
 export var bullet: PackedScene = preload("res://src/World/Weapons/Bullets/Bullet.tscn")
+export var gun_sound = preload("res://assets/Audio/sound/spell_01.ogg")
 
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 var current_level = -1
@@ -30,6 +31,7 @@ var Database: Resource = preload("res://data/database.tres")
 onready var effects = get_parent().get_parent().get_parent().get_node_or_null("Effects")
 
 func _ready() -> void:
+	$AudioStreamPlayer2D.stream = gun_sound
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	_bolt.add_point(Vector2.ZERO)

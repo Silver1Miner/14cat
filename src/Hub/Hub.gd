@@ -1,13 +1,18 @@
 extends Control
 
 onready var Game = get_tree().get_root().get_node("Game")
+onready var Music = Game.get_node("Music")
 onready var trophies = $Trophies
 onready var mission_select = $MissionSelect
 onready var survival_select = $SurvivalSelect
+export var hub_theme = preload("res://assets/Audio/music/inspiring-emotional-uplifting-piano-112623.mp3")
 var levels = preload("res://episodes/levels.tres")
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
 func _ready() -> void:
+	if Music.stream != hub_theme:
+		Music.stream = hub_theme
+		Music.play()
 	trophies.visible = false
 	mission_select.visible = false
 	survival_select.visible = false

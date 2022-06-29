@@ -21,8 +21,8 @@ var upgrades := {
 		"Level 11: Damage +400% from Base",
 	],
 	"icon": preload("res://assets/GUI/Icons/paw-print.svg"),
-	"damage": [5, 6, 6, 8, 8, 10, 10, 15, 15, 20, 25],
-	"cooldown": [0.2, 0.2, 0.16, 0.16, 0.1, 0.1, 0.08, 0.08, 0.04, 0.04],
+	"damage": [5, 6, 6, 6, 6, 10, 10, 15, 15, 20, 25],
+	"cooldown": [0.4, 0.4, 0.32, 0.32, 0.2, 0.2, 0.16, 0.16, 0.08, 0.08],
 	"attack_range": [128,128,128,128,128,128,128,128,128,128,128]
 	},
 	2: {"name": "Catabolize", "max_level": 11,

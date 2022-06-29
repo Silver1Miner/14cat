@@ -2,6 +2,8 @@ extends Node2D
 
 onready var Game = get_tree().get_root().get_node("Game")
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
+onready var Music = get_tree().get_root().get_node("Game").get_node("Music")
+export var world_theme = preload("res://assets/Audio/music/classical-piano-by-alkan-saltarelo-112514.mp3")
 onready var background = $BackgroundScroll
 onready var gui = $UI/GUI
 onready var player = $Player
@@ -9,6 +11,8 @@ onready var spawner = $EnemySpawner
 
 func _ready() -> void:
 	get_tree().paused = false
+	Music.stream = world_theme
+	Music.play()
 	spawner.set_process(PlayerData.is_survival)
 	background.set_background(preload("res://assets/Backgrounds/background.png"))
 	if player.connect("hp_changed", self, "_on_Player_hp_changed") != OK:
