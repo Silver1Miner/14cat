@@ -1,9 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/World/Weapons/Bullets/Bullet.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/Weapons/Bullets/laserGreen10.png" type="Texture" id=2]
+[ext_resource path="res://assets/Weapons/Bullets/laserGreen03.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
+height = 40.0
 
 [node name="BulletGreen" instance=ExtResource( 1 )]
 
@@ -11,4 +12,5 @@
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
+rotation = 0.0
 texture = ExtResource( 2 )

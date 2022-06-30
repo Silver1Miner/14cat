@@ -4,10 +4,14 @@
 [ext_resource path="res://src/World/Weapons/Bullets/BulletEnemyAimed.tscn" type="PackedScene" id=2]
 
 [node name="EnemyTurret" instance=ExtResource( 1 )]
+max_hp = 40.0
+hp = 40.0
 y_limit_bottom = 720
 ignore_collision = true
 aim_at_player = true
 speed = 20
 direction = Vector2( 0, 1 )
-bullet_speed = 60
 Bullet = ExtResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="3"]
+frame = 1

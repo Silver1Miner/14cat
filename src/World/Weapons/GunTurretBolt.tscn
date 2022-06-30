@@ -10,3 +10,7 @@ instant = true
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
+
+[node name="Bolt" parent="Aim" index="2"]
+width = 15.0
+default_color = Color( 1, 1, 0, 1 )

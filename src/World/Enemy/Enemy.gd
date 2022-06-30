@@ -25,6 +25,8 @@ export var Bullet: PackedScene = preload("res://src/World/Weapons/Bullets/Bullet
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
+export var gun_sound = preload("res://assets/Audio/sound/spell_fire_01.ogg")
+onready var shoot_sound = $AudioStreamPlayer2D
 onready var damage_timer = $DamageTimer
 onready var attack_timer = $AttackTimer
 onready var hitbox = $Hitbox
@@ -34,7 +36,7 @@ onready var player = get_parent().get_parent().get_node_or_null("Player")
 func _ready() -> void:
 	add_to_group(group)
 	hitbox.add_to_group(group)
-	
+	shoot_sound.stream = gun_sound
 
 func _physics_process(delta: float) -> void:
 	if entered_screen:
@@ -70,6 +72,7 @@ func attack_damage(delta: float) -> void:
 func shoot() -> void:
 	if not can_attack:
 		return
+	shoot_sound.play()
 	var b = Bullet.instance()
 	effects.add_child(b)
 	if aim_at_player:
