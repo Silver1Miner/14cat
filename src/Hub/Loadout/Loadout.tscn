@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=1]
+[ext_resource path="res://src/Hub/Library/Library.gd" type="Script" id=2]
+[ext_resource path="res://assets/Art/title-art.png" type="Texture" id=3]
+
+[node name="Loadout" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color( 0.317647, 0.317647, 0.317647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Costumes" type="Button" parent="."]
+margin_left = 60.0
+margin_top = 18.0
+margin_right = 260.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 200, 50 )
+disabled = true
+text = "Costumes"
+
+[node name="Yellow" type="Button" parent="."]
+margin_left = 11.0
+margin_top = 418.0
+margin_right = 211.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 200, 50 )
+disabled = true
+text = "Yellow Spells"
+
+[node name="Green" type="Button" parent="."]
+margin_left = 155.0
+margin_top = 488.0
+margin_right = 355.0
+margin_bottom = 538.0
+rect_min_size = Vector2( 200, 50 )
+disabled = true
+text = "Green Spells"
+
+[node name="Red" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 143.0
+margin_right = 210.0
+margin_bottom = 193.0
+rect_min_size = Vector2( 200, 50 )
+disabled = true
+text = "Red Spells"
+
+[node name="Blue" type="Button" parent="."]
+margin_left = 167.0
+margin_top = 206.0
+margin_right = 367.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 200, 50 )
+disabled = true
+text = "Blue Spells"
+
+[node name="Back" type="Button" parent="."]
+margin_left = 55.0
+margin_top = 570.0
+margin_right = 305.0
+margin_bottom = 620.0
+rect_min_size = Vector2( 200, 50 )
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

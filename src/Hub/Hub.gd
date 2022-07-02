@@ -2,8 +2,6 @@ extends Control
 
 onready var Game = get_tree().get_root().get_node("Game")
 onready var Music = Game.get_node("Music")
-onready var shop = $Shop
-onready var mission_select = $MissionSelect
 onready var survival_select = $SurvivalSelect
 export var hub_theme = preload("res://assets/Audio/music/inspiring-emotional-uplifting-piano-112623.mp3")
 var levels = preload("res://episodes/levels.tres")
@@ -13,8 +11,6 @@ func _ready() -> void:
 	if Music.stream != hub_theme:
 		Music.stream = hub_theme
 		Music.play()
-	shop.visible = false
-	mission_select.visible = false
 	survival_select.visible = false
 
 func _on_Back_pressed() -> void:
@@ -31,7 +27,7 @@ func _on_SurvivalSelect_go_to_survival(e, m) -> void:
 	Game.go_to_scene("res://src/World/World.tscn")
 
 func _on_Campaign_pressed() -> void:
-	mission_select.visible = true
+	Game.go_to_scene("res://src/Hub/Campaign/MissionSelect.tscn")
 
 func _on_Survival_pressed() -> void:
 	survival_select.visible = true
@@ -40,4 +36,7 @@ func _on_Library_pressed() -> void:
 	Game.go_to_scene("res://src/Hub/Library/Library.tscn")
 
 func _on_Shop_pressed() -> void:
-	shop.visible = true
+	Game.go_to_scene("res://src/Hub/Shop/Shop.tscn")
+
+func _on_Loadout_pressed() -> void:
+	Game.go_to_scene("res://src/Hub/Loadout/Loadout.tscn")

@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.862745 )
 
-[node name="Close" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -24,6 +24,6 @@ margin_top = -70.0
 margin_right = 100.0
 margin_bottom = -20.0
 rect_min_size = Vector2( 200, 50 )
-text = "Close"
+text = "Back"
 
-[connection signal="pressed" from="Close" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

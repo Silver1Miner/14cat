@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=3]
-[ext_resource path="res://src/Hub/SurvivalUI/SurvivalSelect.gd" type="Script" id=4]
-[ext_resource path="res://src/Hub/SurvivalUI/SurvivalChoice.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=1]
+[ext_resource path="res://src/Hub/Survival/SurvivalChoice.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Hub/Survival/SurvivalSelect.gd" type="Script" id=3]
+[ext_resource path="res://assets/GUI/Theme/CatCafe.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
 
 [node name="SurvivalSelect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 3 )
-script = ExtResource( 4 )
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -21,35 +25,44 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -150.0
-margin_top = -278.5
+margin_top = -294.0
 margin_right = 150.0
-margin_bottom = 278.5
+margin_bottom = 294.0
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="Buttons"]
 margin_right = 300.0
 margin_bottom = 37.0
-text = "World 1"
+text = "World 1 Challenges"
 align = 1
 
-[node name="Mission1" parent="Buttons" instance=ExtResource( 5 )]
+[node name="Mission1" parent="Buttons" instance=ExtResource( 2 )]
 margin_top = 57.0
 margin_bottom = 157.0
 
-[node name="Mission2" parent="Buttons" instance=ExtResource( 5 )]
+[node name="Mission2" parent="Buttons" instance=ExtResource( 2 )]
 margin_top = 177.0
 margin_bottom = 277.0
 disabled = true
 
-[node name="Mission3" parent="Buttons" instance=ExtResource( 5 )]
+[node name="Mission3" parent="Buttons" instance=ExtResource( 2 )]
 margin_top = 297.0
 margin_bottom = 397.0
 disabled = true
 
-[node name="Scroll" type="HBoxContainer" parent="Buttons"]
+[node name="Label2" type="Label" parent="Buttons"]
 margin_top = 417.0
 margin_right = 300.0
-margin_bottom = 457.0
+margin_bottom = 458.0
+custom_fonts/font = SubResource( 1 )
+text = "Complete more Campaign missions to unlock new challenges!"
+align = 1
+autowrap = true
+
+[node name="Scroll" type="HBoxContainer" parent="Buttons"]
+margin_top = 478.0
+margin_right = 300.0
+margin_bottom = 518.0
 custom_constants/separation = 200
 alignment = 1
 
@@ -67,16 +80,10 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 text = ">"
 
-[node name="Control" type="Control" parent="Buttons"]
-margin_top = 477.0
-margin_right = 300.0
-margin_bottom = 497.0
-rect_min_size = Vector2( 0, 20 )
-
 [node name="Close" type="CenterContainer" parent="Buttons"]
-margin_top = 517.0
+margin_top = 538.0
 margin_right = 300.0
-margin_bottom = 567.0
+margin_bottom = 588.0
 
 [node name="Close" type="Button" parent="Buttons/Close"]
 margin_left = 50.0
