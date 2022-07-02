@@ -121,12 +121,13 @@ margin_right = 170.0
 margin_bottom = 25.0
 custom_constants/separation = 140
 
-[node name="Unleash" type="Button" parent="ControlPanel/Controls"]
+[node name="LevelUp" type="Button" parent="ControlPanel/Controls"]
 margin_right = 100.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
+disabled = true
 toggle_mode = true
-text = "Rotate Gems"
+text = "Level Up!"
 
 [node name="Pause" type="Button" parent="ControlPanel/Controls"]
 margin_left = 240.0
@@ -144,6 +145,7 @@ visible = false
 [node name="PauseScreen" parent="." instance=ExtResource( 4 )]
 visible = false
 
-[connection signal="toggled" from="ControlPanel/Controls/Unleash" to="." method="_on_Unleash_toggled"]
+[connection signal="pressed" from="ControlPanel/Controls/LevelUp" to="." method="_on_LevelUp_pressed"]
 [connection signal="pressed" from="ControlPanel/Controls/Pause" to="." method="_on_Pause_pressed"]
+[connection signal="upgrade_selected" from="UpgradeScreen" to="." method="_on_UpgradeScreen_upgrade_selected"]
 [connection signal="quit" from="PauseScreen" to="." method="_on_PauseScreen_quit"]

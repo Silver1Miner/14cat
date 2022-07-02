@@ -21,9 +21,13 @@ func _ready() -> void:
 		push_error("signal connect fail")
 	if player.connect("coins_changed", self, "_on_Player_coins_changed") != OK:
 		push_error("signal connect fail")
+	if player.connect("max_xp_reached", self, "_on_Player_max_xp_reached") != OK:
+		push_error("signal connect fail")
 	if player.connect("level_up", self, "_on_Player_level_up") != OK:
 		push_error("signal connect fail")
 	if player.connect("player_died", self, "_on_Player_died") != OK:
+		push_error("signal connect fail")
+	if gui.connect("upgrade_selected", player, "level_up") != OK:
 		push_error("signal connect fail")
 	PlayerData.delta_time = 0.0
 
@@ -44,6 +48,9 @@ func _on_Player_hp_changed(hp, max_hp) -> void:
 func _on_Player_xp_changed(xp, max_xp, level) -> void:
 	gui.update_xp(xp, max_xp, level)
 
+func _on_Player_max_xp_reached() -> void:
+	gui.upgrade_available()
+
 func _on_Player_level_up() -> void:
 	gui.level_up()
 
@@ -57,7 +64,6 @@ func _on_GUI_quit() -> void:
 
 func _on_GUI_rotation_toggled(is_rotating) -> void:
 	player.weapon_rotation = is_rotating
-
 
 func _on_ExitEnd_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):

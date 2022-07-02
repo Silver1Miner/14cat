@@ -50,4 +50,3 @@ position = Vector2( 180, 456 )
 
 [connection signal="area_entered" from="ExitEnd" to="." method="_on_ExitEnd_area_entered"]
 [connection signal="quit" from="UI/GUI" to="." method="_on_GUI_quit"]
-[connection signal="rotation_toggled" from="UI/GUI" to="." method="_on_GUI_rotation_toggled"]

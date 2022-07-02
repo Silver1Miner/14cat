@@ -12,6 +12,7 @@ var invincible = false
 
 signal hp_changed(hp, max_hp)
 signal xp_changed(xp, max_xp, level)
+signal max_xp_reached()
 signal level_up()
 signal coins_changed()
 signal player_died()
@@ -94,10 +95,14 @@ func increase_xp(xp_amount: int) -> void:
 	xp += xp_amount
 	PlayerData.total_xp += xp_amount
 	if xp >= max_xp:
-		PlayerData.current_level += 1
-		emit_signal("level_up")
-		xp -= max_xp
-		max_xp = PlayerData.current_level * 3
+		emit_signal("max_xp_reached")
+	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
+
+func level_up() -> void:
+	PlayerData.current_level += 1
+	emit_signal("level_up")
+	xp -= max_xp
+	max_xp = PlayerData.current_level * 3
 	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
 
 func _on_player_upgraded() -> void:
@@ -111,6 +116,8 @@ func _on_player_upgraded() -> void:
 
 func _on_PickupBox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickup"):
+		if area.pickup_id == 0 and xp >= max_xp:
+			return
 		area.activate(self)
 
 func pickup_effect(pickup_id: int) -> void:

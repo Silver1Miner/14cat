@@ -9,6 +9,8 @@ var available_upgrades = [0,1,2,3,4,5]
 var Database: Resource = preload("res://data/database.tres")
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
+signal upgrade_selected()
+
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -30,6 +32,7 @@ func prepare_upgrade_screen() -> void:
 func deactivate() -> void:
 	get_tree().paused = false
 	visible = false
+	emit_signal("upgrade_selected")
 
 func _on_Choice1_pressed() -> void:
 	PlayerData.upgrade(choice1.upgrade_id)
