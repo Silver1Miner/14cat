@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=1]
 [ext_resource path="res://src/Hub/Hub.gd" type="Script" id=2]
-[ext_resource path="res://src/Hub/Survival/SurvivalSelect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Hub/Challenges/ChallengeSelect.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/Art/title-art.png" type="Texture" id=6]
 
 [node name="Hub" type="Control"]
@@ -18,6 +18,13 @@ anchor_bottom = 1.0
 texture = ExtResource( 6 )
 expand = true
 
+[node name="Label" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -97.0
+margin_bottom = 37.0
+text = "Gold: 0"
+
 [node name="Options" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -29,13 +36,13 @@ margin_right = 125.0
 grow_vertical = 0
 custom_constants/separation = 20
 
-[node name="Campaign" type="Button" parent="Options"]
+[node name="World" type="Button" parent="Options"]
 margin_right = 250.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 text = "World"
 
-[node name="Survival" type="Button" parent="Options"]
+[node name="Challenges" type="Button" parent="Options"]
 margin_top = 70.0
 margin_right = 250.0
 margin_bottom = 120.0
@@ -75,13 +82,13 @@ margin_top = 420.0
 margin_right = 250.0
 margin_bottom = 420.0
 
-[node name="SurvivalSelect" parent="." instance=ExtResource( 5 )]
+[node name="ChallengeSelect" parent="." instance=ExtResource( 5 )]
 visible = false
 
-[connection signal="pressed" from="Options/Campaign" to="." method="_on_Campaign_pressed"]
-[connection signal="pressed" from="Options/Survival" to="." method="_on_Survival_pressed"]
+[connection signal="pressed" from="Options/World" to="." method="_on_Campaign_pressed"]
+[connection signal="pressed" from="Options/Challenges" to="." method="_on_Challenges_pressed"]
 [connection signal="pressed" from="Options/Loadout" to="." method="_on_Loadout_pressed"]
 [connection signal="pressed" from="Options/Shop" to="." method="_on_Shop_pressed"]
 [connection signal="pressed" from="Options/Library" to="." method="_on_Library_pressed"]
 [connection signal="pressed" from="Options/Back" to="." method="_on_Back_pressed"]
-[connection signal="go_to_survival" from="SurvivalSelect" to="." method="_on_SurvivalSelect_go_to_survival"]
+[connection signal="go_to_challenge" from="ChallengeSelect" to="." method="_on_ChallengeSelect_go_to_challenge"]

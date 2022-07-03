@@ -6,7 +6,7 @@ onready var PlayerData = get_tree().get_root().get_node("Game").get_node("Player
 func _ready() -> void:
 	set_process(false)
 	$Timer.wait_time = wait_time
-	if not PlayerData.is_survival:
+	if not PlayerData.is_challenge:
 		$Timer.start()
 
 func _process(delta: float) -> void:

@@ -3,34 +3,65 @@ extends Control
 var e = 1
 var m = 1
 var max_e = 2
-onready var episode = $Buttons/Label
-onready var miss1 = $Buttons/Mission1
-onready var miss2 = $Buttons/Mission2
-onready var miss3 = $Buttons/Mission3
-onready var miss4 = $Buttons/Mission4
-onready var miss5 = $Buttons/Mission5
+onready var Game = get_tree().get_root().get_node("Game")
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
-
-signal go_to_mission(e, m)
+onready var e1 = $E1
+onready var e2 = $E2
+onready var e3 = $E3
+onready var e1m1 = $E1/E1M1
+onready var e1m2 = $E1/E1M2
+onready var e1m3 = $E1/E1M3
+onready var e1m4 = $E1/E1M4
+onready var e1m5 = $E1/E1M5
+onready var e2m1 = $E2/E2M1
+onready var e2m2 = $E2/E2M2
+onready var e2m3 = $E2/E2M3
+onready var e2m4 = $E2/E2M4
+onready var e2m5 = $E2/E2M5
+onready var e3m1 = $E3/E3M1
+onready var e3m2 = $E3/E3M2
+onready var e3m3 = $E3/E3M3
+onready var e3m4 = $E3/E3M4
+onready var e3m5 = $E3/E3M5
+var levels = preload("res://episodes/levels.tres")
 
 func _ready() -> void:
+	if e1m1.connect("pressed", self, "_on_Mission1_pressed") != OK: push_error("button connect fail")
+	if e1m2.connect("pressed", self, "_on_Mission2_pressed") != OK: push_error("button connect fail")
+	if e1m3.connect("pressed", self, "_on_Mission3_pressed") != OK: push_error("button connect fail")
+	if e1m4.connect("pressed", self, "_on_Mission4_pressed") != OK: push_error("button connect fail")
+	if e1m5.connect("pressed", self, "_on_Mission5_pressed") != OK: push_error("button connect fail")
+	if e2m1.connect("pressed", self, "_on_Mission1_pressed") != OK: push_error("button connect fail")
+	if e2m2.connect("pressed", self, "_on_Mission2_pressed") != OK: push_error("button connect fail")
+	if e2m3.connect("pressed", self, "_on_Mission3_pressed") != OK: push_error("button connect fail")
+	if e2m4.connect("pressed", self, "_on_Mission4_pressed") != OK: push_error("button connect fail")
+	if e2m5.connect("pressed", self, "_on_Mission5_pressed") != OK: push_error("button connect fail")
+	if e3m1.connect("pressed", self, "_on_Mission1_pressed") != OK: push_error("button connect fail")
+	if e3m2.connect("pressed", self, "_on_Mission2_pressed") != OK: push_error("button connect fail")
+	if e3m3.connect("pressed", self, "_on_Mission3_pressed") != OK: push_error("button connect fail")
+	if e3m4.connect("pressed", self, "_on_Mission4_pressed") != OK: push_error("button connect fail")
+	if e3m5.connect("pressed", self, "_on_Mission5_pressed") != OK: push_error("button connect fail")
 	update_page()
 
 func update_page() -> void:
-	episode.text = "Episode " + str(e)
-	miss1.text = "e" + str(e) + "m1"
-	miss2.text = "e" + str(e) + "m2"
-	miss3.text = "e" + str(e) + "m3"
-	miss4.text = "e" + str(e) + "m4"
-	miss5.text = "e" + str(e) + "m5"
-	miss1.disabled = PlayerData.levels_unlocked < (e-1)*5 + 1
-	miss2.disabled = PlayerData.levels_unlocked < (e-1)*5 + 2
-	miss3.disabled = PlayerData.levels_unlocked < (e-1)*5 + 3
-	miss4.disabled = PlayerData.levels_unlocked < (e-1)*5 + 4
-	miss5.disabled = PlayerData.levels_unlocked < (e-1)*5 + 5
-
-func _on_Close_pressed() -> void:
-	visible = false
+	e1.visible = (e == 1)
+	e2.visible = (e == 2)
+	e3.visible = (e == 3)
+	e1m1.disabled = PlayerData.levels_unlocked < 1
+	e1m2.disabled = PlayerData.levels_unlocked < 2
+	e1m3.disabled = PlayerData.levels_unlocked < 3
+	e1m4.disabled = PlayerData.levels_unlocked < 4
+	e1m5.disabled = PlayerData.levels_unlocked < 5
+	e2m1.disabled = PlayerData.levels_unlocked < 6
+	e2m2.disabled = PlayerData.levels_unlocked < 7
+	e2m3.disabled = PlayerData.levels_unlocked < 8
+	e2m4.disabled = PlayerData.levels_unlocked < 9
+	e2m5.disabled = PlayerData.levels_unlocked < 10
+	e3m1.disabled = PlayerData.levels_unlocked < 11
+	e3m2.disabled = PlayerData.levels_unlocked < 12
+	e3m3.disabled = PlayerData.levels_unlocked < 13
+	e3m4.disabled = PlayerData.levels_unlocked < 14
+	e3m5.disabled = PlayerData.levels_unlocked < 15
 
 func _on_Mission1_pressed() -> void:
 	m = 1
@@ -65,4 +96,9 @@ func _on_Right_pressed() -> void:
 	update_page()
 
 func go_to_mission() -> void:
-	emit_signal("go_to_mission", e, m)
+	print("mission e",e,"m",m)
+	PlayerData.is_challenge = false
+	Game.go_to_scene(levels.levels[e-1][m-1])
+
+func _on_Back_pressed() -> void:
+	Game.go_to_scene("res://src/Hub/Hub.tscn")

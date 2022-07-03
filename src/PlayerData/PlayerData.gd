@@ -1,6 +1,6 @@
 extends Node
 
-var is_survival = false
+var is_challenge = false
 var version = "0.0.1"
 var music_db := 0.4
 var sound_db := 0.2
@@ -13,7 +13,7 @@ var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
 var levels_unlocked := 1
-var survival_unlocked := 1
+var challenges_unlocked := 1
 var lore_collected := 0
 var max_lore_entries = 6
 var player_upgrades := [ #upgrade_id: level,
@@ -36,10 +36,10 @@ var achievements := [
 	0,
 	0,
 ]
-var survival_records := [
-	0,0,0,
-	0,0,0,
-	0,0,0,
+var challenge_records := [0,
+	1,2,3,
+	6,5,4,
+	7,8,9,
 ]
 onready var database: Resource = preload("res://data/database.tres")
 signal player_upgraded()
@@ -68,7 +68,7 @@ func load_player_data() -> void:
 		return # Error! We don't have a save to load.
 	save_game.open("user://cat.save", File.READ)
 	version = parse_json(save_game.get_line())
-	survival_records = parse_json(save_game.get_line())
+	challenge_records = parse_json(save_game.get_line())
 	achievements = parse_json(save_game.get_line())
 	total_coins = parse_json(save_game.get_line())
 	current_coins = parse_json(save_game.get_line())
@@ -77,7 +77,7 @@ func load_player_data() -> void:
 	highest_level = parse_json(save_game.get_line())
 	highest_time = parse_json(save_game.get_line())
 	levels_unlocked = parse_json(save_game.get_line())
-	survival_unlocked = parse_json(save_game.get_line())
+	challenges_unlocked = parse_json(save_game.get_line())
 	lore_collected = parse_json(save_game.get_line())
 	music_db = parse_json(save_game.get_line())
 	sound_db = parse_json(save_game.get_line())
@@ -87,7 +87,7 @@ func save_player_data() -> void:
 	var save_game = File.new()
 	save_game.open("user://cat.save", File.WRITE)
 	save_game.store_line(to_json(version))
-	save_game.store_line(to_json(survival_records))
+	save_game.store_line(to_json(challenge_records))
 	save_game.store_line(to_json(achievements))
 	save_game.store_line(to_json(total_coins))
 	save_game.store_line(to_json(current_coins))
@@ -96,7 +96,7 @@ func save_player_data() -> void:
 	save_game.store_line(to_json(highest_level))
 	save_game.store_line(to_json(highest_time))
 	save_game.store_line(to_json(levels_unlocked))
-	save_game.store_line(to_json(survival_unlocked))
+	save_game.store_line(to_json(challenges_unlocked))
 	save_game.store_line(to_json(lore_collected))
 	save_game.store_line(to_json(music_db))
 	save_game.store_line(to_json(sound_db))
