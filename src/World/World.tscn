@@ -4,7 +4,7 @@
 [ext_resource path="res://src/World/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/World/Background/BackgroundScroll.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/World/World.gd" type="Script" id=4]
-[ext_resource path="res://src/World/Enemy/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/World/EnemyFree/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/World/EnemySpawner.gd" type="Script" id=6]
 [ext_resource path="res://src/World/Exit/ExitEnd.tscn" type="PackedScene" id=7]
 

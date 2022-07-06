@@ -12,10 +12,16 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://src/World/Enemy/Enemy.gd"
+"path": "res://src/World/EnemyFree/Enemy.gd"
+}, {
+"base": "Resource",
+"class": "Grid",
+"language": "GDScript",
+"path": "res://src/World/Board/Grid.gd"
 } ]
 _global_script_class_icons={
-"Enemy": ""
+"Enemy": "",
+"Grid": ""
 }
 
 [application]
