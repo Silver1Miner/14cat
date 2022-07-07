@@ -1,8 +1,8 @@
 class_name Grid
 extends Resource
 
-export var board_size := Vector2(25, 15)
-export var cell_size := Vector2(16, 16)
+export var board_size := Vector2(9, 16)
+export var cell_size := Vector2(40, 40)
 var _half_cell_size = cell_size /2
 
 func get_map_position(cell_coordinates: Vector2) -> Vector2:

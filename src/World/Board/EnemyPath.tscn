@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/World/Board/PathDisplay.tres" type="TileSet" id=1]
 [ext_resource path="res://src/World/Board/EnemyPath.gd" type="Script" id=2]
-[ext_resource path="res://src/World/EnemyUnit/EnemyUnit.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -13,10 +12,12 @@ _data = {
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 40, 40 )
 cell_quadrant_size = 10
+cell_custom_transform = Transform2D( 40, 0, 0, 40, 0, 0 )
 format = 1
+tile_data = PoolIntArray( 1, 0, 65538, 65537, 0, 2, 131073, 0, 2, 131075, 0, 65536, 131076, 0, 0, 131077, 0, 1, 131078, 0, 0, 131079, 0, 65537, 196609, 0, 2, 196611, 0, 0, 196615, 0, 0, 262145, 0, 2, 262147, 0, 2, 262151, 0, 2, 327681, 0, 2, 327683, 0, 2, 327687, 0, 2, 393217, 0, 2, 393219, 0, 2, 393223, 0, 2, 458753, 0, 2, 458755, 0, 0, 458759, 0, 2, 524289, 0, 2, 524291, 0, 0, 524292, 0, 0, 524295, 0, 2, 589825, 0, 2, 589828, 0, 0, 589831, 0, 2, 655361, 0, 2, 655364, 0, 2, 655367, 0, 2, 720897, 0, 0, 720900, 0, 0, 720903, 0, 2, 786433, 0, 131072, 786434, 0, 0, 786435, 0, 0, 786436, 0, 131073, 786439, 0, 2, 851975, 0, 0, 917506, 0, 65536, 917507, 0, 0, 917508, 0, 1, 917509, 0, 1, 917510, 0, 0, 917511, 0, 131073, 983042, 0, 0 )
 script = ExtResource( 2 )
+start_cell = Vector2( 1, 0 )
+end_cell = Vector2( 2, 18 )
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )
-
-[node name="EnemyUnit" parent="Path2D" instance=ExtResource( 3 )]
