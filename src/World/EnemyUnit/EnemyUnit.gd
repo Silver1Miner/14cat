@@ -1,7 +1,8 @@
 extends PathFollow2D
 
 export var grid: Resource = preload("res://src/World/Board/Grid.tres")
-export var move_speed := 20 #pixels per second
+export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
+export var move_speed := 100 #pixels per second
 export var max_hp := 20
 var cell := Vector2.ZERO setget set_cell
 var invulnerable = false
@@ -12,8 +13,10 @@ export var hp = 20 setget set_hp
 onready var _hp_bar: TextureProgress = $TextureProgress
 onready var _sprite: Sprite = $Sprite
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
+onready var effects = get_node_or_null("../Effects")
 
 signal end_reached(hp)
+signal unit_destroyed()
 
 func _ready() -> void:
 	add_to_group("enemy")
@@ -34,6 +37,7 @@ func _process(delta: float) -> void:
 	if unit_offset >= 1.0:
 		self._is_walking = false
 		emit_signal("end_reached", hp)
+		queue_free()
 	var motion = position - _position_last_frame
 	if motion.length() > 0.01:
 		_cardinal_direction = int(4.0 * (motion.rotated(PI/4.0).angle() + PI) / TAU)
@@ -66,6 +70,7 @@ func set_hp(new_hp) -> void:
 	hp = new_hp
 	if hp <= 0:
 		print("unit died")
+		emit_signal("unit_destroyed")
 		queue_free()
 
 func take_damage(damage_amount) -> void:
@@ -73,8 +78,9 @@ func take_damage(damage_amount) -> void:
 		return
 	#$damage_flash.frame = 0
 	#$damage_flash.play()
-	#var fct = FCT.instance()
-	#get_parent().get_node("effects").add_child(fct)
-	#fct.rect_position = get_global_position() + Vector2(0,-16)
-	#fct.show_value(str(damage_amount), Vector2(0,-8), 1, PI/2)
+	if effects:
+		var fct = FCT.instance()
+		effects.add_child(fct)
+		fct.rect_position = get_global_position() + Vector2(0,-16)
+		fct.show_value(str(damage_amount), Vector2(0,-8), 1, PI/2)
 	set_hp(clamp(hp - damage_amount, 0, max_hp))

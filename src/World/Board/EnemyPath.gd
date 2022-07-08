@@ -4,33 +4,19 @@ export var grid: Resource = preload("res://src/World/Board/Grid.tres")
 onready var path = $Path2D
 export var start_cell := Vector2(0, 0)
 export var end_cell := Vector2(0, 0)
+export var spawning = true
+onready var timer = $Timer
 
 func _ready() -> void:
-	find_line_cells()
 	find_drawn_path()
-	initialize_path(draw_path)
+	spawn_wave("i2i1i2i1i1i1i")
 
-var line_cells = []
-func find_line_cells() -> void:
-	line_cells.clear()
-	for x in 9:
-		for y in 16:
-			if get_cell(x, y) == 0:
-				line_cells.append(Vector2(x, y))
-	print(line_cells)
-
-func initialize_path(path_cells: Array) -> void:
-	path.curve.clear_points()
-	for point in path_cells:
-		path.curve.add_point(grid.get_map_position(point))
-
-var draw_path = []
-var dirs = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
+const dirs = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 func find_drawn_path() -> void:
 	if get_cellv(start_cell) != 0:
 		push_error("start cell not set correctly")
 		return
-	draw_path.clear()
+	var draw_path = []
 	draw_path.append(start_cell)
 	var current_cell = start_cell
 	var safety_counter = 0
@@ -43,3 +29,43 @@ func find_drawn_path() -> void:
 				draw_path.append(current_cell)
 				safety_counter = 0
 	print(draw_path)
+	path.curve.clear_points()
+	for point in draw_path:
+		path.curve.add_point(grid.get_map_position(point))
+
+
+func _on_Timer_timeout() -> void:
+	pass # Replace with function body.
+
+# wave_schedule format
+# "i1i23i1"
+func spawn_wave(wave_schedule: String) -> void:
+	for n in wave_schedule:
+		print(n)
+		if n.is_valid_float():
+			timer.wait_time = float(n)
+			timer.start()
+			yield(timer, "timeout")
+		else:
+			spawn_enemy(n)
+	print("wave finished")
+
+var infantry = preload("res://src/World/EnemyUnit/EnemyUnit.tscn")
+func spawn_enemy(n: String) -> void:
+	var unit_instance
+	match n:
+		"i":
+			unit_instance = infantry.instance()
+	unit_instance.position = grid.get_map_position(start_cell)
+	if unit_instance.connect("end_reached", self, "_on_unit_end_reached") != OK:
+		push_error("unit reaching end signal connect fail")
+	if unit_instance.connect("unit_destroyed", self, "_on_unit_destroyed") != OK:
+		push_error("unit destruction signal connect fail")
+	path.add_child(unit_instance)
+	unit_instance.walk()
+
+func _on_unit_end_reached(damage) -> void:
+	print(damage)
+
+func _on_unit_destroyed() -> void:
+	print("unit destroyed")

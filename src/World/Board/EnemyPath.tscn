@@ -21,3 +21,8 @@ end_cell = Vector2( 2, 18 )
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource( 1 )
+
+[node name="Effects" type="Node2D" parent="Path2D"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
