@@ -6,9 +6,13 @@ export var start_cell := Vector2(0, 0)
 export var end_cell := Vector2(0, 0)
 export var spawning = true
 onready var timer = $Timer
+var spawning_finished = false
+var units_added = 0
+var units_removed = 0
 
 signal unit_destroyed()
 signal tower_damaged(damage)
+signal wave_ended()
 
 func _ready() -> void:
 	find_drawn_path()
@@ -36,10 +40,6 @@ func find_drawn_path() -> void:
 	for point in draw_path:
 		path.curve.add_point(grid.get_map_position(point))
 
-
-func _on_Timer_timeout() -> void:
-	pass # Replace with function body.
-
 # wave_schedule format
 # "i1i23i1"
 func spawn_wave(wave_schedule: String) -> void:
@@ -51,6 +51,8 @@ func spawn_wave(wave_schedule: String) -> void:
 			yield(timer, "timeout")
 		else:
 			spawn_enemy(n)
+			units_added += 1
+	spawning_finished = true
 	print("wave finished")
 
 var infantry = preload("res://src/World/EnemyUnit/EnemyUnit.tscn")
@@ -69,6 +71,14 @@ func spawn_enemy(n: String) -> void:
 
 func _on_unit_end_reached(damage) -> void:
 	emit_signal("tower_damaged", damage)
+	units_removed += 1
+	check_if_wave_over()
 
 func _on_unit_destroyed() -> void:
 	emit_signal("unit_destroyed")
+	units_removed += 1
+	check_if_wave_over()
+
+func check_if_wave_over() -> void:
+	if spawning_finished and units_added == units_removed:
+		emit_signal("wave_ended")

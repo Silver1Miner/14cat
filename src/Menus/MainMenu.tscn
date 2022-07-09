@@ -70,13 +70,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -91.5
-margin_top = -86.5
-margin_right = 91.5
-margin_bottom = 86.5
+margin_left = -100.0
+margin_top = -119.0
+margin_right = 100.0
+margin_bottom = 76.0
 custom_fonts/font = SubResource( 1 )
-text = "Disclaimer: This is an early prototype, ALL sounds and visuals are placeholders.
-This is a private testing builld. Distribution is forbidden."
+text = "Disclaimer: This is an early prototype still in \"Finding the Fun\" stage of development. All sounds and visuals are placeholders. No game design decisions are finaliz.
+This is a private testing builld. Public distribution is strictly forbidden."
 align = 1
 autowrap = true
 
@@ -100,7 +100,7 @@ margin_left = -183.0
 margin_bottom = 19.0
 grow_horizontal = 0
 custom_fonts/font = SubResource( 1 )
-text = "Internal Prototype v0.0.2 "
+text = "Internal Prototype v0.0.3 "
 align = 2
 
 [node name="Title" type="Label" parent="."]

@@ -23,7 +23,12 @@ onready var e3m2 = $E3/E3M2
 onready var e3m3 = $E3/E3M3
 onready var e3m4 = $E3/E3M4
 onready var e3m5 = $E3/E3M5
-var levels = preload("res://episodes/levels.tres")
+var levels = [
+	["res://episodes/ep1/e1m1.tscn"],
+	[],
+	[],
+]
+
 
 func _ready() -> void:
 	if e1m1.connect("pressed", self, "_on_Mission1_pressed") != OK: push_error("button connect fail")

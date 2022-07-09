@@ -12,7 +12,7 @@ var total_xp := 0
 var current_level := 1
 var highest_level := 1
 var highest_time := 0.0
-var levels_unlocked := 1
+var levels_unlocked := 0
 var challenges_unlocked := 1
 var lore_collected := 0
 var max_lore_entries = 6
@@ -60,7 +60,7 @@ func upgrade(upgrade_id: int) -> void:
 func fresh_restart() -> void:
 	delta_time = 0.0
 	mission_coins = 0
-	player_upgrades = [1,1,0,0,0,0]
+	player_upgrades = [1,1,1,1,1,1]
 
 func load_player_data() -> void:
 	var save_game = File.new()
