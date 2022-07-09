@@ -7,12 +7,14 @@ export var max_hp := 20
 var cell := Vector2.ZERO setget set_cell
 var invulnerable = false
 var _is_walking := false setget _set_is_walking
-export var resistances := [0]
+export var resistances := [5]
 export var weaknesses := [0]
 export var hp = 20 setget set_hp
 onready var _hp_bar: TextureProgress = $TextureProgress
 onready var _sprite: Sprite = $Sprite
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
+onready var hitbox = $Area2D
+onready var damage_flash = $AnimatedSprite
 onready var effects = get_node_or_null("../Effects")
 
 signal end_reached(hp)
@@ -20,6 +22,7 @@ signal unit_destroyed()
 
 func _ready() -> void:
 	add_to_group("enemy")
+	hitbox.add_to_group("enemy")
 	set_process(false)
 	cell = grid.get_cell_coordinates(position)
 	position = grid.get_map_position(cell)
@@ -73,14 +76,19 @@ func set_hp(new_hp) -> void:
 		emit_signal("unit_destroyed")
 		queue_free()
 
-func take_damage(damage_amount) -> void:
+func take_damage(damage_amount, damage_type) -> void:
 	if invulnerable:
 		return
-	#$damage_flash.frame = 0
-	#$damage_flash.play()
+	damage_flash.frame = 0
+	damage_flash.play()
+	var damage = damage_amount
+	if damage_type in weaknesses:
+		damage *= 2
+	if damage_type in resistances:
+		damage /= 2
 	if effects:
 		var fct = FCT.instance()
 		effects.add_child(fct)
 		fct.rect_position = get_global_position() + Vector2(0,-16)
-		fct.show_value(str(damage_amount), Vector2(0,-8), 1, PI/2)
-	set_hp(clamp(hp - damage_amount, 0, max_hp))
+		fct.show_value(str(damage), Vector2(0,-8), 1, PI/2)
+	set_hp(clamp(hp - damage, 0, max_hp))

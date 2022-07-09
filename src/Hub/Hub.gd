@@ -19,7 +19,7 @@ func _on_Back_pressed() -> void:
 func _on_ChallengeSelect_go_to_challenge(e, m) -> void:
 	print("challenge e",e,"m",m)
 	PlayerData.is_challenge = true
-	Game.go_to_scene("res://src/World/World.tscn")
+	Game.go_to_scene("res://src/World/Board/Board.tscn")
 
 func _on_Campaign_pressed() -> void:
 	Game.go_to_scene("res://src/Hub/Campaign/MissionSelect.tscn")

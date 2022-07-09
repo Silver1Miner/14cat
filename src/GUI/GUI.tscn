@@ -19,8 +19,7 @@ script = ExtResource( 3 )
 
 [node name="Status" type="ColorRect" parent="."]
 anchor_right = 1.0
-margin_top = 448.0
-margin_bottom = 512.0
+margin_bottom = 64.0
 rect_min_size = Vector2( 360, 64 )
 color = Color( 0.376471, 0.690196, 0.384314, 0.576471 )
 

@@ -7,6 +7,9 @@ export var end_cell := Vector2(0, 0)
 export var spawning = true
 onready var timer = $Timer
 
+signal unit_destroyed()
+signal tower_damaged(damage)
+
 func _ready() -> void:
 	find_drawn_path()
 	spawn_wave("i2i1i2i1i1i1i")
@@ -65,7 +68,7 @@ func spawn_enemy(n: String) -> void:
 	unit_instance.walk()
 
 func _on_unit_end_reached(damage) -> void:
-	print(damage)
+	emit_signal("tower_damaged", damage)
 
 func _on_unit_destroyed() -> void:
-	print("unit destroyed")
+	emit_signal("unit_destroyed")

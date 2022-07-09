@@ -19,10 +19,10 @@ var max_lore_entries = 6
 var player_upgrades := [ #upgrade_id: level,
 	1, # Coin
 	1, # Forward Gun 1, Colorless
-	0, # Turret 1, Red Fireball
-	0, # Turret 2, Yellow Bolt
-	0, # Turret 3, Blue Scatter
-	0, # Turret 4, Green Homing
+	1, # Turret 1, Red Fireball
+	1, # Turret 2, Yellow Bolt
+	1, # Turret 3, Blue Scatter
+	1, # Turret 4, Green Homing
 ]
 var bought_upgrades := [ #upgrade_id: level,
 	0, # Max Health Bonus
