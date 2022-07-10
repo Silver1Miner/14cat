@@ -114,6 +114,5 @@ func fire_bullet(b, n, angle, target) -> void:
 	if homing:
 		b.aim_at(target)
 
-
 func _on_BoltTimer_timeout() -> void:
 	_bolt.points[1] = Vector2.ZERO
