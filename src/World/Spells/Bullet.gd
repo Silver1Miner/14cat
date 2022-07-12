@@ -47,7 +47,6 @@ func _on_Bullet_area_entered(area: Area2D) -> void:
 				if !piercing:
 					var explosion = Explosion.instance()
 					explosion.damage = 0
-					explosion.damage = 0
 					explosion.size_scale = 0.5
 					explosion.global_position = global_position
 					get_parent().call_deferred("add_child", explosion)

@@ -1,19 +1,103 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/World/Spells/Red/RedCycle.gd" type="Script" id=1]
+[ext_resource path="res://assets/Weapons/Bullets/laserRed01.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="Animation" id=3]
+resource_name = "attack"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Pivot/HitArea/CollisionShape2D:shape:extents:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 10, -0.25, 0, 0.25, 0, 40, -0.25, 0, 0.25, 0, 40, -0.25, 0, 0.25, 0, 10, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.7, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Pivot/HitArea/CollisionShape2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 28.5, -0.25, 0, 0.25, 0, 28.5, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.7, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Pivot/HitArea/Sprite:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0.1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.7, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Pivot/HitArea/Sprite:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, 32, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1.7, 2 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Pivot:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.5, 0.8, 1.1, 1.4, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 90.0, 180.0, 270.0, 360.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Pivot/HitArea:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.5, 1.7, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true, false ]
+}
 
 [node name="RedCycle" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Pivot" type="Position2D" parent="."]
+rotation = 0.0258375
 
-[node name="HitArea" type="Area2D" parent="."]
+[node name="HitArea" type="Area2D" parent="Pivot"]
+rotation = -1.5708
+monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitArea"]
+shape = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="HitArea"]
+[node name="Sprite" type="Sprite" parent="Pivot/HitArea"]
+rotation = 1.5708
+scale = Vector2( 1, 0.1 )
+texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Pivot/HitArea" to="." method="_on_HitArea_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
