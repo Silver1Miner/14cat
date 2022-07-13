@@ -1,12 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/World/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player/player.png" type="Texture" id=2]
-[ext_resource path="res://src/World/Weapons/GunTurretHoming.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/World/Weapons/GunTurretFireball.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/World/Weapons/GunTurretScatter.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/World/Spells/Red/RedCycle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/World/Weapons/GunTurretBolt.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/World/Weapons/Gun.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.0
@@ -37,32 +33,25 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource( 2 )
 
-[node name="RedSpell" type="Node2D" parent="."]
-
-[node name="RedCycle" parent="RedSpell" instance=ExtResource( 6 )]
-
-[node name="Pivot" parent="RedSpell/RedCycle" index="0"]
-rotation = 0.0
-
-[node name="Pivot" type="Node2D" parent="."]
-visible = false
-
-[node name="GunTurretFireball" parent="Pivot" instance=ExtResource( 4 )]
-position = Vector2( 16, -16 )
-
-[node name="GunTurretBolt" parent="Pivot" instance=ExtResource( 9 )]
-position = Vector2( 16, 16 )
-
-[node name="GunTurretScatter" parent="Pivot" instance=ExtResource( 5 )]
-position = Vector2( -16, -16 )
-
-[node name="GunTurretHoming" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( -16, 16 )
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Gun" parent="Pivot" instance=ExtResource( 3 )]
+position = Vector2( 16, 0 )
+
+[node name="Gun2" parent="Pivot" instance=ExtResource( 3 )]
+position = Vector2( 0, 16 )
+rotation = 1.5708
+
+[node name="Gun3" parent="Pivot" instance=ExtResource( 3 )]
+position = Vector2( -16, 0 )
+rotation = 3.14159
+
+[node name="Gun4" parent="Pivot" instance=ExtResource( 3 )]
+position = Vector2( 0, -16 )
+rotation = 4.71239
+
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]
 [connection signal="area_entered" from="PickupBox" to="." method="_on_PickupBox_area_entered"]
-
-[editable path="RedSpell/RedCycle"]

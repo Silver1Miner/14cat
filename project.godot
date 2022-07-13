@@ -18,15 +18,22 @@ _global_script_classes=[ {
 "class": "Grid",
 "language": "GDScript",
 "path": "res://src/World/Board/Grid.gd"
+}, {
+"base": "Node2D",
+"class": "Gun",
+"language": "GDScript",
+"path": "res://src/World/Weapons/Gun.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
-"Grid": ""
+"Grid": "",
+"Gun": ""
 }
 
 [application]
 
-config/name="Cat Witch"
+config/name="Catabolize"
+config/description="Be the tower. Be the bullet hell."
 run/main_scene="res://src/Game.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )

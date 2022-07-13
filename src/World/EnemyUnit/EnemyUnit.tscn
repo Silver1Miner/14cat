@@ -8,7 +8,7 @@
 [ext_resource path="res://src/World/EnemyUnit/unitwalk_left.tres" type="Animation" id=6]
 [ext_resource path="res://src/World/EnemyUnit/unitwalk_up.tres" type="Animation" id=7]
 [ext_resource path="res://src/World/EnemyUnit/unitwalk_down.tres" type="Animation" id=8]
-[ext_resource path="res://assets/EnemyUnit/explosion1.png" type="Texture" id=9]
+[ext_resource path="res://assets/Weapons/Explosion/explosion1.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
