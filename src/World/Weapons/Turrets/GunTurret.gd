@@ -46,8 +46,8 @@ func update_level() -> void:
 			attack_damage = Database.upgrades[gun_id]["damage"][PlayerData.player_upgrades[gun_id]]
 		if current_level < len(Database.upgrades[gun_id]["cooldown"]):
 			attack_cooldown = Database.upgrades[gun_id]["cooldown"][PlayerData.player_upgrades[gun_id]]
-		if current_level < len(Database.upgrades[gun_id]["attack_range"]):
-			_attack_range.shape.radius = Database.upgrades[gun_id]["attack_range"][PlayerData.player_upgrades[gun_id]]
+		#if current_level < len(Database.upgrades[gun_id]["attack_range"]):
+		#	_attack_range.shape.extends = Database.upgrades[gun_id]["attack_range"][PlayerData.player_upgrades[gun_id]]
 		print("upgrade ", Database.upgrades[gun_id]["name"], " to level ", new_level)
 	if visible:
 		set_process(true)

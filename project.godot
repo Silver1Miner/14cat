@@ -18,16 +18,10 @@ _global_script_classes=[ {
 "class": "Grid",
 "language": "GDScript",
 "path": "res://src/World/Board/Grid.gd"
-}, {
-"base": "Node2D",
-"class": "Gun",
-"language": "GDScript",
-"path": "res://src/World/Weapons/Gun.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
-"Grid": "",
-"Gun": ""
+"Grid": ""
 }
 
 [application]

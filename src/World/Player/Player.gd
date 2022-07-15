@@ -18,10 +18,10 @@ signal coins_changed()
 signal player_died()
 onready var damage_timer = $DamageTimer
 onready var hitbox = $HitBox
-onready var gun2 = $Pivot/GunTurretFireball
-onready var gun3 = $Pivot/GunTurretBolt
-onready var gun4 = $Pivot/GunTurretScatter
-onready var gun5 = $Pivot/GunTurretHoming
+onready var gun1 = $Pivot/GunTurret
+onready var gun2 = $Pivot/GunTurret2
+onready var gun3 = $Pivot/GunTurret3
+onready var gun4 = $Pivot/GunTurret4
 onready var pivot = $Pivot
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
@@ -50,10 +50,10 @@ func get_input() -> void:
 func _process(delta: float) -> void:
 	if weapon_rotation:
 		pivot.rotation += PI/4 * delta
+		gun1.get_node("Aim").global_rotation = 0
 		gun2.get_node("Aim").global_rotation = 0
 		gun3.get_node("Aim").global_rotation = 0
 		gun4.get_node("Aim").global_rotation = 0
-		gun5.get_node("Aim").global_rotation = 0
 	if active:
 		get_input()
 		var _collision = move_and_collide(velocity * delta)
@@ -104,10 +104,10 @@ func level_up() -> void:
 	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
 
 func _on_player_upgraded() -> void:
+	gun1.update_level()
 	gun2.update_level()
 	gun3.update_level()
 	gun4.update_level()
-	gun5.update_level()
 	emit_signal("hp_changed", hp, max_hp)
 	emit_signal("coins_changed")
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/World/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/Player/player.png" type="Texture" id=2]
-[ext_resource path="res://src/World/Weapons/Gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Player/tankBody_red_outline.png" type="Texture" id=2]
+[ext_resource path="res://src/World/Weapons/Turrets/GunTurret.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 8.0
@@ -38,18 +38,18 @@ texture = ExtResource( 2 )
 
 [node name="Pivot" type="Node2D" parent="."]
 
-[node name="Gun" parent="Pivot" instance=ExtResource( 3 )]
+[node name="GunTurret" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( 16, 0 )
 
-[node name="Gun2" parent="Pivot" instance=ExtResource( 3 )]
+[node name="GunTurret2" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( 0, 16 )
 rotation = 1.5708
 
-[node name="Gun3" parent="Pivot" instance=ExtResource( 3 )]
+[node name="GunTurret3" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( -16, 0 )
 rotation = 3.14159
 
-[node name="Gun4" parent="Pivot" instance=ExtResource( 3 )]
+[node name="GunTurret4" parent="Pivot" instance=ExtResource( 3 )]
 position = Vector2( 0, -16 )
 rotation = 4.71239
 
