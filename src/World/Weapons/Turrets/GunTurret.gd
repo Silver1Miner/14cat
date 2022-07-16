@@ -1,11 +1,13 @@
 extends Node2D
 
 export var gun_id := 1
+export var current_level = -1
 export var damage_type := 0
+
 export var direction :Vector2 = Vector2.UP
 export var can_turn := true # true for turret, false for single direction
 export var homing := false # whether fire homing bullet
-export var instant := false
+export var instant := false # whether hitscan or bullet
 export var attack_damage := 10.0
 export var attack_cooldown := 0.1
 export var projectile_speed := 100.0
@@ -13,12 +15,12 @@ export var projectile_lifetime := 10.0
 export var attack_radius := 20
 export var projectile_blast_radius := 32
 export var number_bullets := 1
-export var offset := 15
+export var offset := 15 # in degrees
 export var bullet: PackedScene = preload("res://src/World/Weapons/Bullets/Bullet.tscn")
 export var gun_sound = preload("res://assets/Audio/sound/spell_01.ogg")
 
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
-var current_level = -1
+
 onready var _laser_sight := $Aim/Line2D
 onready var _raycast = $Aim/RayCast2D
 onready var _attack_radius := $Pivot/AttackRange
@@ -32,10 +34,17 @@ onready var effects = get_parent().get_parent().get_parent().get_node_or_null("E
 
 func _ready() -> void:
 	$AudioStreamPlayer2D.stream = gun_sound
+	$Aim.global_rotation = 0
 	_laser_sight.add_point(Vector2.ZERO)
 	_laser_sight.add_point(Vector2.ZERO)
 	_bolt.add_point(Vector2.ZERO)
 	_bolt.add_point(Vector2.ZERO)
+
+func load_gun_data(new_gun_id) -> void:
+	gun_id = new_gun_id
+	attack_damage = Database.upgrades[gun_id]["damage"][PlayerData.player_upgrades[gun_id]]
+	attack_cooldown = Database.upgrades[gun_id]["cooldown"][PlayerData.player_upgrades[gun_id]]
+	number_bullets = Database.upgrades[gun_id]["number_bullets"][PlayerData.player_upgrades[gun_id]]
 
 func update_level() -> void:
 	var new_level = PlayerData.player_upgrades[gun_id]
@@ -46,6 +55,8 @@ func update_level() -> void:
 			attack_damage = Database.upgrades[gun_id]["damage"][PlayerData.player_upgrades[gun_id]]
 		if current_level < len(Database.upgrades[gun_id]["cooldown"]):
 			attack_cooldown = Database.upgrades[gun_id]["cooldown"][PlayerData.player_upgrades[gun_id]]
+		if current_level < len(Database.upgrades[gun_id]["number_bullets"]):
+			number_bullets = Database.upgrades[gun_id]["number_bullets"][PlayerData.player_upgrades[gun_id]]
 		#if current_level < len(Database.upgrades[gun_id]["attack_range"]):
 		#	_attack_range.shape.extends = Database.upgrades[gun_id]["attack_range"][PlayerData.player_upgrades[gun_id]]
 		print("upgrade ", Database.upgrades[gun_id]["name"], " to level ", new_level)

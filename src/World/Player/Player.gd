@@ -46,6 +46,7 @@ func get_input() -> void:
 	elif Input.is_action_pressed('ui_up'):
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
+	$Sprite.rotation = velocity.angle() + PI/2
 
 func _process(delta: float) -> void:
 	if weapon_rotation:
