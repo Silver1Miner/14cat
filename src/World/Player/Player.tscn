@@ -39,19 +39,16 @@ texture = ExtResource( 2 )
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="GunTurret" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( 16, 0 )
+visible = false
 
 [node name="GunTurret2" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( 0, 16 )
-rotation = 1.5708
+visible = false
 
 [node name="GunTurret3" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( -16, 0 )
-rotation = 3.14159
+visible = false
 
 [node name="GunTurret4" parent="Pivot" instance=ExtResource( 3 )]
-position = Vector2( 0, -16 )
-rotation = 4.71239
+visible = false
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]
 [connection signal="area_entered" from="PickupBox" to="." method="_on_PickupBox_area_entered"]
