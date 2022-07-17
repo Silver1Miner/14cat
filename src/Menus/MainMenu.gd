@@ -17,4 +17,4 @@ func _on_Quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_Start_pressed() -> void:
-	Game.go_to_scene("res://src/Hub/Hub.tscn")
+	Game.go_to_scene("res://src/World/Board/Board.tscn")

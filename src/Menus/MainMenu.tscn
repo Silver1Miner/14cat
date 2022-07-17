@@ -31,10 +31,10 @@ margin_right = -180.0
 margin_bottom = -550.0
 
 [node name="Fuel" type="HBoxContainer" parent="FuelDisplay"]
-margin_left = 17.0
-margin_top = 13.0
-margin_right = 163.0
-margin_bottom = 77.0
+margin_left = 197.0
+margin_top = 333.0
+margin_right = 343.0
+margin_bottom = 397.0
 
 [node name="FuelIcon" type="TextureRect" parent="FuelDisplay/Fuel"]
 margin_right = 64.0

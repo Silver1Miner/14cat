@@ -5,9 +5,10 @@ export var max_hp := 100.0
 export var xp := 0
 export var max_xp := 2
 export var speed := 100
+var target_position = null
 var velocity := Vector2.ZERO
 var active := true
-var weapon_rotation := false
+#var weapon_rotation := false
 var invincible = false
 
 signal hp_changed(hp, max_hp)
@@ -35,26 +36,36 @@ func _ready() -> void:
 	add_to_group("player")
 	hitbox.add_to_group("player")
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed('click'):
+		if event.position.y > 80 and event.position.y < 640 - 80:
+			target_position = event.position
+
 func get_input() -> void:
-	velocity = Vector2.ZERO
+	if not target_position:
+		velocity = Vector2.ZERO
 	if Input.is_action_pressed('ui_right'):
+		target_position = null
 		velocity.x += 1
 	elif Input.is_action_pressed('ui_left'):
+		target_position = null
 		velocity.x -= 1
 	if Input.is_action_pressed('ui_down'):
+		target_position = null
 		velocity.y += 1
 	elif Input.is_action_pressed('ui_up'):
+		target_position = null
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
-	$Sprite.rotation = velocity.angle() + PI/2
+	if velocity != Vector2.ZERO:
+		$Sprite.rotation = velocity.angle() + PI/2
 
-func _process(delta: float) -> void:
-	if weapon_rotation:
-		pivot.rotation += PI/4 * delta
-		gun1.get_node("Aim").global_rotation = 0
-		gun2.get_node("Aim").global_rotation = 0
-		gun3.get_node("Aim").global_rotation = 0
-		gun4.get_node("Aim").global_rotation = 0
+func _physics_process(delta: float) -> void:
+	if target_position:
+		$Sprite.look_at(target_position)
+		velocity = $Sprite.transform.x * speed/2
+		if position.distance_to(target_position) > 5:
+			velocity = move_and_slide(velocity)
 	if active:
 		get_input()
 		var _collision = move_and_collide(velocity * delta)
@@ -64,8 +75,14 @@ func _process(delta: float) -> void:
 			position.x = 360 - 32
 		if position.y < 0 + 32:
 			position.y = 0 + 32
-		if position.y > (640 - 128 - 64) - 32:
-			position.y = (640 - 128 - 64) - 32
+		if position.y > (640 - 80) + 32:
+			position.y = (640 - 80) + 32
+	#if weapon_rotation:
+	#	pivot.rotation += PI/4 * delta
+	#	gun1.get_node("Aim").global_rotation = 0
+	#	gun2.get_node("Aim").global_rotation = 0
+	#	gun3.get_node("Aim").global_rotation = 0
+	#	gun4.get_node("Aim").global_rotation = 0
 
 func take_damage(damage_value: float) -> void:
 	#if invincible:
