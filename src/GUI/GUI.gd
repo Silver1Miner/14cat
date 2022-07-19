@@ -1,6 +1,6 @@
 extends Control
 
-onready var hp_bar = $Status/Status/Display/Fuel/HPBar
+onready var hp_bar = $StatusPanel/Status/Display/Fuel/HPBar
 onready var upgrade_screen = $UpgradeScreen
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 signal upgrade_selected()
@@ -16,9 +16,6 @@ func update_xp(xp, max_xp, level) -> void:
 func update_coins(new_value: int) -> void:
 	print(new_value)
 
-func _on_Pause_pressed() -> void:
-	$PauseScreen.activate()
-
 func _on_PauseScreen_quit() -> void:
 	emit_signal("quit")
 
@@ -33,3 +30,7 @@ func _on_LevelUp_pressed() -> void:
 
 func _on_UpgradeScreen_upgrade_selected() -> void:
 	emit_signal("upgrade_selected")
+
+
+func _on_Settings_pressed() -> void:
+	$PauseScreen.activate()

@@ -60,7 +60,7 @@ func get_input() -> void:
 	if velocity != Vector2.ZERO:
 		$Sprite.rotation = velocity.angle() + PI/2
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if target_position:
 		$Sprite.look_at(target_position)
 		velocity = $Sprite.transform.x * speed/2
@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 			velocity = move_and_slide(velocity)
 	if active:
 		get_input()
-		var _collision = move_and_collide(velocity * delta)
+		velocity = move_and_slide(velocity)
 		if position.x < 0 + 32:
 			position.x = 0 + 32
 		if position.x > 360 - 32:

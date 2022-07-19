@@ -102,7 +102,6 @@ func _on_Right_pressed() -> void:
 
 func go_to_mission() -> void:
 	print("mission e",e,"m",m)
-	PlayerData.is_challenge = false
 	Game.go_to_scene(levels.levels[e-1][m-1])
 
 func _on_Back_pressed() -> void:

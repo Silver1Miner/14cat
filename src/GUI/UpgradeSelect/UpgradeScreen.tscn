@@ -8,6 +8,10 @@
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 114.0
+margin_right = -40.0
+margin_bottom = -120.0
 theme = ExtResource( 3 )
 color = Color( 0, 0, 0, 0.784314 )
 script = ExtResource( 1 )

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/GUI/Icons/ava-base.png" type="Texture" id=1]
+[ext_resource path="res://assets/GUI/Buttons/shadedLight31.png" type="Texture" id=2]
 [ext_resource path="res://src/GUI/GUI.gd" type="Script" id=3]
 [ext_resource path="res://src/GUI/PauseScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/GUI/UpgradeSelect/UpgradeScreen.tscn" type="PackedScene" id=5]
@@ -8,6 +9,14 @@
 [ext_resource path="res://assets/GUI/Bars/progress-bar-fill.png" type="Texture" id=7]
 [ext_resource path="res://assets/GUI/Bars/progress-bar-under.png" type="Texture" id=8]
 [ext_resource path="res://assets/GUI/Bars/progress-bar-over.png" type="Texture" id=9]
+[ext_resource path="res://assets/GUI/Buttons/shadedDark31.png" type="Texture" id=10]
+[ext_resource path="res://assets/GUI/Buttons/locked.png" type="Texture" id=11]
+[ext_resource path="res://assets/GUI/Buttons/powerupRed.png" type="Texture" id=12]
+[ext_resource path="res://assets/GUI/Buttons/powerupBlue_bolt.png" type="Texture" id=13]
+[ext_resource path="res://assets/GUI/Buttons/powerupBlue.png" type="Texture" id=14]
+[ext_resource path="res://assets/GUI/Buttons/powerupRed_shield.png" type="Texture" id=15]
+[ext_resource path="res://assets/GUI/Buttons/powerupGreen_star.png" type="Texture" id=16]
+[ext_resource path="res://assets/GUI/Buttons/powerupGreen.png" type="Texture" id=17]
 
 [node name="GUI" type="Control"]
 pause_mode = 2
@@ -17,22 +26,22 @@ mouse_filter = 1
 theme = ExtResource( 6 )
 script = ExtResource( 3 )
 
-[node name="Status" type="ColorRect" parent="."]
+[node name="StatusPanel" type="ColorRect" parent="."]
 anchor_right = 1.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 360, 64 )
 color = Color( 0.376471, 0.690196, 0.384314, 0.576471 )
 
-[node name="Status" type="HBoxContainer" parent="Status"]
+[node name="Status" type="HBoxContainer" parent="StatusPanel"]
 margin_right = 423.0
 margin_bottom = 66.0
 
-[node name="CenterContainer" type="CenterContainer" parent="Status/Status"]
+[node name="CenterContainer" type="CenterContainer" parent="StatusPanel/Status"]
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="ProfilePic" type="TextureRect" parent="Status/Status/CenterContainer"]
+[node name="ProfilePic" type="TextureRect" parent="StatusPanel/Status/CenterContainer"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 72.0
@@ -41,23 +50,23 @@ rect_min_size = Vector2( 64, 64 )
 texture = ExtResource( 1 )
 expand = true
 
-[node name="Display" type="VBoxContainer" parent="Status/Status"]
+[node name="Display" type="VBoxContainer" parent="StatusPanel/Status"]
 margin_left = 84.0
 margin_right = 358.0
 margin_bottom = 80.0
 custom_constants/separation = 0
 
-[node name="Fuel" type="HBoxContainer" parent="Status/Status/Display"]
+[node name="Fuel" type="HBoxContainer" parent="StatusPanel/Status/Display"]
 margin_right = 274.0
 margin_bottom = 19.0
 
-[node name="Label" type="Label" parent="Status/Status/Display/Fuel"]
+[node name="Label" type="Label" parent="StatusPanel/Status/Display/Fuel"]
 margin_right = 52.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 52, 0 )
 text = "FUEL"
 
-[node name="HPBar" type="TextureProgress" parent="Status/Status/Display/Fuel"]
+[node name="HPBar" type="TextureProgress" parent="StatusPanel/Status/Display/Fuel"]
 margin_left = 56.0
 margin_right = 274.0
 margin_bottom = 19.0
@@ -68,18 +77,18 @@ texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 7 )
 nine_patch_stretch = true
 
-[node name="Metal" type="HBoxContainer" parent="Status/Status/Display"]
+[node name="Metal" type="HBoxContainer" parent="StatusPanel/Status/Display"]
 margin_top = 19.0
 margin_right = 274.0
 margin_bottom = 38.0
 
-[node name="Label" type="Label" parent="Status/Status/Display/Metal"]
+[node name="Label" type="Label" parent="StatusPanel/Status/Display/Metal"]
 margin_right = 52.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 52, 0 )
 text = "METAL"
 
-[node name="XPBar" type="TextureProgress" parent="Status/Status/Display/Metal"]
+[node name="XPBar" type="TextureProgress" parent="StatusPanel/Status/Display/Metal"]
 margin_left = 56.0
 margin_right = 274.0
 margin_bottom = 19.0
@@ -89,17 +98,17 @@ texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 7 )
 nine_patch_stretch = true
 
-[node name="Metal2" type="HBoxContainer" parent="Status/Status/Display"]
+[node name="Metal2" type="HBoxContainer" parent="StatusPanel/Status/Display"]
 margin_top = 38.0
 margin_right = 274.0
 margin_bottom = 57.0
 
-[node name="Label" type="Label" parent="Status/Status/Display/Metal2"]
+[node name="Label" type="Label" parent="StatusPanel/Status/Display/Metal2"]
 margin_right = 52.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 52, 0 )
 
-[node name="WaveContents" type="Label" parent="Status/Status/Display/Metal2"]
+[node name="WaveContents" type="Label" parent="StatusPanel/Status/Display/Metal2"]
 margin_left = 56.0
 margin_right = 274.0
 margin_bottom = 19.0
@@ -107,17 +116,17 @@ rect_min_size = Vector2( 218, 0 )
 text = "A x3 "
 align = 1
 
-[node name="WaveProgress" type="HBoxContainer" parent="Status/Status/Display"]
+[node name="WaveProgress" type="HBoxContainer" parent="StatusPanel/Status/Display"]
 margin_top = 57.0
 margin_right = 274.0
 margin_bottom = 76.0
 
-[node name="Label" type="Label" parent="Status/Status/Display/WaveProgress"]
+[node name="Label" type="Label" parent="StatusPanel/Status/Display/WaveProgress"]
 margin_right = 52.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 52, 0 )
 
-[node name="ENBar" type="TextureProgress" parent="Status/Status/Display/WaveProgress"]
+[node name="ENBar" type="TextureProgress" parent="StatusPanel/Status/Display/WaveProgress"]
 margin_left = 56.0
 margin_right = 274.0
 margin_bottom = 19.0
@@ -127,7 +136,7 @@ texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 7 )
 nine_patch_stretch = true
 
-[node name="ControlPanel" type="ColorRect" parent="."]
+[node name="ToolsPanel" type="ColorRect" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -138,7 +147,7 @@ margin_right = 180.0
 rect_min_size = Vector2( 360, 0 )
 color = Color( 0.32549, 0.34902, 0.705882, 0.392157 )
 
-[node name="Controls" type="HBoxContainer" parent="ControlPanel"]
+[node name="Controls" type="HBoxContainer" parent="ToolsPanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -147,35 +156,51 @@ margin_left = -170.0
 margin_top = -25.0
 margin_right = 170.0
 margin_bottom = 25.0
+custom_constants/separation = 20
 
-[node name="Settings" type="Button" parent="ControlPanel/Controls"]
+[node name="Settings" type="TextureButton" parent="ToolsPanel/Controls"]
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
-disabled = true
 toggle_mode = true
-text = "S"
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 10 )
+texture_disabled = ExtResource( 11 )
 
-[node name="Consume1" type="Button" parent="ControlPanel/Controls"]
-margin_left = 54.0
-margin_right = 104.0
+[node name="Control" type="Control" parent="ToolsPanel/Controls"]
+margin_left = 70.0
+margin_right = 70.0
+margin_bottom = 50.0
+
+[node name="Consume1" type="TextureButton" parent="ToolsPanel/Controls"]
+margin_left = 90.0
+margin_right = 140.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
-text = "Pause"
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 11 )
+expand = true
 
-[node name="Consume2" type="Button" parent="ControlPanel/Controls"]
-margin_left = 108.0
-margin_right = 158.0
+[node name="Consume2" type="TextureButton" parent="ToolsPanel/Controls"]
+margin_left = 160.0
+margin_right = 210.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
-text = "Pause"
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 12 )
+texture_disabled = ExtResource( 11 )
+expand = true
 
-[node name="Consume3" type="Button" parent="ControlPanel/Controls"]
-margin_left = 162.0
-margin_right = 212.0
+[node name="Consume3" type="TextureButton" parent="ToolsPanel/Controls"]
+margin_left = 230.0
+margin_right = 280.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
-text = "Pause"
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 11 )
+expand = true
 
 [node name="UpgradeScreen" parent="." instance=ExtResource( 5 )]
 visible = false
@@ -183,5 +208,6 @@ visible = false
 [node name="PauseScreen" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[connection signal="pressed" from="ToolsPanel/Controls/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="upgrade_selected" from="UpgradeScreen" to="." method="_on_UpgradeScreen_upgrade_selected"]
 [connection signal="quit" from="PauseScreen" to="." method="_on_PauseScreen_quit"]

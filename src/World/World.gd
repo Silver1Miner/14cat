@@ -13,7 +13,6 @@ func _ready() -> void:
 	get_tree().paused = false
 	Music.stream = world_theme
 	Music.play()
-	spawner.set_process(PlayerData.is_challenge)
 	background.set_background(preload("res://assets/Backgrounds/background.png"))
 	if player.connect("hp_changed", self, "_on_Player_hp_changed") != OK:
 		push_error("signal connect fail")

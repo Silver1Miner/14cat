@@ -1,6 +1,5 @@
 extends Node
 
-var is_challenge = false
 var version = "0.0.1"
 var music_db := 0.4
 var sound_db := 0.2

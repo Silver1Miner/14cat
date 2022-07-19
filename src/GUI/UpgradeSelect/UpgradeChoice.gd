@@ -8,7 +8,6 @@ onready var upgrade_icon = $Info/Header/Icon
 var Database: Resource = preload("res://data/database.tres")
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 
-
 func populate_data(new_id) -> void:
 	upgrade_id = new_id
 	if upgrade_id in Database.upgrades:
