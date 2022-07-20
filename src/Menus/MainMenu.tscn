@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/Menus/SettingsMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Menus/MainMenu.gd" type="Script" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://assets/GUI/Buttons/trophy.png" type="Texture" id=14]
 [ext_resource path="res://assets/GUI/Buttons/barsVertical.png" type="Texture" id=15]
 [ext_resource path="res://src/Menus/MissionMenu.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/GUI/Bars/progress-bar-under.png" type="Texture" id=17]
+[ext_resource path="res://assets/GUI/Bars/progress-bar-over.png" type="Texture" id=18]
+[ext_resource path="res://assets/GUI/Bars/progress-bar-fill.png" type="Texture" id=19]
+[ext_resource path="res://assets/GUI/Buttons/powerupBlue_bolt.png" type="Texture" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -86,6 +90,39 @@ margin_right = 146.0
 margin_bottom = 50.0
 text = " 9999"
 
+[node name="MetalDisplay" type="CenterContainer" parent="."]
+margin_top = 83.0
+margin_right = 360.0
+margin_bottom = 123.0
+
+[node name="Metal" type="HBoxContainer" parent="MetalDisplay"]
+margin_left = 49.0
+margin_right = 311.0
+margin_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MetalDisplay/Metal"]
+margin_right = 218.0
+margin_bottom = 40.0
+
+[node name="XPBar" type="TextureProgress" parent="MetalDisplay/Metal/CenterContainer"]
+margin_top = 12.0
+margin_right = 218.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 218, 16 )
+value = 50.0
+texture_under = ExtResource( 17 )
+texture_over = ExtResource( 18 )
+texture_progress = ExtResource( 19 )
+nine_patch_stretch = true
+
+[node name="OpenBox" type="TextureButton" parent="MetalDisplay/Metal"]
+margin_left = 222.0
+margin_right = 262.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 20 )
+expand = true
+
 [node name="Start" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -99,13 +136,15 @@ rect_min_size = Vector2( 280, 80 )
 text = "Mission ^"
 
 [node name="Disclaimer" type="Label" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -200.0
+margin_top = -120.0
 margin_right = 100.0
+margin_bottom = 80.0
 custom_fonts/font = SubResource( 1 )
 text = "Disclaimer: This is an early prototype still in \"Finding the Fun\" stage of development. All sounds and visuals are placeholders. No game design decisions are final.
 This is a private testing builld. Public distribution is strictly forbidden."
@@ -181,7 +220,7 @@ texture_pressed = ExtResource( 14 )
 texture_disabled = ExtResource( 10 )
 expand = true
 
-[node name="Lore" type="TextureButton" parent="Options/Options"]
+[node name="Slots" type="TextureButton" parent="Options/Options"]
 margin_left = 240.0
 margin_right = 280.0
 margin_bottom = 40.0
@@ -210,4 +249,8 @@ visible = false
 
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Options/Options/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Options/Options/Store" to="." method="_on_Store_pressed"]
+[connection signal="pressed" from="Options/Options/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Options/Options/Trophies" to="." method="_on_Trophies_pressed"]
+[connection signal="pressed" from="Options/Options/Slots" to="." method="_on_Slots_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

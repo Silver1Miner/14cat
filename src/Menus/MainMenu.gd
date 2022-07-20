@@ -18,3 +18,16 @@ func _on_Quit_pressed() -> void:
 
 func _on_Start_pressed() -> void:
 	$MissionMenu.visible = true
+
+func _on_Store_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_Home_pressed() -> void:
+	$SettingsMenu.visible = false
+	$MissionMenu.visible = false
+
+func _on_Trophies_pressed() -> void:
+	print("go to trophy room")
+
+func _on_Slots_pressed() -> void:
+	print("go to slots")
