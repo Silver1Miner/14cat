@@ -1,9 +1,6 @@
 extends Node2D
 
-export (PackedScene) var Crate = preload("res://src/World/Enemy/EnemyCrate.tscn")
-export (PackedScene) var Crab = preload("res://src/World/Enemy/EnemyCrab.tscn")
-export (PackedScene) var Turret = preload("res://src/World/Enemy/EnemyTurret.tscn")
-export (PackedScene) var Fast = preload("res://src/World/Enemy/EnemyHoming.tscn")
+export (PackedScene) var Crab = preload("res://src/World/Enemy/Enemy.tscn")
 var Database: Resource = preload("res://data/database.tres")
 var spawn_schedule := {
 	"max_level": 6,
@@ -41,13 +38,13 @@ func spawner() -> void:
 func spawn_monster(spawn_position, type) -> void:
 	var monster
 	if type < spawn_schedule["spawn_distribution"][spawn_level][0]:
-		monster = Crate.instance()
+		monster = Crab.instance()
 	elif type < spawn_schedule["spawn_distribution"][spawn_level][1]:
 		monster = Crab.instance()
 	elif type < spawn_schedule["spawn_distribution"][spawn_level][2]:
-			monster = Turret.instance()
+			monster = Crab.instance()
 	#elif type < spawn_schedule["spawn_distribution"][spawn_level][3]:
 	else:
-			monster = Fast.instance()
+			monster = Crab.instance()
 	monster.position = spawn_position
 	add_child(monster)

@@ -1,6 +1,6 @@
 extends Control
 
-onready var hp_bar = $StatusPanel/Status/Display/Fuel/HPBar
+onready var hp_bar = $StatusPanel/Status/CenterContainer2/Display/Fuel/HPBar
 onready var upgrade_screen = $UpgradeScreen
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 signal upgrade_selected()

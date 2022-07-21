@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://src/World/EnemyFree/Enemy.gd"
+"path": "res://src/World/Enemy/Enemy.gd"
 }, {
 "base": "Resource",
 "class": "Grid",

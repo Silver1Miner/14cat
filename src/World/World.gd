@@ -4,7 +4,6 @@ onready var Game = get_tree().get_root().get_node("Game")
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 onready var Music = get_tree().get_root().get_node("Game").get_node("Music")
 export var world_theme = preload("res://assets/Audio/music/classical-piano-by-alkan-saltarelo-112514.mp3")
-onready var background = $BackgroundScroll
 onready var gui = $UI/GUI
 onready var player = $Player
 onready var spawner = $EnemySpawner
@@ -13,7 +12,6 @@ func _ready() -> void:
 	get_tree().paused = false
 	Music.stream = world_theme
 	Music.play()
-	background.set_background(preload("res://assets/Backgrounds/background.png"))
 	if player.connect("hp_changed", self, "_on_Player_hp_changed") != OK:
 		push_error("signal connect fail")
 	if player.connect("xp_changed", self, "_on_Player_xp_changed") != OK:
@@ -28,15 +26,6 @@ func _ready() -> void:
 		push_error("signal connect fail")
 	if gui.connect("upgrade_selected", player, "level_up") != OK:
 		push_error("signal connect fail")
-	PlayerData.delta_time = 0.0
-
-var timer_accumulated = 0
-func _process(delta: float) -> void:
-	PlayerData.delta_time += delta
-	timer_accumulated += 1
-	if timer_accumulated >= 60:
-		gui.update_clock(PlayerData.delta_time)
-		timer_accumulated = 0
 
 func _on_Player_coins_changed() -> void:
 	gui.update_coins(PlayerData.mission_coins)

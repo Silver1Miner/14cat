@@ -9,5 +9,5 @@ func _on_Back_pressed() -> void:
 	visible = false
 
 func _on_Start_pressed() -> void:
-	Game.go_to_scene("res://src/World/Board/Board.tscn")
+	Game.go_to_scene("res://src/World/World.tscn")
 

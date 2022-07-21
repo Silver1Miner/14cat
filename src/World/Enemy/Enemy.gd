@@ -4,94 +4,79 @@ class_name Enemy
 export var group = "enemy"
 export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
-export var y_limit_top := 64
-export var y_limit_bottom := 256
-export var ignore_collision = false
 export var weaknesses = []
-var hit_bottom = false
-var hit_side = false
-export var shoots = true
-export var aim_at_player = false
+var moving := true
+var velocity := Vector2.ZERO
 export var speed := 100
-export var direction := Vector2(2, 1)
 export var attack := 50
 var invulnerable = true
-var entered_screen = false
-var can_attack = false
-
-export var bullet_speed = 100
-export var attack_wait = 2.0
-export var Bullet: PackedScene = preload("res://src/World/Weapons/Bullets/BulletEnemy.tscn")
+var active = true
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 export var FCT: PackedScene = preload("res://src/World/Effects/FCT.tscn")
 export var Drop: PackedScene = preload("res://src/World/Pickups/Pickup.tscn")
-export var gun_sound = preload("res://assets/Audio/sound/spell_fire_01.ogg")
-onready var shoot_sound = $AudioStreamPlayer2D
 onready var damage_timer = $DamageTimer
-onready var attack_timer = $AttackTimer
 onready var hitbox = $Hitbox
 onready var effects = get_parent().get_parent().get_node_or_null("Effects")
 onready var player = get_parent().get_parent().get_node_or_null("Player")
+onready var navigator = get_parent().get_parent().get_node_or_null("Navigation2D")
+var target_position := Vector2.ZERO
+var direction := Vector2.ZERO
+var path := PoolVector2Array() setget set_path
 
 func _ready() -> void:
 	add_to_group(group)
 	hitbox.add_to_group(group)
-	shoot_sound.stream = gun_sound
+	find_target()
 
-func _physics_process(delta: float) -> void:
-	if entered_screen:
-		move_and_attack(delta)
+func find_target() -> void:
+	if player and navigator:
+		target_position = player.position
+		direction = (target_position - position).normalized()
+		set_path(navigator.get_simple_path(position, target_position))
 	else:
-		position.y += 20
+		print("no target")
 
-func move_and_attack(delta: float) -> void:
-	var velocity = speed * direction.normalized()
-	var collision = move_and_collide(velocity * delta)
-	if collision and not ignore_collision:
-		direction.x = -direction.x
-		if direction.y < 0:
-			direction.y = -direction.y
-	if global_position.x < 32 or global_position.x > 360 - 32:
-		direction.x = -direction.x
-	if hit_bottom and global_position.y <= y_limit_top and not ignore_collision:
-		direction.y = -direction.y
-	if global_position.y > y_limit_bottom:
-		hit_bottom = true
-		direction.y = -direction.y
-	if aim_at_player:
-		$Gun.look_at(player.global_position)
-	if shoots:
-		shoot()
-	#attack_damage(delta)
+func set_path(value: PoolVector2Array) -> void:
+	path = value
+	if value.size() == 0:
+		return
+	moving = true
+
+var move_accumulated = 0
+var cooldown = 0.5
+func _physics_process(delta: float) -> void:
+	if active:
+		if moving:
+			var move_distance := speed * delta
+			move_along_path(move_distance)
+			move_accumulated += delta
+			if move_accumulated > cooldown:
+				find_target()
+				move_accumulated = 0
+		attack_damage(delta)
+
+func move_along_path(distance: float) -> void:
+	var start_point = position
+	for _i in range(path.size()):
+		var distance_to_next = start_point.distance_to(path[0])
+		if distance <= distance_to_next and distance > 0.0:
+			#position = start_point.linear_interpolate(path[0], distance/distance_to_next)
+			velocity = (path[0]-start_point).normalized() * speed + Vector2(0,20)
+			velocity = move_and_slide(velocity)
+			look_at(path[0])
+			break
+		elif distance < 0.0:
+			position = path[0]
+			moving = false
+			break
+		distance -= distance_to_next
+		start_point = path[0]
+		path.remove(0)
 
 func attack_damage(delta: float) -> void:
 	for a in $Hitbox.get_overlapping_areas():
 		if a.is_in_group("player"):
 			a.get_parent()._set_hp(a.get_parent().hp - attack * delta)
-
-func shoot() -> void:
-	if not can_attack:
-		return
-	shoot_sound.play()
-	var b = Bullet.instance()
-	effects.add_child(b)
-	if aim_at_player:
-		b.direction = Vector2.RIGHT.rotated($Gun.rotation)
-	else:
-		b.direction = Vector2.DOWN
-	b.global_position = $Gun.global_position
-	b.rotation = $Gun.rotation
-	b.speed = bullet_speed
-	can_attack = false
-	attack_timer.start(attack_wait)
-
-func _on_VisibilityNotifier2D_screen_entered() -> void:
-	entered_screen = true
-	invulnerable = false
-	can_attack = true
-
-func _on_VisibilityNotifier2D_screen_exited() -> void:
-	queue_free()
 
 func take_damage(damage_value: float, damage_type: int) -> void:
 	if invulnerable:
@@ -131,6 +116,3 @@ func create_explosion() -> void:
 
 func _on_DamageTimer_timeout() -> void:
 	invulnerable = false
-
-func _on_AttackTimer_timeout() -> void:
-	can_attack = true
