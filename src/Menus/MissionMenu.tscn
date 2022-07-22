@@ -20,14 +20,31 @@ margin_right = 360.0
 margin_bottom = 640.0
 color = Color( 0, 0, 0, 0.705882 )
 
-[node name="Boosters" type="HBoxContainer" parent="."]
-margin_left = 80.0
-margin_top = 320.0
-margin_right = 280.0
-margin_bottom = 360.0
-custom_constants/separation = 40
+[node name="Title" type="Label" parent="."]
+margin_left = 40.0
+margin_top = 160.0
+margin_right = 320.0
+margin_bottom = 200.0
+text = "Level 1"
+align = 1
+autowrap = true
 
-[node name="Boost1" type="TextureButton" parent="Boosters"]
+[node name="Weapons" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -80.0
+margin_right = 80.0
+margin_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+columns = 3
+
+[node name="Weapon1" type="TextureButton" parent="Weapons"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
@@ -37,9 +54,9 @@ texture_pressed = ExtResource( 6 )
 texture_disabled = ExtResource( 5 )
 expand = true
 
-[node name="Boost2" type="TextureButton" parent="Boosters"]
-margin_left = 80.0
-margin_right = 120.0
+[node name="Weapon2" type="TextureButton" parent="Weapons"]
+margin_left = 60.0
+margin_right = 100.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
@@ -48,10 +65,45 @@ texture_pressed = ExtResource( 7 )
 texture_disabled = ExtResource( 5 )
 expand = true
 
-[node name="Boost3" type="TextureButton" parent="Boosters"]
-margin_left = 160.0
-margin_right = 200.0
+[node name="Weapon3" type="TextureButton" parent="Weapons"]
+margin_left = 120.0
+margin_right = 160.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 8 )
+texture_disabled = ExtResource( 5 )
+expand = true
+
+[node name="Weapon4" type="TextureButton" parent="Weapons"]
+margin_top = 60.0
+margin_right = 40.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 8 )
+texture_disabled = ExtResource( 5 )
+expand = true
+
+[node name="Weapon5" type="TextureButton" parent="Weapons"]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 8 )
+texture_disabled = ExtResource( 5 )
+expand = true
+
+[node name="Weapon6" type="TextureButton" parent="Weapons"]
+margin_left = 120.0
+margin_top = 60.0
+margin_right = 160.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
 texture_normal = ExtResource( 8 )
@@ -64,7 +116,7 @@ margin_left = 40.0
 margin_top = 360.0
 margin_right = 320.0
 margin_bottom = 437.0
-text = "Traps"
+text = "Select Bonus Weapons"
 align = 1
 autowrap = true
 

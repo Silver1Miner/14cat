@@ -3,8 +3,7 @@
 [ext_resource path="res://assets/GUI/Icons/ava-base.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/Buttons/shadedLight31.png" type="Texture" id=2]
 [ext_resource path="res://src/GUI/GUI.gd" type="Script" id=3]
-[ext_resource path="res://src/GUI/PauseScreen.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/GUI/UpgradeSelect/UpgradeScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/GUI/Theme/Menu.tres" type="Theme" id=4]
 [ext_resource path="res://assets/GUI/Theme/HUD.tres" type="Theme" id=6]
 [ext_resource path="res://assets/GUI/Bars/progress-bar-fill.png" type="Texture" id=7]
 [ext_resource path="res://assets/GUI/Bars/progress-bar-under.png" type="Texture" id=8]
@@ -17,6 +16,7 @@
 [ext_resource path="res://assets/GUI/Buttons/powerupRed_shield.png" type="Texture" id=15]
 [ext_resource path="res://assets/GUI/Buttons/powerupGreen_star.png" type="Texture" id=16]
 [ext_resource path="res://assets/GUI/Buttons/powerupGreen.png" type="Texture" id=17]
+[ext_resource path="res://assets/GUI/Buttons/exitLeft.png" type="Texture" id=18]
 
 [node name="GUI" type="Control"]
 pause_mode = 2
@@ -157,7 +157,44 @@ margin_left = 66.0
 margin_right = 66.0
 margin_bottom = 50.0
 
-[node name="Consume1" type="TextureButton" parent="ToolsPanel/Controls"]
+[node name="UsePower" type="Button" parent="ToolsPanel/Controls"]
+margin_left = 82.0
+margin_right = 282.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 0 )
+text = "Use Power Up!"
+
+[node name="PowerUps" type="ColorRect" parent="ToolsPanel"]
+visible = false
+margin_right = 358.0
+margin_bottom = 80.0
+
+[node name="Powers" type="HBoxContainer" parent="ToolsPanel/PowerUps"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -157.0
+margin_top = -25.0
+margin_right = 157.0
+margin_bottom = 25.0
+custom_constants/separation = 16
+
+[node name="Back" type="TextureButton" parent="ToolsPanel/PowerUps/Powers"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 18 )
+texture_disabled = ExtResource( 18 )
+expand = true
+
+[node name="Control" type="Control" parent="ToolsPanel/PowerUps/Powers"]
+margin_left = 66.0
+margin_right = 66.0
+margin_bottom = 50.0
+
+[node name="Consume1" type="TextureButton" parent="ToolsPanel/PowerUps/Powers"]
 margin_left = 82.0
 margin_right = 132.0
 margin_bottom = 50.0
@@ -167,7 +204,7 @@ texture_pressed = ExtResource( 14 )
 texture_disabled = ExtResource( 11 )
 expand = true
 
-[node name="Consume2" type="TextureButton" parent="ToolsPanel/Controls"]
+[node name="Consume2" type="TextureButton" parent="ToolsPanel/PowerUps/Powers"]
 margin_left = 148.0
 margin_right = 198.0
 margin_bottom = 50.0
@@ -177,7 +214,7 @@ texture_pressed = ExtResource( 12 )
 texture_disabled = ExtResource( 11 )
 expand = true
 
-[node name="Consume3" type="TextureButton" parent="ToolsPanel/Controls"]
+[node name="Consume3" type="TextureButton" parent="ToolsPanel/PowerUps/Powers"]
 margin_left = 214.0
 margin_right = 264.0
 margin_bottom = 50.0
@@ -187,7 +224,7 @@ texture_pressed = ExtResource( 17 )
 texture_disabled = ExtResource( 11 )
 expand = true
 
-[node name="Consume4" type="TextureButton" parent="ToolsPanel/Controls"]
+[node name="Consume4" type="TextureButton" parent="ToolsPanel/PowerUps/Powers"]
 margin_left = 280.0
 margin_right = 330.0
 margin_bottom = 50.0
@@ -197,12 +234,79 @@ texture_pressed = ExtResource( 17 )
 texture_disabled = ExtResource( 11 )
 expand = true
 
-[node name="UpgradeScreen" parent="." instance=ExtResource( 5 )]
+[node name="Settings" type="ColorRect" parent="ToolsPanel"]
 visible = false
+margin_left = 80.0
+margin_right = 358.0
+margin_bottom = 80.0
 
-[node name="PauseScreen" parent="." instance=ExtResource( 4 )]
+[node name="Options" type="HBoxContainer" parent="ToolsPanel/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -124.0
+margin_top = -25.0
+margin_right = 124.0
+margin_bottom = 25.0
+custom_constants/separation = 16
+
+[node name="Consume1" type="TextureButton" parent="ToolsPanel/Settings/Options"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 14 )
+texture_disabled = ExtResource( 11 )
+expand = true
+
+[node name="Consume2" type="TextureButton" parent="ToolsPanel/Settings/Options"]
+margin_left = 66.0
+margin_right = 116.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 12 )
+texture_disabled = ExtResource( 11 )
+expand = true
+
+[node name="Consume3" type="TextureButton" parent="ToolsPanel/Settings/Options"]
+margin_left = 132.0
+margin_right = 182.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 17 )
+texture_disabled = ExtResource( 11 )
+expand = true
+
+[node name="Quit" type="TextureButton" parent="ToolsPanel/Settings/Options"]
+margin_left = 198.0
+margin_right = 248.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = ExtResource( 18 )
+texture_pressed = ExtResource( 18 )
+texture_disabled = ExtResource( 18 )
+expand = true
+
+[node name="EndPanel" type="ColorRect" parent="."]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+color = Color( 0, 0, 0, 1 )
 
-[connection signal="pressed" from="ToolsPanel/Controls/Settings" to="." method="_on_Settings_pressed"]
-[connection signal="upgrade_selected" from="UpgradeScreen" to="." method="_on_UpgradeScreen_upgrade_selected"]
-[connection signal="quit" from="PauseScreen" to="." method="_on_PauseScreen_quit"]
+[node name="Continue" type="Button" parent="EndPanel"]
+margin_left = 72.0
+margin_top = 480.0
+margin_right = 272.0
+margin_bottom = 560.0
+rect_min_size = Vector2( 200, 80 )
+text = "Continue"
+
+[connection signal="toggled" from="ToolsPanel/Controls/Settings" to="." method="_on_Settings_toggled"]
+[connection signal="pressed" from="ToolsPanel/Controls/UsePower" to="." method="_on_UsePower_pressed"]
+[connection signal="pressed" from="ToolsPanel/PowerUps/Powers/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="ToolsPanel/Settings/Options/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="EndPanel/Continue" to="." method="_on_Continue_pressed"]

@@ -1,6 +1,6 @@
 extends Area2D
 
-export var damage := 5.0
+export var damage := 10.0
 export var direction := Vector2.ZERO
 var velocity := Vector2.ZERO
 var acceleration = Vector2.ZERO

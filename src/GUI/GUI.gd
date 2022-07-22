@@ -6,6 +6,11 @@ onready var PlayerData = get_tree().get_root().get_node("Game").get_node("Player
 signal upgrade_selected()
 signal quit()
 
+func _ready() -> void:
+	$EndPanl.visible = false
+	$ToolsPanel/PowerUps.visible = false
+	$ToolsPanel/Settings.visible = false
+
 func update_hp(new_hp, max_hp) -> void:
 	hp_bar.value = new_hp
 	hp_bar.max_value = max_hp
@@ -31,6 +36,21 @@ func _on_LevelUp_pressed() -> void:
 func _on_UpgradeScreen_upgrade_selected() -> void:
 	emit_signal("upgrade_selected")
 
-
 func _on_Settings_pressed() -> void:
 	$PauseScreen.activate()
+
+func _on_Settings_toggled(button_pressed: bool) -> void:
+	$ToolsPanel/Settings.visible = button_pressed
+	$ToolsPanel/PowerUps.visible = false
+
+func _on_UsePower_pressed() -> void:
+	$ToolsPanel/PowerUps.visible = true
+
+func _on_Back_pressed() -> void:
+	$ToolsPanel/PowerUps.visible = false
+
+func _on_Quit_pressed() -> void:
+	emit_signal("quit")
+
+func _on_Continue_pressed() -> void:
+	emit_signal("quit")
