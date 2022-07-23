@@ -30,4 +30,5 @@ position = Vector2( 180, 456 )
 
 [node name="GUI" parent="UI" instance=ExtResource( 1 )]
 
+[connection signal="wave_defeated" from="EnemySpawner" to="." method="_on_EnemySpawner_wave_defeated"]
 [connection signal="quit" from="UI/GUI" to="." method="_on_GUI_quit"]

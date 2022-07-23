@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 		velocity = velocity.clamped(speed)
 		#rotation = velocity.angle()
 		position += velocity * delta
-	else:
-		position.y += 20 * delta
+	#else:
+	#	position.y += 20 * delta
 	if position.y > 720:
 		queue_free()
 

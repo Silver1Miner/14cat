@@ -1,13 +1,12 @@
 extends Control
 
 onready var hp_bar = $StatusPanel/Status/CenterContainer2/Display/Fuel/HPBar
-onready var upgrade_screen = $UpgradeScreen
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
 signal upgrade_selected()
 signal quit()
 
 func _ready() -> void:
-	$EndPanl.visible = false
+	$EndPanel.visible = false
 	$ToolsPanel/PowerUps.visible = false
 	$ToolsPanel/Settings.visible = false
 
@@ -29,9 +28,6 @@ func activate_death() -> void:
 
 func activate_end() -> void:
 	$PauseScreen.activate_end()
-
-func _on_LevelUp_pressed() -> void:
-	upgrade_screen.activate()
 
 func _on_UpgradeScreen_upgrade_selected() -> void:
 	emit_signal("upgrade_selected")

@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Enemy
 
 export var group = "enemy"
+export var enemy_type := "i"
 export var max_hp := 20.0
 export var hp := 20.0 setget _set_hp
 export var weaknesses = []
@@ -22,6 +23,7 @@ onready var navigator = get_parent().get_parent().get_node_or_null("Navigation2D
 var target_position := Vector2.ZERO
 var direction := Vector2.ZERO
 var path := PoolVector2Array() setget set_path
+signal destroyed()
 
 func _ready() -> void:
 	add_to_group(group)
@@ -107,6 +109,7 @@ func die() -> void:
 	var drop_instance = Drop.instance()
 	effects.call_deferred("add_child", drop_instance)
 	drop_instance.global_position = get_global_position()
+	emit_signal("destroyed")
 	queue_free()
 
 func create_explosion() -> void:
