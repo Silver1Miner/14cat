@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://src/World/Enemy/Enemy.gd"
-}, {
-"base": "Resource",
-"class": "Grid",
-"language": "GDScript",
-"path": "res://src/World/Board/Grid.gd"
 } ]
 _global_script_class_icons={
-"Enemy": "",
-"Grid": ""
+"Enemy": ""
 }
 
 [application]

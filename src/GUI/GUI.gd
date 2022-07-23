@@ -46,7 +46,9 @@ func _on_Back_pressed() -> void:
 	$ToolsPanel/PowerUps.visible = false
 
 func _on_Quit_pressed() -> void:
+	$ToolsPanel/Settings/Options/Quit.disabled = true
 	emit_signal("quit")
 
 func _on_Continue_pressed() -> void:
+	$EndPanel/Continue.disabled = true
 	emit_signal("quit")
