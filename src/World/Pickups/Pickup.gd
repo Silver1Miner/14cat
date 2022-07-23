@@ -20,8 +20,8 @@ func _process(delta: float) -> void:
 		position += velocity * delta
 	#else:
 	#	position.y += 20 * delta
-	if position.y > 720:
-		queue_free()
+	#if position.y > 720:
+	#	queue_free()
 
 func activate(new_target) -> void:
 	target = new_target
@@ -35,7 +35,5 @@ func seek() -> Vector2:
 
 func _on_Pickup_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		if pickup_id == 0 and body.xp >= body.max_xp:
-			return
 		body.pickup_effect(pickup_id)
 		queue_free()

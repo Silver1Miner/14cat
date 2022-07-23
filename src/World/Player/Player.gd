@@ -8,14 +8,9 @@ export var speed := 100
 var target_position = null
 var velocity := Vector2.ZERO
 var active := true
-#var weapon_rotation := false
 var invincible = false
 
 signal hp_changed(hp, max_hp)
-signal xp_changed(xp, max_xp, level)
-signal max_xp_reached()
-signal level_up()
-signal coins_changed()
 signal player_died()
 onready var damage_timer = $DamageTimer
 onready var hitbox = $HitBox
@@ -32,16 +27,19 @@ func _ready() -> void:
 		push_error("player upgrade signal connect fail")
 	_on_player_upgraded()
 	emit_signal("hp_changed", hp, max_hp)
-	emit_signal("coins_changed")
 	add_to_group("player")
 	hitbox.add_to_group("player")
 
 func _input(event: InputEvent) -> void:
+	if not active:
+		return
 	if event.is_action_pressed('click'):
 		if event.position.y > 80 and event.position.y < 640 - 80:
 			target_position = event.position
 
 func get_input() -> void:
+	if not active:
+		return
 	if not target_position:
 		velocity = Vector2.ZERO
 	if Input.is_action_pressed('ui_right'):
@@ -61,6 +59,8 @@ func get_input() -> void:
 		$Sprite.rotation = velocity.angle() + PI/2
 
 func _physics_process(_delta: float) -> void:
+	if not active:
+		return
 	if target_position:
 		$Sprite.look_at(target_position)
 		velocity = $Sprite.transform.x * speed/2
@@ -77,12 +77,6 @@ func _physics_process(_delta: float) -> void:
 			position.y = 0 + 32
 		if position.y > (640 - 80) + 32:
 			position.y = (640 - 80) + 32
-	#if weapon_rotation:
-	#	pivot.rotation += PI/4 * delta
-	#	gun1.get_node("Aim").global_rotation = 0
-	#	gun2.get_node("Aim").global_rotation = 0
-	#	gun3.get_node("Aim").global_rotation = 0
-	#	gun4.get_node("Aim").global_rotation = 0
 
 func take_damage(damage_value: float) -> void:
 	#if invincible:
@@ -104,22 +98,13 @@ func _set_hp(new_hp: float) -> void:
 		player_death()
 
 func player_death() -> void:
+	active = false
 	emit_signal("player_died")
-	#active = false
 
 func increase_xp(xp_amount: int) -> void:
 	xp += xp_amount
+	print(xp)
 	PlayerData.total_xp += xp_amount
-	if xp >= max_xp:
-		emit_signal("max_xp_reached")
-	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
-
-func level_up() -> void:
-	PlayerData.current_level += 1
-	emit_signal("level_up")
-	xp -= max_xp
-	max_xp = PlayerData.current_level * 3
-	emit_signal("xp_changed", xp, max_xp, PlayerData.current_level)
 
 func _on_player_upgraded() -> void:
 	gun1.update_level()
@@ -127,12 +112,9 @@ func _on_player_upgraded() -> void:
 	gun3.update_level()
 	gun4.update_level()
 	emit_signal("hp_changed", hp, max_hp)
-	emit_signal("coins_changed")
 
 func _on_PickupBox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("pickup"):
-		if area.pickup_id == 0 and xp >= max_xp:
-			return
 		area.activate(self)
 
 func pickup_effect(pickup_id: int) -> void:

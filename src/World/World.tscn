@@ -22,7 +22,7 @@ navpoly = SubResource( 1 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 180, 456 )
+position = Vector2( 180, 340 )
 
 [node name="Effects" type="Node2D" parent="."]
 
@@ -30,5 +30,8 @@ position = Vector2( 180, 456 )
 
 [node name="GUI" parent="UI" instance=ExtResource( 1 )]
 
+[connection signal="unit_destroyed" from="EnemySpawner" to="." method="_on_EnemySpawner_unit_destroyed"]
 [connection signal="wave_defeated" from="EnemySpawner" to="." method="_on_EnemySpawner_wave_defeated"]
+[connection signal="hp_changed" from="Player" to="." method="_on_Player_hp_changed"]
+[connection signal="player_died" from="Player" to="." method="_on_Player_player_died"]
 [connection signal="quit" from="UI/GUI" to="." method="_on_GUI_quit"]

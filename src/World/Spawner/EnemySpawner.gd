@@ -8,7 +8,7 @@ var units_removed = 0
 onready var timer = $Timer
 onready var spawn_points = $SpawnPoints
 var spawn_indices = [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
-signal unit_destroyed()
+signal unit_destroyed(enemy_type, max_hp)
 signal wave_defeated()
 
 # wave_schedule format
@@ -53,8 +53,8 @@ func spawn_enemy(spawn_position: Vector2, enemy_type: String) -> void:
 	monster.position = spawn_position
 	add_child(monster)
 
-func _on_unit_destroyed() -> void:
-	emit_signal("unit_destroyed")
+func _on_unit_destroyed(enemy_type: String, max_hp: float) -> void:
+	emit_signal("unit_destroyed", enemy_type, max_hp)
 	units_removed += 1
 	check_if_wave_over()
 

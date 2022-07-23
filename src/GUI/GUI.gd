@@ -1,8 +1,9 @@
 extends Control
 
 onready var hp_bar = $StatusPanel/Status/CenterContainer2/Display/Fuel/HPBar
+onready var prog_count = $StatusPanel/Status/CenterContainer2/Display/WaveLeft/WaveContents
+onready var prog_bar = $StatusPanel/Status/CenterContainer2/Display/WaveProgress/ENBar
 onready var PlayerData = get_tree().get_root().get_node("Game").get_node("PlayerData")
-signal upgrade_selected()
 signal quit()
 
 func _ready() -> void:
@@ -14,26 +15,23 @@ func update_hp(new_hp, max_hp) -> void:
 	hp_bar.value = new_hp
 	hp_bar.max_value = max_hp
 
-func update_xp(xp, max_xp, level) -> void:
-	print(xp, max_xp, level)
+func update_spawn_status(counts: Dictionary) -> void:
+	var count = ""
+	for n in counts:
+		count += n + "x" + str(counts[n]) + " "
+	prog_count.text = count
 
-func update_coins(new_value: int) -> void:
-	print(new_value)
-
-func _on_PauseScreen_quit() -> void:
-	emit_signal("quit")
+func update_progress_bar(new_progress: float) -> void:
+	prog_bar.value += new_progress
 
 func activate_death() -> void:
-	$PauseScreen.activate_death()
+	$EndPanel.visible = true
 
 func activate_end() -> void:
-	$PauseScreen.activate_end()
+	$EndPanel.visible = true
 
-func _on_UpgradeScreen_upgrade_selected() -> void:
-	emit_signal("upgrade_selected")
-
-func _on_Settings_pressed() -> void:
-	$PauseScreen.activate()
+func activate_victory() -> void:
+	$EndPanel.visible = true
 
 func _on_Settings_toggled(button_pressed: bool) -> void:
 	$ToolsPanel/Settings.visible = button_pressed

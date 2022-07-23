@@ -109,7 +109,7 @@ func die() -> void:
 	var drop_instance = Drop.instance()
 	effects.call_deferred("add_child", drop_instance)
 	drop_instance.global_position = get_global_position()
-	emit_signal("destroyed")
+	emit_signal("destroyed", enemy_type, max_hp)
 	queue_free()
 
 func create_explosion() -> void:
